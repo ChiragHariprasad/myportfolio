@@ -26,5 +26,5 @@
       "@/*": ["./src/react-app/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src/react-app"]
 }
