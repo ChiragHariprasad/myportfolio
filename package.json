@@ -89,7 +89,7 @@
     "build": "tsc -b && vite build",
     "cf-typegen": "wrangler types",
     "check": "tsc && vite build && wrangler deploy --dry-run",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "npm run build && npx wrangler deploy",
     "dev": "vite",
     "lint": "eslint .",
     "preview": "npm run build && vite preview"
