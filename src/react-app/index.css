@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,85 +6,77 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 217.2 91.2% 59.8%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 210 100% 60%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 215 25% 27%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 100% 67%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-
-    --radius: 0.5rem;
+    --border: 210 40% 20%;
+    --input: 210 40% 18%;
+    --ring: 180 100% 50%;
+    --radius: 0.75rem;
   }
 
-  * {
-    @apply border-border;
-  }
-  
-  html {
-    scroll-behavior: smooth;
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 210 100% 60%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 215 25% 27%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 100% 67%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 40% 20%;
+    --input: 210 40% 18%;
+    --ring: 180 100% 50%;
+    --radius: 0.75rem;
   }
 
   body {
-    @apply bg-portfolio-background text-foreground font-sans;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: 'Orbitron', sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
 @layer components {
-  .section-container {
-    @apply max-w-6xl mx-auto px-4 py-16 md:py-24;
+  .neon-title {
+    @apply text-4xl font-bold text-portfolio-primary drop-shadow-[0_0_6px_#0ff];
   }
-  
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-8 relative inline-block;
-  }
-  
-  .section-title::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-1/2 h-1 bg-portfolio-primary;
-  }
-  
-  .card {
-    @apply bg-portfolio-card p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
-  }
-  
-  .button-primary {
-    @apply bg-portfolio-primary text-white px-6 py-2 rounded-md hover:bg-portfolio-secondary transition-colors duration-300;
-  }
-  
-  .social-icon {
-    @apply text-gray-700 hover:text-portfolio-primary transition-colors duration-300;
-  }
-}
 
-.animate-on-scroll {
-  @apply opacity-0;
-}
+  .neon-button {
+    @apply px-6 py-3 bg-portfolio-primary text-black font-semibold rounded-lg shadow-neon transition hover:scale-105 hover:shadow-[0_0_20px_#0ff];
+  }
 
-.animate-on-scroll.animated {
-  @apply animate-fade-in;
+  .card-glow {
+    @apply bg-portfolio-card text-foreground rounded-2xl p-6 shadow-neon transition hover:shadow-[0_0_30px_#3b82f6];
+  }
+
+  .glow-text {
+    @apply text-portfolio-secondary drop-shadow-[0_0_10px_#0ff];
+  }
+
+  .glow-border {
+    border: 2px solid #0ff;
+    box-shadow: 0 0 12px #0ff;
+  }
 }
