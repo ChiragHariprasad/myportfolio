@@ -124,3 +124,66 @@
     font-size: 1.2rem;
   }
 }
+
+/* Leadership content styling */
+
+.output h2 {
+  color: var(--terminal-amber);
+  font-size: 1.4rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.output h3 {
+  color: var(--terminal-green);
+  font-size: 1.2rem;
+  margin: 1.2rem 0 0.5rem;
+}
+
+.output ul {
+  list-style-type: '➤ ';
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.output ul ul {
+  list-style-type: '→ ';
+  margin-top: 0.5rem;
+  padding-left: 2rem;
+}
+
+.output li {
+  margin-bottom: 0.3rem;
+}
+
+.output strong {
+  color: var(--terminal-amber);
+  font-weight: 600;
+}
+
+.output blockquote {
+  margin-top: 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--terminal-amber);
+  color: var(--terminal-gray);
+  font-style: italic;
+}
+.output h2 {
+  color: var(--terminal-amber);
+  font-size: 1.4rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.output ul {
+  list-style-type: '➤ ';
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.output li {
+  margin-bottom: 0.3rem;
+}
+
+.output strong {
+  color: var(--terminal-amber);
+  font-weight: 600;
+}

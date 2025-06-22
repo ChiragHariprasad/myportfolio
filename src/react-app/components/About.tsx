@@ -24,18 +24,6 @@ const About: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const aboutText = `Mechanical Engineering graduate who discovered a passion for AI/ML and intelligent systems.
-
-My journey spans from traditional engineering to cutting-edge technology:
-• Transitioned from Mechanical Engineering to AI/ML specialization
-• Built full-stack systems from microcontrollers to predictive models
-• Led technical teams and mentored peers in real-world deployments
-• Developed patent-pending fraud detection systems
-• Specialized in real-time systems, anomaly detection, and intelligent automation
-
-I thrive on solving complex problems that require both technical depth and systems thinking.
-From inventory optimization to crime analytics, I build solutions that evolve and adapt.`;
-
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.prompt}>
@@ -50,11 +38,28 @@ From inventory optimization to crime analytics, I build solutions that evolve an
 
       {showContent && (
         <div className={styles.output}>
-          <TypingEffect
-            text={aboutText}
-            speed={30}
-            delay={500}
-          />
+          <h2 className={styles.heading}># About Me</h2>
+
+          <p>
+            Mechatronics graduate turned AI/ML engineer, driven by a passion for intelligent systems and adaptive technologies.
+          </p>
+
+          <p>
+            My journey bridges the gap between physical systems and digital intelligence:
+          </p>
+
+          <ul>
+            <li>Transitioned from a <strong>Mechatronics background</strong> to AI/ML specialization</li>
+            <li>Engineered full-stack solutions – from <strong>microcontrollers to predictive ML models</strong></li>
+            <li>Led high-impact technical teams and mentored peers in <strong>production-grade deployments</strong></li>
+            <li>Designed and developed a <strong>patent-pending fraud detection system</strong></li>
+            <li>Specialized in <strong>real-time systems, anomaly detection, and intelligent automation</strong></li>
+          </ul>
+
+          <p>
+            I excel at tackling complex, system-level challenges that demand deep technical insight and strategic thinking.
+            From <strong>inventory optimization</strong> to <strong>crime analytics</strong>, I architect solutions that learn, scale, and evolve.
+          </p>
         </div>
       )}
     </section>
