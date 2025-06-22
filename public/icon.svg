@@ -1,14 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="8" ry="8" fill="#0a0a0a"/>
+  <defs>
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00ff41" flood-opacity="1" />
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#00ff41" flood-opacity="0.5" />
+    </filter>
+
+    <!-- Scanlines -->
+    <pattern id="scanlines" width="2" height="4" patternUnits="userSpaceOnUse">
+      <rect width="2" height="2" fill="#000000" opacity="0.25"/>
+    </pattern>
+
+    <!-- Noise Layer -->
+    <filter id="staticNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="noise"/>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <!-- Background with scanlines -->
+  <rect width="64" height="64" rx="8" ry="8" fill="#000000"/>
+  <rect width="64" height="64" rx="8" ry="8" fill="url(#scanlines)" />
+
+  <!-- Main text with glow -->
   <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Orbitron, monospace" font-weight="900" font-size="36" fill="#0ff" stroke="#0ff" stroke-width="1.5" paint-order="stroke fill">
+        font-family="Fira Code, monospace" font-weight="900" font-size="32"
+        fill="#00ff41" filter="url(#glow)">
     CH
   </text>
-  <filter id="glow">
-    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#0ff"/>
-  </filter>
+
+  <!-- Glitch offset layer -->
   <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Orbitron, monospace" font-weight="900" font-size="36" fill="#0ff" filter="url(#glow)" opacity="0.7">
+        font-family="Fira Code, monospace" font-weight="900" font-size="32"
+        fill="#00ff41" opacity="0.4" transform="translate(1,1)">
     CH
   </text>
+
+  <!-- Noise overlay -->
+  <rect width="64" height="64" rx="8" ry="8" fill="transparent" filter="url(#staticNoise)" opacity="0.15"/>
 </svg>
