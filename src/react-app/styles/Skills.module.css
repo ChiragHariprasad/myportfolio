@@ -1,0 +1,124 @@
+.skills {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.terminalOutput {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--terminal-green);
+  border-radius: 8px;
+  padding: 2rem;
+  font-family: var(--font-mono);
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminalOutput::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--terminal-green), var(--terminal-amber), var(--terminal-green));
+  animation: terminalLoad 2s ease-in-out infinite;
+}
+
+@keyframes terminalLoad {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+.skillsJson {
+  color: var(--terminal-green);
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.jsonKey {
+  color: var(--terminal-amber);
+}
+
+.jsonString {
+  color: var(--terminal-green);
+}
+
+.jsonBracket {
+  color: var(--terminal-blue);
+  font-weight: 600;
+}
+
+.skillCategory {
+  margin-bottom: 1.5rem;
+}
+
+.skillCategory h3 {
+  color: var(--terminal-amber);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.skillItem {
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid var(--terminal-green);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skillItem:hover {
+  background: rgba(255, 222, 89, 0.1);
+  color: var(--terminal-amber);
+  border-color: var(--terminal-amber);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 222, 89, 0.3);
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: var(--terminal-gray);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--terminal-green), var(--terminal-amber));
+  border-radius: 2px;
+  animation: progressLoad 2s ease-out;
+}
+
+@keyframes progressLoad {
+  from { width: 0%; }
+  to { width: var(--progress, 100%); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .terminalOutput {
+    padding: 1rem;
+  }
+  
+  .skillsList {
+    gap: 0.4rem;
+  }
+  
+  .skillItem {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+  }
+}

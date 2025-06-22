@@ -1,77 +1,62 @@
-
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import TypingEffect from './TypingEffect';
+import styles from '../styles/Terminal.module.css';
 
 const About: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const aboutText = `Mechanical Engineering graduate who discovered a passion for AI/ML and intelligent systems.
+
+My journey spans from traditional engineering to cutting-edge technology:
+• Transitioned from Mechanical Engineering to AI/ML specialization
+• Built full-stack systems from microcontrollers to predictive models
+• Led technical teams and mentored peers in real-world deployments
+• Developed patent-pending fraud detection systems
+• Specialized in real-time systems, anomaly detection, and intelligent automation
+
+I thrive on solving complex problems that require both technical depth and systems thinking.
+From inventory optimization to crime analytics, I build solutions that evolve and adapt.`;
+
   return (
-    <section id="about" className="section-container">
-      <h2 className="section-title">About Me</h2>
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div className="md:col-span-7">
-          <p className="text-lg text-gray-700 mb-6">
-            Results-driven Artificial Intelligence and Machine Learning engineering student with demonstrated experience in Python programming, 
-            data analysis, and machine learning algorithms. I combine technical expertise in AI/ML with 3+ years of leadership experience and 
-            project management skills.
-          </p>
-          <p className="text-lg text-gray-700 mb-6">
-            I have a proven ability to develop innovative solutions including computer vision applications and automated systems. 
-            Currently seeking to leverage my technical and leadership capabilities in a challenging role.
-          </p>
-          <p className="text-lg text-gray-700">
-            My areas of expertise include Machine Learning algorithms, Computer Vision, Data Analysis, 
-            and 3D Modeling & Manufacturing technologies.
-          </p>
-        </div>
-        
-        <div className="md:col-span-5">
-          <div className="card h-full flex flex-col justify-center">
-            <h3 className="text-xl font-semibold mb-4 text-portfolio-primary">Personal Details</h3>
-            <ul className="space-y-3">
-              <li className="flex gap-2">
-                <span className="font-medium min-w-[100px]">Name:</span>
-                <span>Chirag Hariprasad</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-medium min-w-[100px]">Location:</span>
-                <span>Bengaluru, Karnataka, India</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-medium min-w-[100px]">Email:</span>
-                <a href="mailto:chiragh.0804@gmail.com" className="text-portfolio-primary hover:underline">
-                  chiragh.0804@gmail.com
-                </a>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-medium min-w-[100px]">Phone:</span>
-                <a href="tel:+919036998027" className="text-portfolio-primary hover:underline">
-                  +91 90369 98027
-                </a>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-medium min-w-[100px]">LinkedIn:</span>
-                <a 
-                  href="https://linkedin.com/in/chirag-hariprasad" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-portfolio-primary hover:underline"
-                >
-                  linkedin.com/in/chirag-hariprasad
-                </a>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-medium min-w-[100px]">GitHub:</span>
-                <a 
-                  href="https://github.com/ChiragHariprasad" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-portfolio-primary hover:underline"
-                >
-                  github.com/ChiragHariprasad
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+    <section ref={sectionRef} className={styles.section}>
+      <div className={styles.prompt}>
+        {isVisible && (
+          <TypingEffect
+            text="chirag@portfolio:~$ cat about.txt"
+            speed={60}
+            onComplete={() => setShowContent(true)}
+          />
+        )}
       </div>
+
+      {showContent && (
+        <div className={styles.output}>
+          <TypingEffect
+            text={aboutText}
+            speed={30}
+            delay={500}
+          />
+        </div>
+      )}
     </section>
   );
 };

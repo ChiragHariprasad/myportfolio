@@ -1,0 +1,148 @@
+.header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.05) 0%, transparent 70%);
+}
+
+.terminalWindow {
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--terminal-green);
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 65, 0.3),
+    inset 0 0 20px rgba(0, 255, 65, 0.1);
+  position: relative;
+}
+
+.terminalHeader {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--terminal-gray);
+}
+
+.terminalButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--terminal-red);
+}
+
+.terminalButton:nth-child(2) {
+  background: var(--terminal-amber);
+}
+
+.terminalButton:nth-child(3) {
+  background: var(--terminal-green);
+}
+
+.prompt {
+  color: var(--terminal-green);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--terminal-green);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px var(--terminal-green);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.title {
+  font-size: 1.3rem;
+  color: var(--terminal-amber);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--terminal-green);
+  font-style: italic;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.socials {
+  margin-top: 2rem;
+}
+
+.socialsList {
+  list-style: none;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.socialsList li {
+  margin-bottom: 0.5rem;
+  color: var(--terminal-green);
+}
+
+.socialsList a {
+  color: var(--terminal-amber);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socialsList a:hover {
+  color: var(--terminal-green);
+  text-shadow: 0 0 10px var(--terminal-green);
+  text-decoration: underline;
+}
+
+.floatingSymbols {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.symbol {
+  position: absolute;
+  color: var(--terminal-green);
+  opacity: 0.1;
+  font-size: 1.5rem;
+  animation: float 10s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
+  25% { transform: translateY(-10px) rotate(5deg); opacity: 0.2; }
+  50% { transform: translateY(-20px) rotate(-5deg); opacity: 0.15; }
+  75% { transform: translateY(-10px) rotate(3deg); opacity: 0.1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .name {
+    font-size: 2rem;
+  }
+  
+  .title {
+    font-size: 1rem;
+  }
+  
+  .terminalWindow {
+    padding: 1.5rem;
+  }
+}

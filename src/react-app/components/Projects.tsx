@@ -1,74 +1,230 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { ExternalLink, Shield, Zap, Activity } from 'lucide-react';
+import TypingEffect from './TypingEffect';
+import styles from '../styles/Projects.module.css';
+import terminalStyles from '../styles/Terminal.module.css';
 
-import React from 'react';
+interface Project {
+  id: string;
+  title: string;
+  status: 'confidential' | 'active' | 'completed';
+  description: string;
+  features?: string[];
+  tech: string[];
+  link?: string;
+  confidential?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    id: 'vector',
+    title: 'V.E.C.T.O.R – Real-Time Fraud Detection System',
+    status: 'confidential',
+    description: 'Advanced fraud detection system with patent-pending technology.',
+    tech: ['Redis', 'MongoDB', 'Python', 'JavaScript'],
+    confidential: true
+  },
+  {
+    id: 'inventory',
+    title: 'AI-Driven Inventory Intelligence & Fulfillment System',
+    status: 'completed',
+    description: 'End-to-end inventory optimization for grocery chains using AI. ML models forecast demand, classify customer behavior, and detect anomalies. Predictive assistant fetches recipes, syncs user inventory, triggers proactive store orders.',
+    features: [
+      'Demand forecasting with ML models',
+      'Customer behavior classification',
+      'Anomaly detection for inventory spikes',
+      'Context-aware logic for festivals and trends',
+      'Recipe-based inventory recommendations'
+    ],
+    tech: ['Python', 'ML', 'REST APIs', 'Analytics Pipeline']
+  },
+  {
+    id: 'wanted',
+    title: 'W.A.N.T.E.D – Crime Analytics & Simulation Platform',
+    status: 'completed',
+    description: 'An AI platform to simulate how crimes evolve across demographics with advanced vector-based analysis.',
+    features: [
+      'Crime Genome (vectorized crime profile modeling)',
+      'Demographic Transition Models',
+      'Semantic Vector-Based Search using Sentence Transformers',
+      'GPU-accelerated Anomaly Detection using cuML/cuDF',
+      'Interactive heatmaps and network graphs'
+    ],
+    tech: ['MongoDB Atlas', 'FastAPI', 'Firebase Hosting', 'Plotly', 'NetworkX', 'cuML'],
+    link: 'https://youtu.be/OHKePrZGpeg'
+  },
+  {
+    id: 'pathfinding',
+    title: 'Pathfinding Simulation Game – RTS-Inspired AI Engine',
+    status: 'completed',
+    description: 'Highly advanced tactical simulation with adaptive agents and dynamic terrain systems.',
+    features: [
+      'Flow Field vs A* benchmarking system',
+      'Dynamic terrain morphing (grass → mud → water)',
+      'Snake mobs using DFS logic with aura zones',
+      'Thunder-induced state changes and terrain cost mutation',
+      'Real-time tactical decision making'
+    ],
+    tech: ['Python', 'PyGame', 'Grid AI', 'Heuristics', 'DFS']
+  },
+  {
+    id: 'traffic',
+    title: 'Urban Traffic Swarm Intelligence System',
+    status: 'active',
+    description: 'Uses Ant Colony Optimization to dynamically control traffic lights and react to real-time congestion.',
+    features: [
+      'Real-time traffic light optimization',
+      'Emergency vehicle priority routing',
+      'Dynamic congestion response',
+      'Live traffic monitoring dashboard'
+    ],
+    tech: ['ACO Algorithms', 'Live Dashboards', 'Real-Time Routing', 'Web APIs']
+  },
+  {
+    id: 'gesture',
+    title: 'Gesture-Controlled Smart Home System',
+    status: 'completed',
+    description: 'Real-time gesture recognition system using computer vision to control Arduino-based home automation.',
+    features: [
+      'Real-time gesture recognition via webcam',
+      'Arduino-triggered automation',
+      'Multi-gesture support with noise filtering',
+      'Optimized for low latency response'
+    ],
+    tech: ['Python', 'OpenCV', 'Arduino', 'Serial Communications']
+  },
+  {
+    id: 'hospital',
+    title: 'Emergency Hospital Resource Management System',
+    status: 'completed',
+    description: 'Intelligent triage system using priority queues and patient condition scoring for optimal resource allocation.',
+    features: [
+      'Intelligent patient triage with priority scoring',
+      'Specialist mapping based on urgency',
+      'Resource rebalancing algorithms',
+      'Concurrency-safe processing'
+    ],
+    tech: ['C', 'Data Structures & Algorithms', 'Multithreaded Simulation']
+  }
+];
 
 const Projects: React.FC = () => {
-  const projects = [
-    {
-      title: "Computer Vision-Based Gesture Recognition Home Automation System",
-      year: "2024",
-      description: [
-        "Designed and implemented a Python-Arduino interface that converts hand gestures to control commands",
-        "Utilized OpenCV and machine learning algorithms to achieve 92% gesture recognition accuracy",
-        "Developed custom firmware for Arduino to process control signals and manage home appliances",
-        "Created system specifically to assist verbally impaired users, enhancing accessibility"
-      ],
-      tags: ["Python", "OpenCV", "Arduino", "Machine Learning", "Accessibility"]
-    },
-    {
-      title: "Hospital Resource Management System",
-      year: "2023",
-      description: [
-        "Developed a C-based application implementing priority queues for emergency patient management",
-        "Designed algorithms for optimal doctor-patient assignment based on specialization and urgency",
-        "Implemented data structures for efficient patient record management and retrieval",
-        "Integrated reporting capabilities to analyze hospital resource utilization patterns"
-      ],
-      tags: ["C", "Data Structures", "Algorithms", "Healthcare", "Resource Management"]
-    },
-    {
-      title: "Algorithm Visualization Platform",
-      year: "2023",
-      description: [
-        "Created an interactive visualization tool using PyGame to demonstrate pathfinding algorithms",
-        "Implemented multiple algorithms (A*, Dijkstra, BFS, DFS) with comparative performance metrics",
-        "Designed user interface allowing real-time parameter adjustment and obstacle placement",
-        "Developed comprehensive documentation explaining algorithm applications in real-world scenarios"
-      ],
-      tags: ["Python", "PyGame", "Algorithms", "Visualization", "Pathfinding"]
+  const [isVisible, setIsVisible] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
-  ];
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'confidential':
+        return <Shield size={16} />;
+      case 'active':
+        return <Activity size={16} />;
+      case 'completed':
+        return <Zap size={16} />;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <section id="projects" className="section-container bg-gray-50">
-      <h2 className="section-title">Technical Projects</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <div key={index} className="card flex flex-col h-full">
-            <div className="flex justify-between items-start mb-2">
-              <h3 className="text-xl font-bold text-portfolio-primary">{project.title}</h3>
-              <span className="bg-portfolio-primary text-white px-2 py-1 rounded text-sm">{project.year}</span>
-            </div>
-            
-            <ul className="list-disc pl-5 space-y-2 text-gray-700 mb-4 flex-grow">
-              {project.description.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-            
-            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-200">
-              {project.tags.map((tag, i) => (
-                <span 
-                  key={i}
-                  className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+    <section ref={sectionRef} className={styles.projects}>
+      <div className={terminalStyles.prompt}>
+        {isVisible && (
+          <TypingEffect
+            text="chirag@portfolio:~$ ls ~/projects/ -l"
+            speed={60}
+            onComplete={() => setShowContent(true)}
+          />
+        )}
       </div>
+
+      {showContent && (
+        <div className={styles.projectsGrid}>
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={styles.projectCard}
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              {project.confidential && (
+                <div className={styles.confidentialOverlay}>
+                  <div>🔒 SYSTEM STATUS: CONFIDENTIAL</div>
+                  <div>ACCESS: DENIED</div>
+                  <div>PATENT PENDING...</div>
+                </div>
+              )}
+
+              <div className={styles.projectTitle}>
+                {getStatusIcon(project.status)}
+                <span 
+                  className={styles.glitch}
+                  data-text={project.title}
+                >
+                  {project.title}
+                </span>
+                <div className={`${styles.projectStatus} ${styles[`status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`]}`}>
+                  {project.status.toUpperCase()}
+                </div>
+              </div>
+
+              <div className={styles.projectDescription}>
+                {project.confidential ? (
+                  <div className={styles.redacted}>
+                    {project.description}
+                  </div>
+                ) : (
+                  project.description
+                )}
+              </div>
+
+              {project.features && !project.confidential && (
+                <ul className={styles.projectFeatures}>
+                  {project.features.map((feature, idx) => (
+                    <li key={idx}>{feature}</li>
+                  ))}
+                </ul>
+              )}
+
+              <div className={styles.projectTech}>
+                {project.tech.map((tech, idx) => (
+                  <span key={idx} className={styles.techTag}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {project.link && !project.confidential && (
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.projectLink}
+                >
+                  <ExternalLink size={16} />
+                  Watch Demo
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };
