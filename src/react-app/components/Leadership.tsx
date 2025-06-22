@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Award, Users, Code, Zap } from 'lucide-react';
-import TypingEffect from './TypingEffect';
 import styles from '../styles/Terminal.module.css';
+import TypingEffect from './TypingEffect';
 
 const Leadership: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,32 +24,6 @@ const Leadership: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const leadershipContent = `# Leadership & Impact
-
-## Academic Leadership
-• **Class Representative** - 3 consecutive years, consistently elected by peers
-• Led academic committees and represented student interests in faculty meetings
-• Coordinated technical workshops and study groups for engineering students
-
-## Technical Leadership
-• **GDG ML Vertical Lead Candidate** - Selected for machine learning community leadership
-• **Patent Pending** - V.E.C.T.O.R fraud detection system innovation
-• Led development teams in multiple high-impact projects
-
-## Community Impact
-• **National Digital Infrastructure Project** - Volunteer leader
-  - Rotary-Infosys-Government collaboration
-  - Deployed technology solutions across educational institutions
-  - Managed cross-functional teams and stakeholder communications
-
-## Mentorship & Development
-• Mentored junior developers in AI/ML technologies
-• Conducted technical training sessions on real-time systems
-• Led code reviews and architectural design discussions
-
----
-*"Leadership is not about being in charge. It's about taking care of those in your charge."*`;
-
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.prompt}>
@@ -65,11 +38,43 @@ const Leadership: React.FC = () => {
 
       {showContent && (
         <div className={styles.output}>
-          <TypingEffect
-            text={leadershipContent}
-            speed={20}
-            delay={500}
-          />
+          <h2 className={styles.heading}># Leadership & Impact</h2>
+
+          <h3 className={styles.subheading}>## Academic Leadership</h3>
+          <ul>
+            <li><strong>Class Representative</strong> – 3 consecutive years, consistently elected by peers</li>
+            <li>Led academic committees and represented student interests in faculty meetings</li>
+            <li>Coordinated technical workshops and study groups for engineering students</li>
+          </ul>
+
+          <h3 className={styles.subheading}>## Technical Leadership</h3>
+          <ul>
+            <li><strong>GDG ML Vertical Lead Candidate</strong> – Selected for machine learning community leadership</li>
+            <li><strong>Patent Pending</strong> – V.E.C.T.O.R fraud detection system innovation</li>
+            <li>Led development teams in multiple high-impact projects</li>
+          </ul>
+
+          <h3 className={styles.subheading}>## Community Impact</h3>
+          <ul>
+            <li><strong>National Digital Infrastructure Project</strong> – Volunteer leader
+              <ul>
+                <li>Rotary-Infosys-Government collaboration</li>
+                <li>Deployed technology solutions across educational institutions</li>
+                <li>Managed cross-functional teams and stakeholder communications</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3 className={styles.subheading}>## Mentorship & Development</h3>
+          <ul>
+            <li>Mentored junior developers in AI/ML technologies</li>
+            <li>Conducted technical training sessions on real-time systems</li>
+            <li>Led code reviews and architectural design discussions</li>
+          </ul>
+
+          <blockquote className={styles.quote}>
+            "Leadership is not about being in charge. It's about taking care of those in your charge."
+          </blockquote>
         </div>
       )}
     </section>
