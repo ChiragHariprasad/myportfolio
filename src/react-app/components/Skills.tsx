@@ -1,107 +1,98 @@
-
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import TypingEffect from './TypingEffect';
+import styles from '../styles/Skills.module.css';
+import terminalStyles from '../styles/Terminal.module.css';
 
 const Skills: React.FC = () => {
-  const technicalSkills = [
-    {
-      category: "Programming Languages",
-      skills: ["Python", "C", "R"]
-    },
-    {
-      category: "Machine Learning",
-      skills: ["Classification algorithms", "Neural Networks", "Computer Vision basics"]
-    },
-    {
-      category: "Data Analysis",
-      skills: ["Statistical analysis", "Data visualization", "Pattern recognition"]
-    },
-    {
-      category: "Tools & Technologies",
-      skills: ["Arduino", "PyGame", "Git", "CATIA", "Blender"]
-    },
-    {
-      category: "3D Modeling & Manufacturing",
-      skills: ["3D printing (FDM and LAM)", "Design optimization"]
-    },
-    {
-      category: "Security",
-      skills: ["Cryptography fundamentals", "Secure programming practices"]
-    }
-  ];
+  const [isVisible, setIsVisible] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const softSkills = [
-    {
-      skill: "Team Leadership",
-      description: "Led project teams of 4-6 members, coordinating tasks and ensuring deliverables"
-    },
-    {
-      skill: "Problem-Solving",
-      description: "Applied analytical thinking to resolve complex technical challenges"
-    },
-    {
-      skill: "Communication",
-      description: "Effectively presented technical concepts to diverse audiences"
-    },
-    {
-      skill: "Time Management",
-      description: "Consistently met project deadlines while maintaining quality standards"
-    },
-    {
-      skill: "Adaptability",
-      description: "Quickly acquired new technical skills as required by project demands"
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
-  ];
+
+    return () => observer.disconnect();
+  }, []);
+
+  const skillsData = {
+    "Languages": ["Python", "C", "JavaScript", "R (Basic)"],
+    "AI & ML": ["OpenCV", "Fraud Detection", "Forecasting", "Search Algorithms", "Anomaly Detection"],
+    "Frameworks": ["FastAPI", "Firebase", "Redis"],
+    "Simulation": ["Pathfinding AI", "ACO", "Gesture Control", "Real-Time Units"],
+    "Platforms": ["Arduino", "MongoDB Atlas", "Cloudflare", "Linux"],
+    "Dev Tools": ["Git", "Version Control", "API Integration", "PyGame"]
+  };
+
+  const jsonString = JSON.stringify(skillsData, null, 2);
 
   return (
-    <section id="skills" className="section-container">
-      <h2 className="section-title">Skills</h2>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Technical Skills */}
-        <div>
-          <h3 className="text-2xl font-bold mb-6 text-portfolio-primary">Technical Skills</h3>
-          <div className="space-y-6">
-            {technicalSkills.map((skillSet, index) => (
-              <div key={index} className="card">
-                <h4 className="font-semibold text-lg mb-2">{skillSet.category}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {skillSet.skills.map((skill, i) => (
-                    <span 
-                      key={i} 
-                      className="bg-portfolio-primary bg-opacity-10 text-portfolio-primary px-3 py-1 rounded-full"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Soft Skills */}
-        <div>
-          <h3 className="text-2xl font-bold mb-6 text-portfolio-primary">Leadership & Soft Skills</h3>
-          <div className="space-y-4">
-            {softSkills.map((skill, index) => (
-              <div key={index} className="card">
-                <h4 className="font-semibold text-lg">{skill.skill}</h4>
-                <p className="text-gray-700">{skill.description}</p>
-              </div>
-            ))}
-          </div>
-          
-          {/* Certifications */}
-          <h3 className="text-2xl font-bold mb-6 mt-12 text-portfolio-primary">Certifications</h3>
-          <div className="card">
-            <ul className="list-disc pl-5 space-y-3 text-gray-700">
-              <li>Goldman Sachs Software Engineering Virtual Experience Program — Forage, October 2024</li>
-              <li>AWS APAC Solutions Architecture Virtual Experience Program — Forage, October 2024</li>
-              <li>Data Science for Engineers — NPTEL, 8-week intensive course (75% score)</li>
-            </ul>
-          </div>
-        </div>
+    <section ref={sectionRef} className={styles.skills}>
+      <div className={terminalStyles.prompt}>
+        {isVisible && (
+          <TypingEffect
+            text="chirag@portfolio:~$ cat ~/skills.json"
+            speed={60}
+            onComplete={() => setShowContent(true)}
+          />
+        )}
       </div>
+
+      {showContent && (
+        <div className={styles.terminalOutput}>
+          <pre className={styles.skillsJson}>
+            <TypingEffect
+              text={jsonString}
+              speed={20}
+              delay={500}
+            />
+          </pre>
+        </div>
+      )}
+
+      {showContent && (
+        <div style={{ marginTop: '2rem' }}>
+          {Object.entries(skillsData).map(([category, skills], index) => (
+            <div key={category} className={styles.skillCategory}>
+              <h3>{category}</h3>
+              <ul className={styles.skillsList}>
+                {skills.map((skill, skillIndex) => (
+                  <li 
+                    key={skill} 
+                    className={styles.skillItem}
+                    style={{ 
+                      animationDelay: `${(index * 0.1) + (skillIndex * 0.05)}s`,
+                      opacity: 0,
+                      animation: `fadeIn 0.5s ease forwards ${(index * 0.1) + (skillIndex * 0.05)}s`
+                    }}
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+              <div className={styles.progressBar}>
+                <div 
+                  className={styles.progressFill}
+                  style={{ 
+                    '--progress': `${85 + Math.random() * 15}%`,
+                    animationDelay: `${index * 0.2}s`
+                  } as React.CSSProperties}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

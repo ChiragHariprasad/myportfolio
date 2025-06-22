@@ -1,0 +1,126 @@
+.container {
+  min-height: 100vh;
+  background: var(--terminal-bg);
+  position: relative;
+  z-index: 1;
+}
+
+.prompt {
+  color: var(--terminal-green);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.command {
+  color: var(--terminal-amber);
+  font-family: var(--font-mono);
+}
+
+.output {
+  color: var(--terminal-green);
+  font-family: var(--font-mono);
+  line-height: 1.8;
+  margin-left: 1rem;
+}
+
+.cursor {
+  display: inline-block;
+  background-color: var(--terminal-green);
+  animation: blink 1s infinite;
+  width: 0.8em;
+  height: 1.2em;
+  margin-left: 2px;
+}
+
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--terminal-green);
+  animation: typing 3s steps(40, end), blink 1s step-end infinite;
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch:hover {
+  animation: glitch 0.3s infinite;
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch:hover::before {
+  color: var(--terminal-red);
+  z-index: -1;
+  transform: translate(-2px, -2px);
+  clip: rect(24px, 550px, 90px, 0);
+}
+
+.glitch:hover::after {
+  color: var(--terminal-blue);
+  z-index: -2;
+  transform: translate(2px, 2px);
+  clip: rect(85px, 550px, 140px, 0);
+}
+
+.section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: var(--terminal-amber);
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--terminal-gray);
+  padding-bottom: 0.5rem;
+}
+
+.matrixBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.matrixColumn {
+  position: absolute;
+  top: -100%;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--terminal-green);
+  animation: matrixFall linear infinite;
+}
+
+@keyframes matrixFall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+}

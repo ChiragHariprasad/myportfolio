@@ -1,0 +1,196 @@
+.projects {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.projectCard {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--terminal-green);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.projectCard:hover {
+  border-color: var(--terminal-amber);
+  box-shadow: 0 0 20px rgba(255, 222, 89, 0.3);
+  transform: translateY(-5px);
+}
+
+.projectCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.projectCard:hover::before {
+  left: 100%;
+}
+
+.projectTitle {
+  color: var(--terminal-amber);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.projectStatus {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.statusConfidential {
+  background: rgba(255, 7, 58, 0.2);
+  color: var(--terminal-red);
+  border: 1px solid var(--terminal-red);
+  animation: pulse 2s infinite;
+}
+
+.statusActive {
+  background: rgba(0, 255, 65, 0.2);
+  color: var(--terminal-green);
+  border: 1px solid var(--terminal-green);
+}
+
+.statusCompleted {
+  background: rgba(255, 222, 89, 0.2);
+  color: var(--terminal-amber);
+  border: 1px solid var(--terminal-amber);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.projectDescription {
+  color: var(--terminal-green);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.projectFeatures {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.projectFeatures li {
+  color: var(--terminal-green);
+  margin-bottom: 0.3rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.projectFeatures li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--terminal-amber);
+}
+
+.projectTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.techTag {
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  border: 1px solid var(--terminal-green);
+}
+
+.projectLink {
+  color: var(--terminal-amber);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.projectLink:hover {
+  color: var(--terminal-green);
+  text-shadow: 0 0 10px var(--terminal-green);
+}
+
+.redacted {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--terminal-red),
+    var(--terminal-red) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  color: transparent;
+  padding: 0.2rem;
+  animation: redactedGlitch 0.5s infinite;
+}
+
+@keyframes redactedGlitch {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+.confidentialOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 7, 58, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--terminal-red);
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projectCard:hover .confidentialOverlay {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .projectCard {
+    padding: 1rem;
+  }
+  
+  .projectTitle {
+    font-size: 1rem;
+  }
+}
