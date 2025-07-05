@@ -41,7 +41,7 @@ const About: React.FC = () => {
           <h2 className={styles.heading}># About Me</h2>
 
           <p>
-            Mechatronics graduate turned AI/ML engineer, driven by a passion for intelligent systems and adaptive technologies.
+            Diploma in Mechatronics graduate turned AI/ML engineer, driven by a passion for intelligent systems and adaptive technologies.
           </p>
 
           <p>
