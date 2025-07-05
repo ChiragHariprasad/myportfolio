@@ -52,7 +52,7 @@ const Header: React.FC = () => {
         )}
 
         {/* Hidden static version for SEO */}
-        <h1 className={styles.hiddenStatic}>Chirag H</h1>
+        <h1 className={styles.hiddenStatic}>Chirag Hariprasad</h1>
 
         {/* Visible animated version for users */}
         {showName && (
