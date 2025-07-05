@@ -92,7 +92,7 @@ const Header: React.FC = () => {
             <ul className={styles.socialsList}>
               <li>
                 <TypingEffect text="> LinkedIn: " speed={40} delay={800} />
-                <a href="https://linkedin.com/in/chirag-hariprasad" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/chirag-hariprasad/" target="_blank" rel="noopener noreferrer">
                   linkedin.com/in/chirag-hariprasad
                 </a>
               </li>
