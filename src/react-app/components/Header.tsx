@@ -58,7 +58,7 @@ const Header: React.FC = () => {
         {showName && (
           <h1 className={styles.name}>
             <TypingEffect
-              text="Chirag H"
+              text="Chirag Hariprasad"
               speed={100}
               delay={500}
               onComplete={() => setShowTitle(true)}
