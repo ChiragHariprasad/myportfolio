@@ -51,6 +51,10 @@ const Header: React.FC = () => {
           </div>
         )}
 
+        {/* Hidden static version for SEO */}
+        <h1 className={styles.hiddenStatic}>Chirag H</h1>
+
+        {/* Visible animated version for users */}
         {showName && (
           <h1 className={styles.name}>
             <TypingEffect
