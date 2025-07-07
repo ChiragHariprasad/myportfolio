@@ -26,7 +26,7 @@ const projects: Project[] = [
   },
   {
     id: 'inventory',
-    title: 'AI-Driven Inventory Intelligence & Fulfillment System',
+    title: 'O.R.I.O.N - Omni Retail Intelligence Ordering Network',
     status: 'completed',
     description: 'End-to-end inventory optimization for grocery chains using AI. ML models forecast demand, classify customer behavior, and detect anomalies. Predictive assistant fetches recipes, syncs user inventory, triggers proactive store orders.',
     features: [
@@ -54,19 +54,19 @@ const projects: Project[] = [
     link: 'https://youtu.be/OHKePrZGpeg'
   },
   {
-    id: 'pathfinding',
-    title: 'Pathfinding Simulation Game – RTS-Inspired AI Engine',
-    status: 'completed',
-    description: 'Highly advanced tactical simulation with adaptive agents and dynamic terrain systems.',
-    features: [
-      'Flow Field vs A* benchmarking system',
-      'Dynamic terrain morphing (grass → mud → water)',
-      'Snake mobs using DFS logic with aura zones',
-      'Thunder-induced state changes and terrain cost mutation',
-      'Real-time tactical decision making'
-    ],
-    tech: ['Python', 'PyGame', 'Grid AI', 'Heuristics', 'DFS']
-  },
+  id: 'pathfinding',
+  title: 'Pathfinding Benchmark & AI Simulation – RTS-Inspired Tactical Engine',
+  status: 'completed',
+  description: 'Real-time game environment to benchmark 35+ pathfinding algorithms under fog-of-war, dynamic obstacles, and agent evolution. Flow Field and A* embedded into gameplay to evaluate efficiency, adaptability, and responsiveness.',
+  features: [
+    'Benchmarking suite for 35+ algorithms (A*, Dijkstra, Flow Field, ACO, PSO, etc.)',
+    'Real-time game: PROJECT RESCUE RUN with enemy AI evolving from DFS → BFS → A*',
+    'Multi-agent navigation with terrain-aware path selection and live strategy switching',
+    'Fog-of-war simulation, dynamic obstacles, and player-NPC rescue mechanics',
+    'Comparative success rate, memory usage, and decision latency analysis'
+  ],
+  tech: ['Python', 'PyGame', 'Flow Field', 'A*', 'DFS', 'NumPy', 'RTS AI']
+},
   {
     id: 'traffic',
     title: 'Urban Traffic Swarm Intelligence System',
