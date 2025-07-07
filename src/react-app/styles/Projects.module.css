@@ -25,6 +25,7 @@
   border-color: var(--terminal-amber);
   box-shadow: 0 0 20px rgba(255, 222, 89, 0.3);
   transform: translateY(-5px);
+  z-index: 2;
 }
 
 .projectCard::before {
@@ -181,6 +182,9 @@
 
 .projectRow {
   margin-bottom: 4rem;
+  padding-top: 2rem; 
+  position: relative;
+  z-index: 0;
 }
 
 .rowTitle {
@@ -189,6 +193,9 @@
   color: var(--accent);
   padding-left: 0.5rem;
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  background-color: var(--bgPrimary);
 }
 
 .horizontalScroll {
@@ -197,13 +204,20 @@
   overflow-x: auto;
   padding-bottom: 1rem;
   scroll-snap-type: x mandatory;
+  overflow-y: visible;
+  position: relative;
+  z-index: 0;
 }
 
 .projectCard {
   flex: 0 0 auto;
-  width: 320px; /* Adjust as needed */
+  width: 320px;
   scroll-snap-align: start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 0;
 }
+
 
 
 /* Responsive */
