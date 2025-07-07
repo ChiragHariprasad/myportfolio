@@ -142,91 +142,109 @@ const Projects: React.FC = () => {
         return null;
     }
   };
+  
+const groupedProjects = {
+  active: projects.filter(p => p.status === 'active'),
+  completed: projects.filter(p => p.status === 'completed'),
+  confidential: projects.filter(p => p.status === 'confidential'),
+};
 
   return (
-    <section ref={sectionRef} className={styles.projects}>
-      <div className={terminalStyles.prompt}>
-        {isVisible && (
-          <TypingEffect
-            text="chirag@portfolio:~$ ls ~/projects/ -l"
-            speed={60}
-            onComplete={() => setShowContent(true)}
-          />
-        )}
-      </div>
+  <section ref={sectionRef} className={styles.projects}>
+    <div className={terminalStyles.prompt}>
+      {isVisible && (
+        <TypingEffect
+          text="chirag@portfolio:~$ ls ~/projects/ -l"
+          speed={60}
+          onComplete={() => setShowContent(true)}
+        />
+      )}
+    </div>
 
-      {showContent && (
-        <div className={styles.projectsGrid}>
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={styles.projectCard}
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              {project.confidential && (
-                <div className={styles.confidentialOverlay}>
-                  <div>🔒 SYSTEM STATUS: CONFIDENTIAL</div>
-                  <div>ACCESS: DENIED</div>
-                  <div>PATENT PENDING...</div>
-                </div>
-              )}
+    {showContent && (
+      <>
+        {['active', 'completed', 'confidential'].map((status) => {
+          const statusGroup = projects.filter(p => p.status === status);
+          if (statusGroup.length === 0) return null;
 
-              <div className={styles.projectTitle}>
-                {getStatusIcon(project.status)}
-                <span 
-                  className={styles.glitch}
-                  data-text={project.title}
-                >
-                  {project.title}
-                </span>
-                <div className={`${styles.projectStatus} ${styles[`status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`]}`}>
-                  {project.status.toUpperCase()}
-                </div>
-              </div>
+          return (
+            <div key={status} className={styles.projectRow}>
+              <h3 className={styles.rowTitle}>{status.toUpperCase()} PROJECTS</h3>
+              <div className={styles.horizontalScroll}>
+                {statusGroup.map((project, index) => (
+                  <div
+                    key={project.id}
+                    className={styles.projectCard}
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                  >
+                    {project.confidential && (
+                      <div className={styles.confidentialOverlay}>
+                        <div>🔒 SYSTEM STATUS: CONFIDENTIAL</div>
+                        <div>ACCESS: DENIED</div>
+                        <div>PATENT PENDING...</div>
+                      </div>
+                    )}
 
-              <div className={styles.projectDescription}>
-                {project.confidential ? (
-                  <div className={styles.redacted}>
-                    {project.description}
+                    <div className={styles.projectTitle}>
+                      {getStatusIcon(project.status)}
+                      <span
+                        className={styles.glitch}
+                        data-text={project.title}
+                      >
+                        {project.title}
+                      </span>
+                      <div className={`${styles.projectStatus} ${styles[`status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`]}`}>
+                        {project.status.toUpperCase()}
+                      </div>
+                    </div>
+
+                    <div className={styles.projectDescription}>
+                      {project.confidential ? (
+                        <div className={styles.redacted}>
+                          {project.description}
+                        </div>
+                      ) : (
+                        project.description
+                      )}
+                    </div>
+
+                    {project.features && !project.confidential && (
+                      <ul className={styles.projectFeatures}>
+                        {project.features.map((feature, idx) => (
+                          <li key={idx}>{feature}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    <div className={styles.projectTech}>
+                      {project.tech.map((tech, idx) => (
+                        <span key={idx} className={styles.techTag}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {project.link && !project.confidential && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.projectLink}
+                      >
+                        <ExternalLink size={16} />
+                        Watch Demo
+                      </a>
+                    )}
                   </div>
-                ) : (
-                  project.description
-                )}
-              </div>
-
-              {project.features && !project.confidential && (
-                <ul className={styles.projectFeatures}>
-                  {project.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
-              )}
-
-              <div className={styles.projectTech}>
-                {project.tech.map((tech, idx) => (
-                  <span key={idx} className={styles.techTag}>
-                    {tech}
-                  </span>
                 ))}
               </div>
-
-              {project.link && !project.confidential && (
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={styles.projectLink}
-                >
-                  <ExternalLink size={16} />
-                  Watch Demo
-                </a>
-              )}
             </div>
-          ))}
-        </div>
-      )}
-    </section>
-  );
+          );
+        })}
+      </>
+    )}
+  </section>
+);
 };
 
 export default Projects;
