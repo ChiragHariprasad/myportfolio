@@ -20,14 +20,14 @@ const projects: Project[] = [
     id: 'vector',
     title: 'V.E.C.T.O.R – Real-Time Fraud Detection System',
     status: 'confidential',
-    description: 'Advanced fraud detection system with patent-pending technology.',
+    description: 'Advanced fraud detection system with patent-pending technology. If you are able to read this then you are worthy of this knowledge, so the detials of the patent and the patent number will be updated as soon as I get the Patent registerd you can read from it.',
     tech: ['Redis', 'MongoDB', 'Python', 'JavaScript'],
     confidential: true
   },
   {
     id: 'inventory',
     title: 'O.R.I.O.N - Omni Retail Intelligence Ordering Network',
-    status: 'completed',
+    status: 'active',
     description: 'End-to-end inventory optimization for grocery chains using AI. ML models forecast demand, classify customer behavior, and detect anomalies. Predictive assistant fetches recipes, syncs user inventory, triggers proactive store orders.',
     features: [
       'Demand forecasting with ML models',
@@ -55,15 +55,14 @@ const projects: Project[] = [
   },
   {
   id: 'pathfinding',
-  title: 'Pathfinding Benchmark & AI Simulation – RTS-Inspired Tactical Engine',
+  title: 'Pathfinding Benchmark & Simulation – RTS-Inspired Tactical Engine (PROJECT RESCUE RUN)',
   status: 'completed',
-  description: 'Real-time game environment to benchmark 35+ pathfinding algorithms under fog-of-war, dynamic obstacles, and agent evolution. Flow Field and A* embedded into gameplay to evaluate efficiency, adaptability, and responsiveness.',
+  description: 'Researched with dynamic game environment to benchmark 35+ pathfinding algorithms and embedded top results into gameplay to evaluate efficiency, adaptability, and responsiveness.',
   features: [
     'Benchmarking suite for 35+ algorithms (A*, Dijkstra, Flow Field, ACO, PSO, etc.)',
-    'Real-time game: PROJECT RESCUE RUN with enemy AI evolving from DFS → BFS → A*',
-    'Multi-agent navigation with terrain-aware path selection and live strategy switching',
-    'Fog-of-war simulation, dynamic obstacles, and player-NPC rescue mechanics',
-    'Comparative success rate, memory usage, and decision latency analysis'
+    'Real-time game: PROJECT RESCUE RUN with enemy AI evolving',
+    'Comparative success rate, memory usage, and decision latency analysis',
+    'Multi-agent navigation with terrain-aware path selection and live strategy switching'
   ],
   tech: ['Python', 'PyGame', 'Flow Field', 'A*', 'DFS', 'NumPy', 'RTS AI']
 },
@@ -71,7 +70,7 @@ const projects: Project[] = [
     id: 'traffic',
     title: 'Urban Traffic Swarm Intelligence System',
     status: 'active',
-    description: 'Uses Ant Colony Optimization to dynamically control traffic lights and react to real-time congestion.',
+    description: 'Still working on dynamically controlling traffic lights and reacting to real-time congestion.',
     features: [
       'Real-time traffic light optimization',
       'Emergency vehicle priority routing',

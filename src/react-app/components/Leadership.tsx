@@ -74,6 +74,7 @@ const Leadership: React.FC = () => {
 
           <blockquote className={styles.quote}>
             "Leadership is not about being in charge. It's about taking care of those in your charge."
+            <footer align="right" className={styles.quoteAuthor}>— Simon Sinek</footer>
           </blockquote>
         </div>
       )}

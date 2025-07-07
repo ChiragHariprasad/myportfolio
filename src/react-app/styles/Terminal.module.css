@@ -164,7 +164,7 @@
   margin-top: 2rem;
   padding-left: 1rem;
   border-left: 3px solid var(--terminal-amber);
-  color: var(--terminal-gray);
+  color: var(--terminal-blue);
   font-style: italic;
 }
 .output h2 {
