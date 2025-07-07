@@ -2,6 +2,7 @@
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .projectsGrid {
@@ -13,57 +14,84 @@
 
 /* === Group Row (ACTIVE / COMPLETED / CONFIDENTIAL) === */
 .projectRow {
-  margin-bottom: 4rem;
-  padding-top: 2rem;
+  margin-bottom: 4rem; 
+  padding-top: 2.5rem; 
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .rowTitle {
-  font-size: 1.4rem;
+  font-size: 1.4rem; 
   font-weight: 600;
   color: var(--accent);
-  padding-left: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding: 0.8rem 1rem; 
+  margin-bottom: 1rem; 
   position: relative;
-  z-index: 1;
-  background-color: var(--bgPrimary); /* Helps prevent hover overlay cutoff */
+  z-index: 10; 
+  background: linear-gradient(135deg, var(--bgPrimary), rgba(0, 0, 0, 0.9));
   display: inline-block;
   border-radius: 6px;
+  border: 1px solid var(--accent); 
+  backdrop-filter: blur(5px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* === Horizontal Scroll Container === */
 .horizontalScroll {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.5rem; 
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding: 1.5rem 0 1rem 0;
   scroll-snap-type: x mandatory;
   overflow-y: visible;
   position: relative;
-  z-index: 0;
+  z-index: 1;
+  margin-top: 0.5rem; 
+}
+
+/* Custom scrollbar styling */
+.horizontalScroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontalScroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.horizontalScroll::-webkit-scrollbar-thumb {
+  background: var(--terminal-amber);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.horizontalScroll::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-green);
 }
 
 /* === Project Card === */
 .projectCard {
   flex: 0 0 auto;
-  width: 320px;
+  width: 320px; 
+  min-height: 350px;
   scroll-snap-align: start;
-  background: rgba(0, 0, 0, 0.8);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.9));
   border: 1px solid var(--terminal-green);
-  border-radius: 8px;
+  border-radius: 8px; 
   padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
   position: relative;
   overflow: hidden;
-  z-index: 0;
+  z-index: 2;
+  backdrop-filter: blur(5px);
 }
 
 .projectCard:hover {
   border-color: var(--terminal-amber);
-  box-shadow: 0 0 20px rgba(255, 222, 89, 0.3);
-  transform: translateY(-12px);
-  z-index: 2;
+  box-shadow: 0 8px 24px rgba(255, 222, 89, 0.4);
+  transform: translateY(-6px) translateX(6px) scale(1.01); 
+  z-index: 5;
 }
 
 /* Hover Glow Gradient */
@@ -74,12 +102,30 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.15), transparent);
+  transition: left 0.6s ease;
 }
 
 .projectCard:hover::before {
   left: 100%;
+}
+
+/* ENHANCED: Added animated border effect */
+.projectCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(45deg, var(--terminal-green), var(--terminal-amber), var(--terminal-green));
+  border-radius: 8px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projectCard:hover::after {
+  opacity: 0.5;
 }
 
 /* === Project Title & Status === */
@@ -91,6 +137,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .projectStatus {
@@ -98,6 +145,8 @@
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .statusConfidential {
@@ -128,7 +177,8 @@
 .projectDescription {
   color: var(--terminal-green);
   margin-bottom: 1rem;
-  line-height: 1.6;
+  line-height: 1.6; 
+  font-size: 0.9rem;
 }
 
 .projectFeatures {
@@ -141,6 +191,8 @@
   margin-bottom: 0.3rem;
   padding-left: 1rem;
   position: relative;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 .projectFeatures li::before {
@@ -148,6 +200,7 @@
   position: absolute;
   left: 0;
   color: var(--terminal-amber);
+  font-weight: bold;
 }
 
 .projectTech {
@@ -164,21 +217,36 @@
   border-radius: 4px;
   font-size: 0.8rem;
   border: 1px solid var(--terminal-green);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.techTag:hover {
+  background: rgba(0, 255, 65, 0.25);
+  transform: translateY(-2px);
 }
 
 .projectLink {
   color: var(--terminal-amber);
   text-decoration: none;
   font-size: 0.9rem;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--terminal-amber);
+  border-radius: 4px;
+  background: rgba(255, 222, 89, 0.1);
 }
 
 .projectLink:hover {
   color: var(--terminal-green);
+  border-color: var(--terminal-green);
+  background: rgba(0, 255, 65, 0.1);
   text-shadow: 0 0 10px var(--terminal-green);
+  transform: translateY(-2px);
 }
 
 /* === Redacted & Confidential Overlay === */
@@ -191,8 +259,9 @@
     transparent 4px
   );
   color: transparent;
-  padding: 0.2rem;
+  padding: 0.5rem;
   animation: redactedGlitch 0.5s infinite;
+  border-radius: 4px;
 }
 
 @keyframes redactedGlitch {
@@ -206,39 +275,115 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 7, 58, 0.05);
+  background: rgba(255, 7, 58, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--terminal-red);
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 1;
+  z-index: 3;
+  backdrop-filter: blur(2px);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
 }
 
 .projectCard:hover .confidentialOverlay {
   opacity: 1;
 }
 
+/* ENHANCED: Added glitch effect for titles */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.projectCard:hover .glitch::before {
+  animation: glitch-1 0.3s infinite;
+  color: var(--terminal-red);
+  z-index: -1;
+}
+
+.projectCard:hover .glitch::after {
+  animation: glitch-2 0.3s infinite;
+  color: var(--terminal-green);
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, 2px); }
+  80% { transform: translate(-2px, -2px); }
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
+  .projects {
+    padding: 4rem 1rem;
+  }
+
   .projectsGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   .projectCard {
-    padding: 1rem;
+    width: 100%;
+    min-width: 280px;
+    padding: 1.5rem;
   }
 
   .projectTitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .rowTitle {
+    font-size: 1.3rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .horizontalScroll {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    padding: 3rem 0.5rem;
+  }
+
+  .projectCard {
+    width: 100%;
+    min-width: 260px;
+    padding: 1rem;
   }
 
   .rowTitle {
     font-size: 1.1rem;
+    padding: 0.6rem 0.8rem;
   }
 }
