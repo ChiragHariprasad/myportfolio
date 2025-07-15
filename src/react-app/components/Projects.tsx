@@ -40,9 +40,9 @@ const projects: Project[] = [
   },
   {
     id: 'wanted',
-    title: 'W.A.N.T.E.D – Crime Analytics & Simulation Platform',
+    title: 'W.A.N.T.E.D (Watch and Analyze Nationwide Trends in Evolving Deviance)',
     status: 'completed',
-    description: 'An AI platform to simulate how crimes evolve across demographics with advanced vector-based analysis.',
+    description: 'Built a cloud-native system to analyze, visualize, and forecast crime evolution patterns across India using AI models, geospatial tools, and real-time data pipelines.',
     features: [
       'Crime Genome (vectorized crime profile modeling)',
       'Demographic Transition Models',
@@ -50,7 +50,7 @@ const projects: Project[] = [
       'GPU-accelerated Anomaly Detection using cuML/cuDF',
       'Interactive heatmaps and network graphs'
     ],
-    tech: ['MongoDB Atlas', 'FastAPI', 'Firebase Hosting', 'Plotly', 'NetworkX', 'cuML'],
+    tech: ['Python', 'FastAPI', 'MongoDB', 'Firebase', 'NLP', 'Folium', 'Semantic Search'],
     link: 'https://youtu.be/OHKePrZGpeg'
   },
   {
@@ -59,10 +59,10 @@ const projects: Project[] = [
   status: 'completed',
   description: 'Researched with dynamic game environment to benchmark 35+ pathfinding algorithms and embedded top results into gameplay to evaluate efficiency, adaptability, and responsiveness.',
   features: [
-    'Benchmarking suite for 35+ algorithms (A*, Dijkstra, Flow Field, ACO, PSO, etc.)',
-    'Real-time game: PROJECT RESCUE RUN with enemy AI evolving',
-    'Comparative success rate, memory usage, and decision latency analysis',
-    'Multi-agent navigation with terrain-aware path selection and live strategy switching'
+    'Crime transition modeling using age-segmented Markov Chains',
+    'Interactive geo heatmaps, semantic vector search, and anomaly detection',
+    'Scalable backend with FastAPI and MongoDB Atlas for live analytics',
+    'Firebase-hosted dashboard with AI-powered trend prediction and insights'
   ],
   tech: ['Python', 'PyGame', 'Flow Field', 'A*', 'DFS', 'NumPy', 'RTS AI']
 },
