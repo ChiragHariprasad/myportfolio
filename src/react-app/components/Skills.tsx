@@ -26,13 +26,24 @@ const Skills: React.FC = () => {
   }, []);
 
   const skillsData = {
-    "Languages": ["Python", "C", "JavaScript", "R (Basic)"],
-    "AI & ML": ["OpenCV", "Fraud Detection", "Forecasting", "Search Algorithms", "Anomaly Detection"],
-    "Frameworks": ["FastAPI", "Firebase", "Redis"],
-    "Simulation": ["Pathfinding AI", "ACO", "Gesture Control", "Real-Time Units"],
-    "Platforms": ["Arduino", "MongoDB Atlas", "Cloudflare", "Linux"],
-    "Dev Tools": ["Git", "Version Control", "API Integration", "PyGame"]
-  };
+  "Languages": ["Python", "C", "JavaScript", "TypeScript", "SQL"],
+  "AI / ML": [
+    "Machine Learning",
+    "Deep Learning",
+    "Computer Vision",
+    "Anomaly Detection",
+    "Time-Series Forecasting",
+    "Clustering & Segmentation",
+    "Recommender Systems",
+    "NLP / Embeddings"
+  ],
+  "Frameworks & APIs": ["FastAPI", "Flask", "React", "Vite", "Streamlit"],
+  "ML Stack": ["PyTorch", "scikit-learn", "XGBoost", "OpenCV"],
+  "Data & Databases": ["PostgreSQL", "MongoDB", "SQLite", "Redis"],
+  "Vector Search / Retrieval": ["FAISS", "SentenceTransformers", "RAG Pipelines"],
+  "DevOps / Tooling": ["Git", "Docker", "Linux", "Cloudflare", "CI/CD Basics"],
+  "Simulation / Optimization": ["NetworkX", "Graph Algorithms", "Pathfinding (A*)", "Metaheuristics (ACO/GA/PSO)"]
+};
 
   const jsonString = JSON.stringify(skillsData, null, 2);
 

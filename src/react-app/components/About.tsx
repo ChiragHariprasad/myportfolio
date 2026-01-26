@@ -37,31 +37,48 @@ const About: React.FC = () => {
       </div>
 
       {showContent && (
-        <div className={styles.output}>
-          <h2 className={styles.heading}># About Me</h2>
+  <div className={styles.output}>
+    <h2 className={styles.heading}># About Me</h2>
 
-          <p>
-            Diploma in Mechatronics graduate turned AI/ML engineer, driven by a passion for intelligent systems and adaptive technologies.
-          </p>
+    <p>
+      I’m <strong>Chirag</strong> — an <strong>AI/ML Engineer</strong> who builds end-to-end intelligent systems that don’t just predict, but <strong>operate</strong>.
+      My work sits at the intersection of <strong>machine learning, automation, and production-grade engineering</strong>.
+    </p>
 
-          <p>
-            My journey bridges the gap between physical systems and digital intelligence:
-          </p>
+    <p>
+      I’ve shipped projects across high-impact domains like <strong>fraud detection</strong>, <strong>urban simulation</strong>, <strong>healthcare operations</strong>,
+      <strong>biodiversity inference</strong>, and <strong>meeting intelligence</strong> — with a focus on scalability, reliability, and real-world constraints.
+    </p>
 
-          <ul>
-            <li>Transitioned from a <strong>Mechatronics background</strong> to AI/ML specialization</li>
-            <li>Engineered full-stack solutions – from <strong>microcontrollers to predictive ML models</strong></li>
-            <li>Led high-impact technical teams and mentored peers in <strong>production-grade deployments</strong></li>
-            <li>Designed and developed a <strong>patent-pending fraud detection system</strong></li>
-            <li>Specialized in <strong>real-time systems, anomaly detection, and intelligent automation</strong></li>
-          </ul>
+    <ul>
+      <li>
+        <strong>Internship experience</strong> delivering AI automation pipelines and enterprise-ready systems
+      </li>
+      <li>
+        Built <strong>agentic + multi-module architectures</strong> (generation → validation → simulation → ranking → export)
+      </li>
+      <li>
+        Strong in <strong>ML + system design</strong>: anomaly detection, forecasting, clustering, retrieval, and decision engines
+      </li>
+      <li>
+        Delivered <strong>full-stack implementations</strong> (FastAPI/Flask + React + DB + model pipelines)
+      </li>
+      <li>
+        Worked on <strong>patent-driven systems</strong> including fraud intelligence and large-scale automation frameworks
+      </li>
+    </ul>
 
-          <p>
-            I excel at tackling complex, system-level challenges that demand deep technical insight and strategic thinking.
-            From <strong>inventory optimization</strong> to <strong>crime analytics</strong>, I architect solutions that learn, scale, and evolve.
-          </p>
-        </div>
-      )}
+    <p>
+      My edge is execution: I don’t build “models”. I build <strong>systems</strong> — with data flow, monitoring logic, fail-safes,
+      explainability, and deployment-ready outputs.
+    </p>
+
+    <p>
+      If the problem demands <strong>engineering discipline + AI leverage</strong>, I’m the one who can take it from concept to a working product.
+    </p>
+  </div>
+)}
+
     </section>
   );
 };
