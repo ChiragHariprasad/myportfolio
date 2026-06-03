@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Shield, Zap, Activity, Award } from 'lucide-react';
-import TypingEffect from './TypingEffect';
-import styles from '../styles/Projects.module.css';
-import terminalStyles from '../styles/Terminal.module.css';
+import React, { useState } from 'react';
+import { ExternalLink, Shield, Zap, Activity, Award, Lock } from 'lucide-react';
+import '../styles/portfolio.css';
 
 interface Project {
   id: string;
@@ -219,140 +217,156 @@ const projects: Project[] = [
 ];
 
 const Projects: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showContent, setShowContent] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [activeFilter, setActiveFilter] = useState<'all' | 'patented' | 'active' | 'completed' | 'confidential'>('all');
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
+  const filteredProjects = activeFilter === 'all'
+    ? projects
+    : projects.filter(p => p.status === activeFilter);
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+  const getStatusBadgeClass = (status: string) => {
+    switch (status) {
+      case 'patented': return 'badge-patented';
+      case 'active': return 'badge-active';
+      case 'completed': return 'badge-completed';
+      case 'confidential': return 'badge-confidential';
+      default: return '';
     }
-
-    return () => observer.disconnect();
-  }, []);
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'confidential':
-        return <Shield size={16} />;
-      case 'active':
-        return <Activity size={16} />;
-      case 'completed':
-        return <Zap size={16} />;
-      case 'patented':
-        return <Award size={16} />;
-      default:
-        return null;
+      case 'patented': return <Award size={14} />;
+      case 'active': return <Activity size={14} />;
+      case 'completed': return <Zap size={14} />;
+      case 'confidential': return <Shield size={14} />;
+      default: return null;
     }
   };
 
   return (
-    <section ref={sectionRef} className={styles.projects}>
-      <div className={terminalStyles.prompt}>
-        {isVisible && (
-          <TypingEffect
-            text="chirag@portfolio:~$ ls ~/projects/ -l"
-            speed={60}
-            onComplete={() => setShowContent(true)}
-          />
-        )}
+    <section id="projects" className="section-container">
+      <div className="section-header">
+        <span className="section-tag">Engineering Case Studies</span>
+        <h2 className="section-title">Technical Systems</h2>
+        <p className="section-subtitle">
+          An overview of active research, production platforms, and completed systems spanning AI/ML, causal inference, and real-time processing.
+        </p>
       </div>
 
-      {showContent && (
-        <>
-          {['patented', 'active', 'completed', 'confidential'].map((status) => {
-            const statusGroup = projects.filter((p) => p.status === status);
-            if (statusGroup.length === 0) return null;
+      <div className="projects-filter-bar">
+        {(['all', 'patented', 'active', 'completed', 'confidential'] as const).map((filter) => (
+          <button
+            key={filter}
+            className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+            onClick={() => setActiveFilter(filter)}
+          >
+            {filter === 'all' ? 'All Systems' : filter === 'patented' ? 'Patented/Published' : `${filter}`}
+          </button>
+        ))}
+      </div>
 
-            const displayTitle = status === 'patented' ? 'PATENTED / PUBLISHED' : `${status.toUpperCase()} PROJECTS`;
+      <div className="projects-masonry">
+        {filteredProjects.map((project) => (
+          <div key={project.id} className="ivory-card project-case-study hover-gold-card">
+            {project.confidential ? (
+              <div className="project-cs-header">
+                <div className="project-cs-title-group">
+                  <span className="redacted-title">🔒 CLASSIFIED RESOURCE</span>
+                  <h3 className="project-cs-title">
+                    <span className="redacted-text">{project.title.split(' — ')[0]}</span>
+                    {project.title.includes(' — ') && ` — ${project.title.split(' — ')[1]}`}
+                  </h3>
+                </div>
+                <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
+                  {getStatusIcon(project.status)}
+                  {project.status}
+                </span>
+              </div>
+            ) : (
+              <div className="project-cs-header">
+                <div className="project-cs-title-group">
+                  <h3 className="project-cs-title">{project.title}</h3>
+                </div>
+                <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
+                  {getStatusIcon(project.status)}
+                  {project.status}
+                </span>
+              </div>
+            )}
 
-            return (
-              <div key={status} className={styles.projectRow}>
-                <h3 className={styles.rowTitle}>{displayTitle}</h3>
-
-                <div className={styles.horizontalScroll}>
-                  {statusGroup.map((project, index) => (
-                    <div
-                      key={project.id}
-                      className={styles.projectCard}
-                      style={{ animationDelay: `${index * 0.2}s` }}
-                    >
-                      {project.confidential && (
-                        <div className={styles.confidentialOverlay}>
-                          <div>🔒 SYSTEM STATUS: CONFIDENTIAL</div>
-                          <div>ACCESS: DENIED</div>
-                          <div>PATENT PENDING...</div>
-                        </div>
-                      )}
-
-                      <div className={styles.projectTitle}>
-                        {getStatusIcon(project.status)}
-                        <span className={styles.glitch} data-text={project.title}>
-                          {project.title}
-                        </span>
-
-                        <div
-                          className={`${styles.projectStatus} ${styles[
-                            `status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`
-                            ]
-                            }`}
-                        >
-                          {project.status.toUpperCase()}
-                        </div>
-                      </div>
-
-                      <div className={styles.projectDescription}>
-                        {project.confidential ? (
-                          <div className={styles.redacted}>{project.description}</div>
-                        ) : (
-                          project.description
-                        )}
-                      </div>
-
-                      {project.features && !project.confidential && (
-                        <ul className={styles.projectFeatures}>
-                          {project.features.map((feature, idx) => (
-                            <li key={idx}>{feature}</li>
-                          ))}
-                        </ul>
-                      )}
-
-                      <div className={styles.projectTech}>
-                        {project.tech.map((tech, idx) => (
-                          <span key={idx} className={styles.techTag}>
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      {project.link && !project.confidential && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.projectLink}
-                        >
-                          <ExternalLink size={16} />
-                          Watch Demo
-                        </a>
-                      )}
-                    </div>
-                  ))}
+            {project.confidential ? (
+              <div className="project-confidential-block">
+                <Lock size={32} style={{ color: 'var(--gold)' }} />
+                <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-muted)' }}>
+                  This asset is subject to strict proprietary validation checks. Underlying methods are patented or under filing.
+                </p>
+                <div style={{ textAlign: 'left', width: '100%' }}>
+                  <strong>Abstract Blueprint:</strong>
+                  <p className="redacted-text" style={{ display: 'block', marginTop: '0.5rem', lineHeight: '1.8' }}>
+                    {project.description}
+                  </p>
+                </div>
+                <div style={{ width: '100%', marginTop: '1rem' }}>
+                  <strong style={{ fontSize: '0.85rem' }}>Encrypted Tech Stack:</strong>
+                  <div className="patent-tech-list" style={{ marginTop: '0.5rem' }}>
+                    {project.tech.map((tech) => (
+                      <span key={tech} className="tech-tag" style={{ filter: 'blur(2px)', userSelect: 'none' }}>{tech}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            );
-          })}
-        </>
-      )}
+            ) : (
+              <div className="project-cs-grid">
+                <div className="project-cs-body">
+                  <div>
+                    <h4 className="patent-section-header">Challenge & Objective</h4>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-light)' }}>
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {project.features && (
+                    <div>
+                      <h4 className="patent-section-header">Key Architectural Attributes</h4>
+                      <ul className="project-cs-features-list">
+                        {project.features.map((feature, idx) => (
+                          <li key={idx}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                <div className="project-cs-sidebar">
+                  <div>
+                    <h4 className="patent-section-header">Tech Stack</h4>
+                    <div className="patent-tech-list">
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {project.link && (
+                    <div style={{ marginTop: '1rem' }}>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary"
+                        style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}
+                      >
+                        <ExternalLink size={14} />
+                        Watch Demo
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

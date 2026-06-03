@@ -1,15 +1,23 @@
-/* Terminal Portfolio Global Styles */
+/* Design System Core for Chirag Hariprasad Portfolio */
 :root {
-  --terminal-bg: #000000;
-  --terminal-green: #00FF41;
-  --terminal-amber: #FFDE59;
-  --terminal-red: #FF073A;
-  --terminal-blue: #0099FF;
-  --terminal-gray: #333333;
-  --terminal-light-gray: #666666;
-  --scanline-opacity: 0.05;
-  --glow-radius: 10px;
-  --font-mono: 'IBM Plex Mono', 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
+  --bg-cream: #F8F4EC;
+  --bg-ivory: #FDFBF5;
+  --gold: #C9A227;
+  --gold-dark: #A4801B;
+  --gold-light: #E5C352;
+  --gold-alpha-05: rgba(201, 162, 39, 0.05);
+  --gold-alpha-10: rgba(201, 162, 39, 0.10);
+  --gold-alpha-20: rgba(201, 162, 39, 0.20);
+  --charcoal: #2D2D2D;
+  --charcoal-light: #4A4A4A;
+  --charcoal-muted: #8E8D8A;
+  
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease;
 }
 
 * {
@@ -20,157 +28,87 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-cream);
 }
 
 body {
-  font-family: var(--font-mono);
-  background-color: var(--terminal-bg);
-  color: var(--terminal-green);
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  background-color: var(--bg-cream);
+  color: var(--charcoal);
+  line-height: 1.7;
   overflow-x: hidden;
   position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* CRT Screen Effects */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 255, 65, var(--scanline-opacity)) 2px,
-      rgba(0, 255, 65, var(--scanline-opacity)) 4px
-    );
-  pointer-events: none;
-  z-index: 1000;
-  animation: scanlines 0.1s linear infinite;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
-  pointer-events: none;
-  z-index: 999;
-}
-
-@keyframes scanlines {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(4px); }
-}
-
-/* Screen flicker effect */
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  98% { opacity: 1; }
-  99% { opacity: 0.98; }
-}
-
-body {
-  animation: flicker 3s infinite;
-}
-
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  margin: 0;
+  font-family: var(--font-serif);
+  color: var(--charcoal);
+  font-weight: 500;
+  line-height: 1.25;
 }
 
-p {
-  margin: 0;
+a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--gold-light);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--terminal-bg);
+  background: var(--bg-cream);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--terminal-green);
-  border-radius: 4px;
+  background: var(--gold-alpha-20);
+  border: 2px solid var(--bg-cream);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--terminal-amber);
+  background: var(--gold);
 }
 
-/* Global animations */
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+/* Typography Utilities */
+.text-serif {
+  font-family: var(--font-serif);
 }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
-
-@keyframes glow {
-  0%, 100% { text-shadow: 0 0 5px var(--terminal-green), 0 0 10px var(--terminal-green); }
-  50% { text-shadow: 0 0 20px var(--terminal-green), 0 0 30px var(--terminal-green); }
-}
-
-/* Utility classes */
-.terminal-text {
-  color: var(--terminal-green);
+.text-mono {
   font-family: var(--font-mono);
+  font-size: 0.9em;
 }
 
-.amber-text {
-  color: var(--terminal-amber);
-}
-
-.red-text {
-  color: var(--terminal-red);
-}
-
-.blue-text {
-  color: var(--terminal-blue);
-}
-
-.glow {
-  text-shadow: 0 0 var(--glow-radius) currentColor;
-}
-
-.fade-in {
-  animation: fadeIn 1s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Responsive breakpoints */
-@media (max-width: 768px) {
-  :root {
-    --glow-radius: 5px;
+/* Global Animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  body::before {
-    background-size: 100% 2px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.animate-fade-up {
+  animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Premium Card Hover Effect */
+.hover-gold-card {
+  transition: var(--transition-smooth);
+}
+.hover-gold-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(201, 162, 39, 0.08);
+  border-color: var(--gold) !important;
 }
