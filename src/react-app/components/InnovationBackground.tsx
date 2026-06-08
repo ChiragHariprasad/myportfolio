@@ -4,13 +4,13 @@ import React, { useEffect, useRef } from 'react';
    THE INNOVATION UNIVERSE
    A multi-layer dynamic background system that feels like a living
    ecosystem of ideas, research, engineering, and invention.
-   
-   Layer 1 — Innovation Constellation (gold node network)
-   Layer 2 — Living Knowledge Graph (labeled concept nodes)
-   Layer 3 — Floating Innovation Artifacts (technical diagrams)
-   Layer 4 — Idea Evolution Engine (particle flow paths)
-   Layer 5 — Signature Patent Formation Effect (blueprint assembly)
-   Easter Egg — The number "4" forming from constellation nodes
+
+   Layer 1 - Innovation Constellation (gold node network)
+   Layer 2 - Living Knowledge Graph (labeled concept nodes)
+   Layer 3 - Floating Innovation Artifacts (technical diagrams)
+   Layer 4 - Idea Evolution Engine (particle flow paths)
+   Layer 5 - Signature Patent Formation Effect (blueprint assembly)
+   Easter Egg - The number "4" forming from constellation nodes
    ======================================================================== */
 
 // ─── Types ──────────────────────────────────────────────────────────────
@@ -115,7 +115,7 @@ const CATEGORIES = [
   'technology', 'domain', 'patent', 'research',
 ];
 
-// ── Number "4" easter egg — normalized target positions ──
+// ── Number "4" easter egg - normalized target positions ──
 const FOUR: Point[] = [
   // Left vertical stroke (top → junction)
   { x: 0.43, y: 0.26 }, { x: 0.43, y: 0.32 }, { x: 0.43, y: 0.38 },
@@ -135,7 +135,7 @@ const FOUR_EDGES: [number, number][] = [
   [13, 8], [8, 14], [14, 15], [15, 16],        // right stroke through junction
 ];
 
-// ── Patent blueprint — normalized target positions ──
+// ── Patent blueprint - normalized target positions ──
 const BLUEPRINT: Point[] = [
   // Outer frame (clockwise from top-left)
   { x: 0.22, y: 0.22 }, { x: 0.40, y: 0.22 }, { x: 0.60, y: 0.22 }, { x: 0.78, y: 0.22 },

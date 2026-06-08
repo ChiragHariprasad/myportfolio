@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Shield, Zap, Activity, Award, Lock } from 'lucide-react';
 import '../styles/portfolio.css';
 
@@ -19,7 +19,7 @@ const projects: Project[] = [
   // =========================
   {
     id: 'vector',
-    title: 'V.E.C.T.O.R — Velocity-Enhanced Clustering for Transactional Outlier Recognition',
+    title: 'V.E.C.T.O.R - Velocity-Enhanced Clustering for Transactional Outlier Recognition',
     status: 'patented',
     description: 'Real-time fraud detection system with behavior-adaptive clustering, persona-specific anomaly models, and <100ms streaming architecture. Developed a novel approach to clustering which is currently under patent filing.',
     features: [
@@ -36,7 +36,7 @@ const projects: Project[] = [
   // =========================
   {
     id: 'orion',
-    title: 'O.R.I.O.N — Omni Retail Intelligence Ordering Network',
+    title: 'O.R.I.O.N - Omni Retail Intelligence Ordering Network',
     status: 'confidential',
     description: 'AI-driven bidirectional consumer-retailer intelligence with recipe-based consumption modeling, festive forecasting, persona segmentation, and containerized distributed execution.',
     tech: ['Python', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Prophet', 'Docker', 'scikit-learn'],
@@ -44,7 +44,7 @@ const projects: Project[] = [
   },
   {
     id: 'genesis',
-    title: 'G.E.N.E.S.I.S — Generative Engine for Urban Planning',
+    title: 'G.E.N.E.S.I.S - Generative Engine for Urban Planning',
     status: 'confidential',
     description: 'Rule-aware generative system converting site boundaries into code-compliant city layouts with multi-domain simulations (traffic, drainage, wind) and KPI-based ranking.',
     tech: ['Python', 'Shapely', 'NetworkX', 'NumPy', 'Streamlit', 'pyproj', 'Folium'],
@@ -56,7 +56,7 @@ const projects: Project[] = [
   // =========================
   {
     id: 'meetingsai',
-    title: 'MeetingsAI — On-Prem Meeting Intelligence Platform',
+    title: 'MeetingsAI -On-Prem Meeting Intelligence Platform',
     status: 'active',
     description: 'Enterprise meeting intelligence with in-UI recording, automated transcription, speaker diarization, MoM generation, and auto-email stakeholder delivery.',
     features: [
@@ -71,7 +71,7 @@ const projects: Project[] = [
   },
   {
     id: 'verifai',
-    title: 'VerifAI — AI-Powered KYC Document Verification',
+    title: 'VerifAI -AI-Powered KYC Document Verification',
     status: 'active',
     description: 'High-assurance KYC verification for IIFL Samasta with strict downgrade-first fraud logic, side detection, confidence scoring, and audit-ready exports.',
     features: [
@@ -90,7 +90,7 @@ const projects: Project[] = [
   // =========================
   {
     id: 'harbor',
-    title: 'H.A.R.B.O.R — Biodiversity DNA Recognition System',
+    title: 'H.A.R.B.O.R -Biodiversity DNA Recognition System',
     status: 'completed',
     description: 'Open-set eDNA taxonomy inference with alignment-free processing, marker-aware CNN embeddings, FAISS similarity search, and statistical novelty detection.',
     features: [
@@ -104,7 +104,7 @@ const projects: Project[] = [
   },
   {
     id: 'scale',
-    title: 'S.C.A.L.E — Structural Causal Analysis of Labor & Education',
+    title: 'S.C.A.L.E -Structural Causal Analysis of Labor & Education',
     status: 'completed',
     description: 'Causal simulation of India\'s engineering education system with unified SD+SCM+ABM architecture, historical replay (2010-2024), and counterfactual policy evaluation.',
     features: [
@@ -118,7 +118,7 @@ const projects: Project[] = [
   },
   {
     id: 'ihorms',
-    title: 'IHORMS — Hospital Operations & Resource Management',
+    title: 'IHORMS -Hospital Operations & Resource Management',
     status: 'completed',
     description: 'Multi-tenant hospital platform with 8-role RBAC, clinical workflows, telemetry monitoring, and billing/insurance/pharmacy integration.',
     features: [
@@ -132,7 +132,7 @@ const projects: Project[] = [
   },
   {
     id: 'presntai',
-    title: 'PresntAI — Meeting Intelligence + Minutes Generator',
+    title: 'PresntAI -Meeting Intelligence + Minutes Generator',
     status: 'completed',
     description: 'Audio-to-report automation pipeline for IIFL Samasta with speaker attribution, transcript alignment, and leadership-grade documentation.',
     features: [
@@ -146,7 +146,7 @@ const projects: Project[] = [
   },
   {
     id: 'iqrs',
-    title: 'I.Q.R.S — Intelligent Query Retrieval System',
+    title: 'I.Q.R.S -Intelligent Query Retrieval System',
     status: 'completed',
     description: 'RAG platform with semantic search, smart chunking, FAISS indexing, and grounded answer generation with page/line evidence traceability.',
     features: [
@@ -160,7 +160,7 @@ const projects: Project[] = [
   },
   {
     id: 'wanted',
-    title: 'W.A.N.T.E.D — Crime Intelligence & Trend Forecasting',
+    title: 'W.A.N.T.E.D -Crime Intelligence & Trend Forecasting',
     status: 'completed',
     description: 'Cloud-native crime analysis with Crime Genome profiling, GPU-accelerated anomaly detection, and cultural-aware forecasting.',
     features: [
@@ -175,7 +175,7 @@ const projects: Project[] = [
   },
   {
     id: 'pathfinding-benchmark',
-    title: 'AgeOfEmpire — Pathfinding Benchmark & Analysis',
+    title: 'AgeOfEmpire -Pathfinding Benchmark & Analysis',
     status: 'completed',
     description: '35+ algorithm benchmarking ecosystem with controlled testbed and multi-scenario stress testing. Flow Field achieved 100% success rate.',
     features: [
@@ -189,7 +189,7 @@ const projects: Project[] = [
   },
   {
     id: 'rescue-run',
-    title: 'PROJECT RESCUE RUN — RTS Tactical Simulation',
+    title: 'PROJECT RESCUE RUN -RTS Tactical Simulation',
     status: 'completed',
     description: 'Full RTS game validating Flow Field vs A* with multi-unit system, dynamic hazards, and evolving enemy AI.',
     features: [
@@ -199,7 +199,7 @@ const projects: Project[] = [
       'Dynamic hazards forcing real-time replanning',
       'Performance telemetry + HUD monitoring'
     ],
-    tech: ['Python', 'PyGame', 'Flow Field', 'A*', 'RTS AI', 'NumPy']
+    tech: ['Python', 'PyGame', 'Flow Field', 'A*', 'NumPy']
   },
   {
     id: 'gesture',
@@ -217,6 +217,26 @@ const projects: Project[] = [
 ];
 
 const Projects: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const [activeFilter, setActiveFilter] = useState<'all' | 'patented' | 'active' | 'completed' | 'confidential'>('all');
 
   const filteredProjects = activeFilter === 'all'
@@ -244,128 +264,134 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="section-container">
-      <div className="section-header">
-        <span className="section-tag">Engineering Case Studies</span>
-        <h2 className="section-title">Technical Systems</h2>
-        <p className="section-subtitle">
-          An overview of active research, production platforms, and completed systems spanning AI/ML, causal inference, and real-time processing.
-        </p>
+    <section id="projects" ref={sectionRef} className="section-container">
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.1s' : '0s' }}>
+        <div className="section-header">
+          <span className="section-tag">Engineering Case Studies</span>
+          <h2 className="section-title">Technical Systems</h2>
+          <p className="section-subtitle">
+            An overview of active research, production platforms, and completed systems spanning AI/ML, causal inference, and real-time processing.
+          </p>
+        </div>
       </div>
 
-      <div className="projects-filter-bar">
-        {(['all', 'patented', 'active', 'completed', 'confidential'] as const).map((filter) => (
-          <button
-            key={filter}
-            className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
-            onClick={() => setActiveFilter(filter)}
-          >
-            {filter === 'all' ? 'All Systems' : filter === 'patented' ? 'Patented/Published' : `${filter}`}
-          </button>
-        ))}
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.3s' : '0s' }}>
+        <div className="projects-filter-bar">
+          {(['all', 'patented', 'active', 'completed', 'confidential'] as const).map((filter) => (
+            <button
+              key={filter}
+              className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter === 'all' ? 'All Systems' : filter === 'patented' ? 'Patented/Published' : `${filter}`}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="projects-masonry">
-        {filteredProjects.map((project) => (
-          <div key={project.id} className="ivory-card project-case-study hover-gold-card">
-            {project.confidential ? (
-              <div className="project-cs-header">
-                <div className="project-cs-title-group">
-                  <span className="redacted-title">🔒 CLASSIFIED RESOURCE</span>
-                  <h3 className="project-cs-title">
-                    <span className="redacted-text">{project.title.split(' — ')[0]}</span>
-                    {project.title.includes(' — ') && ` — ${project.title.split(' — ')[1]}`}
-                  </h3>
-                </div>
-                <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
-                  {getStatusIcon(project.status)}
-                  {project.status}
-                </span>
-              </div>
-            ) : (
-              <div className="project-cs-header">
-                <div className="project-cs-title-group">
-                  <h3 className="project-cs-title">{project.title}</h3>
-                </div>
-                <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
-                  {getStatusIcon(project.status)}
-                  {project.status}
-                </span>
-              </div>
-            )}
-
-            {project.confidential ? (
-              <div className="project-confidential-block">
-                <Lock size={32} style={{ color: 'var(--gold)' }} />
-                <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-muted)' }}>
-                  This asset is subject to strict proprietary validation checks. Underlying methods are patented or under filing.
-                </p>
-                <div style={{ textAlign: 'left', width: '100%' }}>
-                  <strong>Abstract Blueprint:</strong>
-                  <p className="redacted-text" style={{ display: 'block', marginTop: '0.5rem', lineHeight: '1.8' }}>
-                    {project.description}
-                  </p>
-                </div>
-                <div style={{ width: '100%', marginTop: '1rem' }}>
-                  <strong style={{ fontSize: '0.85rem' }}>Encrypted Tech Stack:</strong>
-                  <div className="patent-tech-list" style={{ marginTop: '0.5rem' }}>
-                    {project.tech.map((tech) => (
-                      <span key={tech} className="tech-tag" style={{ filter: 'blur(2px)', userSelect: 'none' }}>{tech}</span>
-                    ))}
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.5s' : '0s' }}>
+        <div className="projects-masonry">
+          {filteredProjects.map((project) => (
+            <div key={project.id} className="ivory-card project-case-study hover-gold-card">
+              {project.confidential ? (
+                <div className="project-cs-header">
+                  <div className="project-cs-title-group">
+                    <span className="redacted-title">🔒 CLASSIFIED RESOURCE</span>
+                    <h3 className="project-cs-title">
+                      <span className="redacted-text">{project.title.split(' - ')[0]}</span>
+                      {project.title.includes(' - ') && ` - ${project.title.split(' - ')[1]}`}
+                    </h3>
                   </div>
+                  <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
+                    {getStatusIcon(project.status)}
+                    {project.status}
+                  </span>
                 </div>
-              </div>
-            ) : (
-              <div className="project-cs-grid">
-                <div className="project-cs-body">
-                  <div>
-                    <h4 className="patent-section-header">Challenge & Objective</h4>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-light)' }}>
+              ) : (
+                <div className="project-cs-header">
+                  <div className="project-cs-title-group">
+                    <h3 className="project-cs-title">{project.title}</h3>
+                  </div>
+                  <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
+                    {getStatusIcon(project.status)}
+                    {project.status}
+                  </span>
+                </div>
+              )}
+
+              {project.confidential ? (
+                <div className="project-confidential-block">
+                  <Lock size={32} style={{ color: 'var(--gold)' }} />
+                  <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-muted)' }}>
+                    This asset is subject to strict proprietary validation checks. Underlying methods are patented or under filing.
+                  </p>
+                  <div style={{ textAlign: 'left', width: '100%' }}>
+                    <strong>Abstract Blueprint:</strong>
+                    <p className="redacted-text" style={{ display: 'block', marginTop: '0.5rem', lineHeight: '1.8' }}>
                       {project.description}
                     </p>
                   </div>
-
-                  {project.features && (
-                    <div>
-                      <h4 className="patent-section-header">Key Architectural Attributes</h4>
-                      <ul className="project-cs-features-list">
-                        {project.features.map((feature, idx) => (
-                          <li key={idx}>{feature}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-
-                <div className="project-cs-sidebar">
-                  <div>
-                    <h4 className="patent-section-header">Tech Stack</h4>
-                    <div className="patent-tech-list">
+                  <div style={{ width: '100%', marginTop: '1rem' }}>
+                    <strong style={{ fontSize: '0.85rem' }}>Encrypted Tech Stack:</strong>
+                    <div className="patent-tech-list" style={{ marginTop: '0.5rem' }}>
                       {project.tech.map((tech) => (
-                        <span key={tech} className="tech-tag">{tech}</span>
+                        <span key={tech} className="tech-tag" style={{ filter: 'blur(2px)', userSelect: 'none' }}>{tech}</span>
                       ))}
                     </div>
                   </div>
-
-                  {project.link && (
-                    <div style={{ marginTop: '1rem' }}>
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary"
-                        style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}
-                      >
-                        <ExternalLink size={14} />
-                        Watch Demo
-                      </a>
-                    </div>
-                  )}
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              ) : (
+                <div className="project-cs-grid">
+                  <div className="project-cs-body">
+                    <div>
+                      <h4 className="patent-section-header">Challenge & Objective</h4>
+                      <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-light)' }}>
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {project.features && (
+                      <div>
+                        <h4 className="patent-section-header">Key Architectural Attributes</h4>
+                        <ul className="project-cs-features-list">
+                          {project.features.map((feature, idx) => (
+                            <li key={idx}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="project-cs-sidebar">
+                    <div>
+                      <h4 className="patent-section-header">Tech Stack</h4>
+                      <div className="patent-tech-list">
+                        {project.tech.map((tech) => (
+                          <span key={tech} className="tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {project.link && (
+                      <div style={{ marginTop: '1rem' }}>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-secondary"
+                          style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}
+                        >
+                          <ExternalLink size={14} />
+                          Watch Demo
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

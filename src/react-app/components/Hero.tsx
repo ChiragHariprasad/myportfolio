@@ -12,64 +12,64 @@ const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="hero-wrapper">
-      <div className="hero-content animate-fade-up">
-        <div className="hero-eyebrow">Innovation & Systems Engineering</div>
-        
-        <h1 className="hero-name">Chirag Hariprasad</h1>
-        
-        <div className="hero-title-container">
+      <div className="hero-content">
+        <div className="hero-eyebrow animate-fade-up" style={{ animationDelay: '0.1s' }}>Innovation & Systems Engineering</div>
+
+        <h1 className="hero-name animate-fade-up" style={{ animationDelay: '0.2s' }}>Chirag Hariprasad</h1>
+
+        <div className="hero-title-container animate-fade-up" style={{ animationDelay: '0.3s' }}>
           <span className="hero-title-pill">Inventor</span>
           <span className="hero-title-pill">AI/ML Systems Researcher</span>
           <span className="hero-title-pill">Real-Time Systems Architect</span>
         </div>
-        
-        <p className="hero-subtitle">
-          Building intelligence that operates. Specializing in high-performance anomaly detection, 
+
+        <p className="hero-subtitle animate-fade-up" style={{ animationDelay: '0.4s' }}>
+          Building intelligence that operates. Specializing in high-performance anomaly detection,
           generative urban simulation, MLOps orchestration, and patent-filed transaction intelligence systems.
         </p>
-        
-        <div className="hero-cta-group">
+
+        <div className="hero-cta-group animate-fade-up" style={{ animationDelay: '0.5s' }}>
           <button onClick={handleExplore} className="btn-primary">
             Explore Portfolio
             <ArrowRight size={16} />
           </button>
-          
+
           <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
             <FileText size={16} />
             Download Resume
           </a>
         </div>
-        
-        <div className="hero-socials">
-          <a 
-            href="https://linkedin.com/in/chirag-hariprasad/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+
+        <div className="hero-socials animate-fade-up" style={{ animationDelay: '0.6s' }}>
+          <a
+            href="https://linkedin.com/in/chirag-hariprasad/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-icon-link"
             aria-label="LinkedIn"
           >
             <Linkedin size={22} />
           </a>
-          <a 
-            href="https://github.com/ChiragHariprasad" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://github.com/ChiragHariprasad"
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-icon-link"
             aria-label="GitHub"
           >
             <Github size={22} />
           </a>
-          <a 
-            href="mailto:chiragh.0804@gmail.com" 
+          <a
+            href="mailto:chiragh.0804@gmail.com"
             className="social-icon-link"
             aria-label="Email"
           >
             <Mail size={22} />
           </a>
-          <a 
-            href="https://080405.tech" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://080405.tech"
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-icon-link"
             aria-label="Website"
           >

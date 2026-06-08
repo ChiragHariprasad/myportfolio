@@ -15,7 +15,7 @@ import './styles/portfolio.css';
 
 function AppContent() {
   const location = useLocation();
-  
+
   // Extract active section name from route path
   const activeSection = location.pathname === '/' ? 'hero' : location.pathname.substring(1);
 
@@ -33,7 +33,7 @@ function AppContent() {
       <Navigation activeSection={activeSection} />
 
       {/* Page Sections */}
-      <main style={{ flex: 1, position: 'relative', zIndex: 2 }}>
+      <main key={location.pathname} className="animate-fade-up" style={{ flex: 1, position: 'relative', zIndex: 2 }}>
         <Routes>
           <Route path="/" element={
             <>
@@ -56,7 +56,7 @@ function AppContent() {
       <footer className="footer-bar">
         <div className="footer-content">
           <span className="footer-text">Designed & Engineered by Chirag Hariprasad</span>
-          <span className="footer-copyright">© {new Date().getFullYear()} — All Rights Reserved.</span>
+          <span className="footer-copyright">© {new Date().getFullYear()} - All Rights Reserved.</span>
         </div>
       </footer>
     </div>

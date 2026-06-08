@@ -61,13 +61,14 @@ const skillsData: SkillCategory[] = [
 
 const TechnicalExpertise: React.FC = () => {
   const [animate, setAnimate] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setAnimate(true);
+          setIsVisible(true);
         }
       },
       { threshold: 0.1 }
@@ -80,44 +81,54 @@ const TechnicalExpertise: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (isVisible) {
+      setAnimate(true);
+    }
+  }, [isVisible]);
+
   return (
     <section id="expertise" ref={sectionRef} className="section-container">
-      <div className="section-header">
-        <span className="section-tag">Engineering Domains</span>
-        <h2 className="section-title">Technical Expertise</h2>
-        <p className="section-subtitle">
-          Core toolkits, database architectures, and analytical systems compiled through practical implementation and research.
-        </p>
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.1s' : '0s' }}>
+        <div className="section-header">
+          <span className="section-tag">Engineering Domains</span>
+          <h2 className="section-title">Technical Expertise</h2>
+          <p className="section-subtitle">
+            Core toolkits, database architectures, and analytical systems compiled through practical implementation and research.
+          </p>
+        </div>
       </div>
 
-      <div className="expertise-grid">
-        {skillsData.map((category) => (
-          <div key={category.title} className="ivory-card expertise-card hover-gold-card">
-            <div>
-              <div className="expertise-header">
-                <h3 className="expertise-title">{category.title}</h3>
-                <span className="text-mono" style={{ color: 'var(--gold-dark)', fontWeight: '600' }}>
-                  {category.competency}%
-                </span>
-              </div>
-
-              <div className="expertise-tags">
-                {category.skills.map((skill) => (
-                  <span key={skill} className="tech-tag">
-                    {skill}
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.3s' : '0s' }}>
+        <div className="expertise-grid">
+          {skillsData.map((category) => (
+            <div key={category.title} className="ivory-card expertise-card hover-gold-card">
+              <div>
+                <div className="expertise-header">
+                  <h3 className="expertise-title">{category.title}</h3>
+                  <span className="text-mono" style={{ color: 'var(--gold-dark)', fontWeight: '600' }}>
+                    {animate ? `${category.competency}%` : '0%'}
                   </span>
-                ))}
+                </div>
+
+                <div className="expertise-tags">
+                  {category.skills.map((skill) => (
+                    <span key={skill} className="tech-tag">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="expertise-meter">
+                <div
+                  className="expertise-meter-fill"
+                  style={{ width: animate ? `${category.competency}%` : '0%' }}
+                />
               </div>
             </div>
-
-            <div className="expertise-meter">
-              <div
-                className="expertise-meter-fill"
-                style={{ width: animate ? `${category.competency}%` : '0%' }}
-              />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

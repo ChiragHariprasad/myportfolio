@@ -1,17 +1,17 @@
 /* Design System Core for Chirag Hariprasad Portfolio */
 :root {
-  --bg-cream: #F8F4EC;
-  --bg-ivory: #FDFBF5;
-  --gold: #C9A227;
-  --gold-dark: #A4801B;
-  --gold-light: #E5C352;
-  --gold-alpha-05: rgba(201, 162, 39, 0.05);
-  --gold-alpha-10: rgba(201, 162, 39, 0.10);
-  --gold-alpha-20: rgba(201, 162, 39, 0.20);
-  --charcoal: #2D2D2D;
-  --charcoal-light: #4A4A4A;
-  --charcoal-muted: #8E8D8A;
-  
+  --bg-cream: #FAF9F6;
+  --bg-ivory: #F7F3EA;
+  --gold: #D4AF37;
+  --gold-dark: #B8860B;
+  --gold-light: #E6C96A;
+  --gold-alpha-05: rgba(212, 175, 55, 0.05);
+  --gold-alpha-10: rgba(212, 175, 55, 0.10);
+  --gold-alpha-20: rgba(212, 175, 55, 0.20);
+  --charcoal: #2E2E2E;
+  --charcoal-light: #4F4F4F;
+  --charcoal-muted: #8A8A8A;
+
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;

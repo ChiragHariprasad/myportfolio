@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BookOpen, BrainCircuit, Dna, LineChart, MessageSquare, Network } from 'lucide-react';
 import '../styles/portfolio.css';
 
@@ -43,37 +43,63 @@ const researchFields: ResearchField[] = [
 ];
 
 const Research: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="research" className="section-container">
-      <div className="section-header">
-        <span className="section-tag">Academic & Applied Research</span>
-        <h2 className="section-title">Research Investigations</h2>
-        <p className="section-subtitle">
-          Exploring core problems in high-dimensional representations, causal feedback loops, and real-time streaming architectures.
-        </p>
+    <section id="research" ref={sectionRef} className="section-container">
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.1s' : '0s' }}>
+        <div className="section-header">
+          <span className="section-tag">Academic & Applied Research</span>
+          <h2 className="section-title">Research Investigations</h2>
+          <p className="section-subtitle">
+            Exploring core problems in high-dimensional representations, causal feedback loops, and real-time streaming architectures.
+          </p>
+        </div>
       </div>
 
-      <div className="research-interests-grid">
-        {researchFields.map((field, idx) => (
-          <div key={idx} className="ivory-card research-card hover-gold-card">
-            <div className="research-icon">{field.icon}</div>
-            <h3 className="research-title">{field.title}</h3>
-            <p className="research-desc">{field.desc}</p>
-            <ul className="research-sub-list">
-              {field.topics.map((topic, index) => (
-                <li key={index}>{topic}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.3s' : '0s' }}>
+        <div className="research-interests-grid">
+          {researchFields.map((field, idx) => (
+            <div key={idx} className="ivory-card research-card hover-gold-card">
+              <div className="research-icon">{field.icon}</div>
+              <h3 className="research-title">{field.title}</h3>
+              <p className="research-desc">{field.desc}</p>
+              <ul className="research-sub-list">
+                {field.topics.map((topic, index) => (
+                  <li key={index}>{topic}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="ivory-card publications-block">
-        <BookOpen size={36} style={{ color: 'var(--gold)', marginBottom: '1rem', display: 'inline-block' }} />
-        <h3 style={{ fontSize: '1.4rem', color: 'var(--charcoal)' }}>Forthcoming Publications</h3>
-        <p className="publications-subtitle">
-          Peer-reviewed manuscripts on streaming outlier recognition models and biodiversity classification systems are in preparation. Details on drafts and pre-prints are available upon request.
-        </p>
+      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.5s' : '0s' }}>
+        <div className="ivory-card publications-block">
+          <BookOpen size={36} style={{ color: 'var(--gold)', marginBottom: '1rem', display: 'inline-block' }} />
+          <h3 style={{ fontSize: '1.4rem', color: 'var(--charcoal)' }}>Forthcoming Publications</h3>
+          <p className="publications-subtitle">
+            Peer-reviewed manuscripts on streaming outlier recognition models and biodiversity classification systems are in preparation. Details on drafts and pre-prints are available upon request.
+          </p>
+        </div>
       </div>
     </section>
   );
