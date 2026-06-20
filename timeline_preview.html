@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Innovation Ascent — Career Mountain</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#07090c;color:#e8edf5;font-family:'Inter',system-ui,-apple-system,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ── hero title ── */
+.hero{text-align:center;padding:3rem 1rem 1rem;position:relative;z-index:10}
+.hero h1{font-size:clamp(1.6rem,5vw,3.2rem);font-weight:800;letter-spacing:0.02em;
+  background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 30%,#d97706 60%,#fbbf24 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-shadow:0 0 80px rgba(251,191,36,0.15)}
+.hero .subtitle{font-size:clamp(0.5rem,1.2vw,0.75rem);color:#6b7a93;margin-top:0.5rem;letter-spacing:0.15em;text-transform:uppercase}
+.hero .tagline{font-size:clamp(0.65rem,1.4vw,0.9rem);color:#8892a8;margin-top:0.5rem;font-style:italic}
+.hero .tagline::before,.hero .tagline::after{content:'"';color:#fbbf24;opacity:0.4}
+
+/* ── map container ── */
+.map-wrap{position:relative;max-width:1300px;margin:0 auto;padding:0 1rem 3rem}
+.map-wrap svg{width:100%;height:auto;display:block;border-radius:24px;
+  background:linear-gradient(180deg,#0b0e17 0%,#0f1525 30%,#1a2440 55%,#1e2d50 70%,#1a2030 100%);
+  box-shadow:0 8px 60px rgba(0,0,0,0.6),inset 0 0 120px rgba(251,191,36,0.02)}
+.map-wrap svg text{font-family:'Inter',system-ui,sans-serif}
+
+/* ── tooltip ── */
+.tooltip{position:fixed;pointer-events:none;z-index:999;
+  background:rgba(7,9,12,0.94);border:1px solid rgba(255,215,0,0.15);
+  border-radius:16px;padding:0.9rem 1.2rem;max-width:340px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 8px 50px rgba(0,0,0,0.6);
+  opacity:0;transition:opacity 0.2s ease;font-size:0.8rem}
+.tooltip.visible{opacity:1}
+.tooltip .tt-title{font-weight:700;font-size:0.95rem;color:#e8edf5;margin-bottom:0.15rem}
+.tooltip .tt-title.achievement{color:#fbbf24}
+.tooltip .tt-title.research{color:#94a3f8}
+.tooltip .tt-sub{font-size:0.65rem;color:#8892a8;margin-bottom:0.25rem}
+.tooltip .tt-desc{font-size:0.68rem;color:#a0aec0;line-height:1.4;margin-bottom:0.2rem}
+.tooltip .tt-tags{display:flex;flex-wrap:wrap;gap:0.25rem}
+.tooltip .tt-tags span{font-size:0.55rem;padding:0.1rem 0.6rem;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);color:#6b7a93}
+
+/* ── stats panel ── */
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 2rem;
+  margin:0 auto;padding:1.5rem 2rem;max-width:900px;
+  background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);
+  border-radius:20px;text-align:center}
+.stat-item{display:flex;flex-direction:column;align-items:center;gap:0.1rem}
+.stat-item .stat-num{font-size:1.4rem;font-weight:800;color:#fbbf24}
+.stat-item .stat-label{font-size:0.55rem;color:#6b7a93;text-transform:uppercase;letter-spacing:0.08em}
+
+/* ── legend ── */
+.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:0.75rem 1.5rem;margin-top:1.5rem}
+.legend-item{display:flex;align-items:center;gap:0.4rem;font-size:0.6rem;color:#8892a8}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.legend-line{width:24px;height:2px;border-radius:2px;flex-shrink:0}
+
+/* ── clouds ── */
+@keyframes drft{0%,100%{transform:translateX(0)}50%{transform:translateX(30px)}}
+.cloud-group{animation:drft 8s ease-in-out infinite}
+
+/* ── summit glow ── */
+@keyframes pulse-gold{0%,100%{opacity:0.3;r:12}50%{opacity:0.6;r:18}}
+.glow-gold circle.pulse{animation:pulse-gold 2.5s ease-in-out infinite;transform-origin:center}
+
+@keyframes pulse-plat{0%,100%{opacity:0.25;r:14}50%{opacity:0.7;r:22}}
+.glow-plat circle.pulse{animation:pulse-plat 3s ease-in-out infinite;transform-origin:center}
+
+/* ── sunlight rays ── */
+@keyframes ray-pulse{0%,100%{opacity:0.1}50%{opacity:0.3}}
+.sun-ray{animation:ray-pulse 4s ease-in-out infinite}
+.sun-ray:nth-child(2){animation-delay:1.3s}
+.sun-ray:nth-child(3){animation-delay:2.6s}
+
+/* ── snow twinkle ── */
+@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:0.9}}
+.snow{animation:twinkle 3s ease-in-out infinite}
+
+/* ── trail dash animation ── */
+.trail-path{stroke-dasharray:8 6;animation:trail-march 1.2s linear infinite}
+@keyframes trail-march{to{stroke-dashoffset:-14}}
+
+/* ── responsive ── */
+@media(max-width:720px){
+  .tooltip{max-width:260px;padding:0.6rem 0.8rem;font-size:0.7rem}
+  .stats{gap:0.75rem 1.25rem;padding:1rem}
+  .stat-item .stat-num{font-size:1.1rem}
+}
+
+/* ── elevation scale ── */
+.elev-label{font-size:6px;fill:#6b7a93;letter-spacing:0.05em}
+.elev-line{stroke:rgba(255,255,255,0.04);stroke-width:0.5;stroke-dasharray:3 4}
+
+/* ── zone labels ── */
+.zone-label{font-size:7px;fill:#4a5568;letter-spacing:0.1em;text-transform:uppercase}
+.zone-line{stroke:rgba(255,255,255,0.03);stroke-width:0.5;stroke-dasharray:2 6}
+
+/* ── category badge ── */
+.zone-banner{font-size:5px;fill:rgba(255,255,255,0.5);letter-spacing:0.15em;text-transform:uppercase}
+
+/* ── summit banner ── */
+.banner-text{font-size:5px;fill:#fbbf24;letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+.banner-bg{fill:rgba(251,191,36,0.08);stroke:rgba(251,191,36,0.15);stroke-width:0.5;rx:4}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>THE INNOVATION ASCENT</h1>
+  <div class="subtitle">Chirag's Journey from Software Engineering to Patents, AI Systems &amp; Research (2024–2026)</div>
+  <div class="tagline">Every summit revealed the next mountain.</div>
+</div>
+
+<div class="map-wrap" id="mapWrap">
+  <svg id="mountain" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid meet"></svg>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#64748b"></div>Base Camp</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#818cf8"></div>Summit (Patent)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>Major Peak (Patent)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#94a3f8"></div>Research Peak (IEEE)</div>
+  <div class="legend-item"><div class="legend-line" style="background:#60a5fa"></div>Foundations Path</div>
+  <div class="legend-item"><div class="legend-line" style="background:#818cf8"></div>Innovator Path</div>
+  <div class="legend-item"><div class="legend-line" style="background:#fbbf24"></div>Inventor Path</div>
+  <div class="legend-item"><div class="legend-line" style="background:#c084fc"></div>Research Path</div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const milestones=[{
+  id:'hms',x:70,y:590,
+  title:'Hospital Management System',
+  subtitle:'December 2024',
+  desc:'Full hospital management platform in C: patient records, scheduling, billing.',
+  type:'basecamp',elev:'0–2,000m',zone:'Software Foundations',
+  skills:['C','Data Structures','Software Architecture'],
+  achievement:'Completed'
+},{
+  id:'gesture',x:150,y:540,
+  title:'Gesture-Controlled Smart Home',
+  subtitle:'January 2025',
+  desc:'Home automation via gesture recognition using infrared sensors.',
+  type:'basecamp',elev:'2,000m',zone:'Software Foundations',
+  skills:['Automation','Sensor Systems','HCI'],
+  achievement:'Completed'
+},{
+  id:'aoe',x:230,y:495,
+  title:'AgeOfEmpire / Pathfinding Suite',
+  subtitle:'April 2025',
+  desc:'Pathfinding algorithms and game AI simulation system.',
+  type:'basecamp',elev:'2,000m',zone:'Software Foundations',
+  skills:['Algorithms','Pathfinding','Optimization'],
+  achievement:'Completed'
+},{
+  id:'wanted',x:310,y:440,
+  title:'W.A.N.T.E.D.',
+  subtitle:'July 2025',
+  desc:'Real-time surveillance and threat detection platform.',
+  type:'camp',elev:'2,000–4,000m',zone:'Applied Systems',
+  skills:['Applied ML','Platform Engineering'],
+  achievement:'Completed'
+},{
+  id:'iqrs',x:380,y:400,
+  title:'I.Q.R.S.',
+  subtitle:'August 2025',
+  desc:'Information intelligence and retrieval system.',
+  type:'camp',elev:'3,000m',zone:'Applied Systems',
+  skills:['Information Retrieval','AI Systems'],
+  achievement:'Completed'
+},{
+  id:'vector',x:460,y:340,
+  title:'V.E.C.T.O.R.',
+  subtitle:'October 3, 2025',
+  desc:'Real-time fraud detection using behavioral AI clustering. Patent Published.',
+  type:'summit',elev:'5,000m',zone:'Inventor Phase',
+  skills:['Fraud Analytics','Clustering','Patent'],
+  achievement:'FIRST PUBLISHED PATENT',major:true,
+  patent:'Patent Published'
+},{
+  id:'ihorms',x:540,y:295,
+  title:'IHORMS / IHORMS-X',
+  subtitle:'February 2026',
+  desc:'Enterprise resource management system with extended analytics module.',
+  type:'camp',elev:'6,000m',zone:'Advanced AI',
+  skills:['Enterprise Systems','Analytics'],
+  achievement:'Completed'
+},{
+  id:'harbor',x:600,y:270,
+  title:'HARBOR — eDNA Biodiversity AI',
+  subtitle:'February 2026',
+  desc:'Open-set taxonomy inference for environmental DNA biodiversity analysis.',
+  type:'camp',elev:'6,500m',zone:'Advanced AI',
+  skills:['Scientific AI','Taxonomy','Bioinformatics'],
+  achievement:'Scientific AI Breakthrough'
+},{
+  id:'verifai',x:660,y:245,
+  title:'VerifAI — IIFL Samasta',
+  subtitle:'March 2026',
+  desc:'KYC document verification with AI-powered identity validation.',
+  type:'camp',elev:'7,000m',zone:'Advanced AI',
+  skills:['Identity Verification','Document AI','Industry Deployment'],
+  achievement:'Industry AI Deployed'
+},{
+  id:'genesis',x:730,y:205,
+  title:'GENESIS',
+  subtitle:'March 27, 2026',
+  desc:'Generative AI for urban planning — layout synthesis patent published.',
+  type:'summit',elev:'7,500m',zone:'Generative AI Peak',
+  skills:['Generative AI','Urban Planning','Patent'],
+  achievement:'SMART CITY AI INVENTOR',major:true,
+  patent:'Patent Published'
+},{
+  id:'meetingsai',x:800,y:170,
+  title:'PresntAI / MeetingsAI',
+  subtitle:'May 2026',
+  desc:'On-premise meeting intelligence platform. Built at IIFL Samasta.',
+  type:'camp',elev:'8,000m',zone:'Enterprise AI',
+  skills:['Meeting Intelligence','On-Prem AI','Enterprise Product'],
+  achievement:'Enterprise AI Product'
+},{
+  id:'orion',x:870,y:130,
+  title:'O.R.I.O.N.',
+  subtitle:'May 29, 2026',
+  desc:'Omni-Retail Intelligence &amp; Navigation. Patent published. App No: 202641030238.',
+  type:'summit',elev:'8,400m',zone:'Patent Summit',
+  skills:['Retail AI','Recommendation','Patent'],
+  achievement:'CONTEXT-AWARE INTELLIGENCE',major:true,
+  patent:'Patent Published'
+},{
+  id:'presentation',x:920,y:118,
+  title:'Context-Aware Presentation System',
+  subtitle:'May 29, 2026',
+  desc:'Adaptive presentation automation system &amp; method. Patent published. App No: 202641025829.',
+  type:'summit',elev:'8,400m',zone:'Patent Summit',
+  skills:['Presentation AI','Automation','Patent'],
+  achievement:'ADAPTIVE AUTOMATION PATENT',major:true,
+  patent:'Patent Published'
+},{
+  id:'scale',x:990,y:58,
+  title:'S.C.A.L.E.',
+  subtitle:'June 10, 2026',
+  desc:'"Unbalanced Expansion of Engineering Education in India" — accepted in IEEE Access.',
+  type:'peak',elev:'8,848m',zone:'Research Peak',
+  skills:['Education Policy','Data Science','Research'],
+  achievement:'IEEE PUBLISHED RESEARCHER',major:true,
+  patent:'DOI: 10.1109/ACCESS.2026.3704923',
+  isResearch:true
+},{
+  id:'prometheus',x:1070,y:72,
+  title:'PROMETHEUS',
+  subtitle:'June 2026',
+  desc:'AI Customer Digital Twins — predictive marketing engine with Monte Carlo simulation.',
+  type:'future',elev:'8,000m+',zone:'Future Intelligence',
+  skills:['Digital Twins','Predictive AI','Enterprise'],
+  achievement:'Beyond the Summit'
+}];
+
+/* ── build trail path ── */
+function genPath(pts){
+  if(pts.length<2)return '';
+  let d=`M${pts[0].x},${pts[0].y}`;
+  for(let i=1;i<pts.length;i++){
+    const p=pts[i-1],c=pts[i];
+    const mx=(p.x+c.x)/2,my=(p.y+c.y)/2;
+    d+=` Q${p.x},${my} ${mx},${my}`;
+    d+=` Q${c.x},${my} ${c.x},${c.y}`;
+  }
+  return d;
+}
+
+/* ── elevation lines ── */
+function elevLines(svg){
+  const ys=[600,500,400,300,200,100];
+  const labels=['0m','2,000m','4,000m','5,000m','7,000m','8,848m'];
+  ys.forEach((y,i)=>{
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.innerHTML=`<line x1="30" y1="${y}" x2="1170" y2="${y}" class="elev-line"/>
+      <text x="28" y="${y+3}" class="elev-label" text-anchor="end">${labels[i]}</text>`;
+    svg.appendChild(g);
+  });
+}
+
+/* ── cloud groups ── */
+function clouds(svg){
+  [[160,360,0],[400,310,1],[700,220,2],[950,180,3]].forEach(([cx,cy,delay])=>{
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','cloud-group');
+    g.style.animationDelay=delay*2+'s';
+    g.innerHTML=`<ellipse cx="${cx}" cy="${cy}" rx="40" ry="8" fill="rgba(255,255,255,0.02)"/>
+      <ellipse cx="${cx+16}" cy="${cy-4}" rx="28" ry="6" fill="rgba(255,255,255,0.015)"/>`;
+    svg.appendChild(g);
+  });
+}
+
+/* ── sunlight rays ── */
+function sunlight(svg){
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  for(let i=0;i<3;i++){
+    g.innerHTML+=`<polygon points="1050,0 950,60 960,65" fill="rgba(251,191,36,0.08)" class="sun-ray"/>`;
+    g.lastElementChild.setAttribute('transform',`rotate(${i*15},1050,0)`);
+  }
+  svg.appendChild(g);
+}
+
+/* ── mountain silhouette layers ── */
+function mountains(svg){
+  const layers=[
+    {d:'M0,700 L50,620 L100,640 L150,580 L200,600 L250,550 L300,560 L350,500 L400,520 L450,470 L500,480 L550,430 L600,440 L650,390 L700,400 L750,350 L800,360 L850,310 L900,320 L950,270 L1000,280 L1050,230 L1100,250 L1150,200 L1200,220 L1200,700 Z',
+     fill:'rgba(255,255,255,0.015)',stroke:'rgba(255,255,255,0.025)'},
+    {d:'M0,700 L40,590 L90,610 L140,560 L190,580 L240,530 L290,540 L340,480 L390,500 L440,450 L490,460 L540,410 L590,420 L640,370 L690,380 L740,330 L790,340 L840,290 L890,300 L940,250 L990,260 L1040,210 L1090,225 L1140,180 L1180,200 L1200,190 L1200,700 Z',
+     fill:'rgba(255,255,255,0.025)',stroke:'rgba(255,255,255,0.035)'},
+    {d:'M0,700 L35,570 L85,590 L135,540 L185,560 L235,510 L285,520 L335,460 L385,480 L435,425 L485,435 L535,385 L585,395 L635,345 L685,355 L735,305 L785,315 L835,265 L885,275 L935,225 L985,235 L1035,185 L1085,200 L1135,155 L1180,175 L1200,165 L1200,700 Z',
+     fill:'rgba(255,255,255,0.035)',stroke:'rgba(255,255,255,0.05)'}
+  ];
+  layers.forEach(l=>{
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',l.d);p.setAttribute('fill',l.fill);p.setAttribute('stroke',l.stroke);p.setAttribute('stroke-width','0.5');
+    svg.appendChild(p);
+  });
+}
+
+/* ── snow caps ── */
+function snowCaps(svg){
+  const caps=[
+    {x:990,y:58,size:8},
+    {x:920,y:118,size:5},
+    {x:870,y:130,size:4},
+    {x:730,y:205,size:5}
+  ];
+  caps.forEach(c=>{
+    for(let i=0;i<3;i++){
+      const s=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      s.setAttribute('cx',c.x+Math.random()*15-7);
+      s.setAttribute('cy',c.y+Math.random()*12-6);
+      s.setAttribute('r',Math.random()*1+0.5);
+      s.setAttribute('fill','rgba(255,255,255,0.6)');
+      s.setAttribute('class','snow');
+      s.style.animationDelay=Math.random()*3+'s';
+      svg.appendChild(s);
+    }
+  });
+}
+
+/* ── zone banners ── */
+function zoneLabels(svg){
+  const zones=[
+    {x:120,y:620,label:'BASE CAMP',sub:'SOFTWARE FOUNDATIONS'},
+    {x:310,y:470,label:'ASCENT RIDGE',sub:'APPLIED SYSTEMS'},
+    {x:460,y:370,label:'FIRST SUMMIT',sub:'INVENTOR PHASE'},
+    {x:600,y:310,label:'HIGH ALTITUDE',sub:'ADVANCED AI'},
+    {x:730,y:235,label:'MAJOR SUMMIT',sub:'GENERATIVE AI'},
+    {x:800,y:200,label:'SUMMIT RIDGE',sub:'ENTERPRISE AI'},
+    {x:895,y:155,label:'TWIN PEAKS',sub:'PATENT SUMMIT'},
+    {x:990,y:88,label:'HIGHEST SUMMIT',sub:'RESEARCH PEAK'},
+    {x:1070,y:100,label:'SUMMIT PLATEAU',sub:'FUTURE INTELLIGENCE'}
+  ];
+  zones.forEach(z=>{
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('opacity','0.35');
+    g.innerHTML=`<text x="${z.x}" y="${z.y}" class="zone-label" text-anchor="middle">${z.label}</text>
+      <text x="${z.x}" y="${z.y+11}" class="zone-banner" text-anchor="middle">${z.sub}</text>`;
+    svg.appendChild(g);
+  });
+}
+
+/* ── main render ── */
+function render(){
+  const svg=document.getElementById('mountain');
+  svg.innerHTML='';
+
+  /* background */
+  const bg=document.createElementNS('http://www.w3.org/2000/svg','defs');
+  bg.innerHTML=`<linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0a0e1a"/><stop offset="60%" stop-color="#141c30"/><stop offset="100%" stop-color="#1a2440"/>
+  </linearGradient>`;
+  svg.appendChild(bg);
+
+  sunlight(svg);
+  mountains(svg);
+  clouds(svg);
+  elevLines(svg);
+  zoneLabels(svg);
+  snowCaps(svg);
+
+  /* ── trail segments by zone ── */
+  const trailColors=['rgba(96,165,250,0.6)','rgba(96,165,250,0.6)','rgba(96,165,250,0.6)',
+    'rgba(129,140,248,0.6)','rgba(129,140,248,0.6)',
+    'rgba(251,191,36,0.7)',
+    'rgba(251,191,36,0.6)','rgba(251,191,36,0.6)','rgba(251,191,36,0.6)',
+    'rgba(251,191,36,0.7)',
+    'rgba(251,191,36,0.6)',
+    'rgba(251,191,36,0.7)','rgba(251,191,36,0.7)',
+    'rgba(196,132,252,0.8)',
+    'rgba(196,132,252,0.4)'];
+
+  const pts=milestones.map(m=>({x:m.x,y:m.y}));
+  const pathD=genPath(pts);
+
+  const trailPaths=[
+    {start:0,end:5,color:'rgba(96,165,250,0.5)'},
+    {start:5,end:9,color:'rgba(251,191,36,0.5)'},
+    {start:9,end:13,color:'rgba(251,191,36,0.6)'},
+    {start:13,end:14,color:'rgba(196,132,252,0.6)'}
+  ];
+
+  trailPaths.forEach(seg=>{
+    const subPts=pts.slice(seg.start,seg.end+1);
+    const subD=genPath(subPts);
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',subD);
+    p.setAttribute('fill','none');
+    p.setAttribute('stroke',seg.color);
+    p.setAttribute('stroke-width','2.5');
+    p.setAttribute('stroke-linecap','round');
+    p.setAttribute('stroke-linejoin','round');
+    p.setAttribute('class','trail-path');
+    svg.appendChild(p);
+  });
+
+  /* thick glow underlay */
+  const glow=document.createElementNS('http://www.w3.org/2000/svg','path');
+  glow.setAttribute('d',pathD);
+  glow.setAttribute('fill','none');
+  glow.setAttribute('stroke','rgba(251,191,36,0.05)');
+  glow.setAttribute('stroke-width','8');
+  glow.setAttribute('stroke-linecap','round');
+  svg.appendChild(glow);
+
+  /* ── milestone markers ── */
+  const tooltip=document.getElementById('tooltip');
+
+  milestones.forEach((m,i)=>{
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','milestone-group');
+    g.style.cursor='pointer';
+
+    let marker='';
+    const col=m.major?(m.isResearch?'#94a3f8':'#fbbf24'):m.type==='basecamp'?'#64748b':'#818cf8';
+
+    if(m.type==='basecamp'){
+      const sz=8;
+      marker=`<path d="M${m.x},${m.y+sz} L${m.x-sz*1.2},${m.y+sz-1} L${m.x-sz*0.6},${m.y} L${m.x},${m.y-sz*0.3} L${m.x+sz*0.6},${m.y} L${m.x+sz*1.2},${m.y+sz-1} Z" fill="${col}" opacity="0.8"/>
+        <circle cx="${m.x}" cy="${m.y-2}" r="3" fill="rgba(255,255,255,0.6)"/>`;
+    } else if(m.type==='camp'){
+      const sz=9;
+      marker=`<polygon points="${m.x},${m.y-sz} ${m.x+sz*0.8},${m.y+sz*0.3} ${m.x+sz*0.3},${m.y+sz} ${m.x-sz*0.3},${m.y+sz} ${m.x-sz*0.8},${m.y+sz*0.3}" fill="${col}" opacity="0.7"/>
+        <rect x="${m.x-4}" y="${m.y-2}" width="8" height="6" rx="1" fill="rgba(255,255,255,0.5)"/>`;
+    } else if(m.type==='summit'){
+      const sz=14;
+      const cls=m.major?'glow-gold':'';
+      marker=`<g class="${cls}">
+        <circle cx="${m.x}" cy="${m.y}" r="14" fill="${col}" opacity="0.15" class="pulse"/>
+        <polygon points="${m.x},${m.y-sz} ${m.x+sz*0.75},${m.y+sz*0.35} ${m.x+sz*0.3},${m.y+sz*0.7} ${m.x-sz*0.3},${m.y+sz*0.7} ${m.x-sz*0.75},${m.y+sz*0.35}" fill="${col}" opacity="0.9" stroke="${col}" stroke-width="1.5"/>
+        <polygon points="${m.x},${m.y-sz+6} ${m.x+sz*0.4},${m.y+sz*0.1} ${m.x-sz*0.4},${m.y+sz*0.1}" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="${m.x}" cy="${m.y-4}" r="5" fill="rgba(255,255,255,0.5)"/>
+      </g>`;
+      /* banner */
+      if(m.major){
+        const bgEl=document.createElementNS('http://www.w3.org/2000/svg','g');
+        bgEl.setAttribute('transform',`translate(${m.x},${m.y-28})`);
+        bgEl.innerHTML=`<rect x="-60" y="-5" width="120" height="12" class="banner-bg"/>
+          <text x="0" y="3" class="banner-text" text-anchor="middle">${m.achievement}</text>`;
+        svg.appendChild(bgEl);
+      }
+    } else if(m.type==='peak'){
+      const sz=18;
+      marker=`<g class="glow-plat">
+        <circle cx="${m.x}" cy="${m.y}" r="18" fill="#94a3f8" opacity="0.12" class="pulse"/>
+        <circle cx="${m.x}" cy="${m.y}" r="8" fill="none" stroke="#94a3f8" stroke-width="2" opacity="0.6"/>
+        <polygon points="${m.x},${m.y-sz} ${m.x+sz*0.8},${m.y+sz*0.3} ${m.x+sz*0.3},${m.y+sz*0.7} ${m.x-sz*0.3},${m.y+sz*0.7} ${m.x-sz*0.8},${m.y+sz*0.3}" fill="#94a3f8" opacity="0.95" stroke="#c084fc" stroke-width="2"/>
+        <polygon points="${m.x},${m.y-sz+8} ${m.x+sz*0.45},${m.y+sz*0.1} ${m.x-sz*0.45},${m.y+sz*0.1}" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="${m.x}" cy="${m.y-5}" r="6" fill="rgba(255,255,255,0.6)"/>
+        <text x="${m.x}" y="${m.y-28}" class="banner-text" text-anchor="middle" fill="#94a3f8">${m.achievement}</text>
+      </g>`;
+    } else if(m.type==='future'){
+      const sz=10;
+      marker=`<rect x="${m.x-sz}" y="${m.y-sz}" width="${sz*2}" height="${sz*1.8}" rx="3" fill="rgba(196,132,252,0.2)" stroke="rgba(196,132,252,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="${m.x}" y="${m.y+2}" font-size="7" fill="rgba(196,132,252,0.6)" text-anchor="middle">&#8734;</text>`;
+    }
+
+    g.innerHTML=marker;
+
+    /* label */
+    const labelG=document.createElementNS('http://www.w3.org/2000/svg','g');
+    const labelY=m.type==='peak'?m.y+26:(m.type==='summit'?m.y+24:(m.type==='future'?m.y+16:m.y+14));
+    labelG.innerHTML=`<text x="${m.x}" y="${labelY}" font-size="${m.major?7:6}" fill="${m.major?(m.isResearch?'#94a3f8':'#fbbf24'):'#8892a8'}" text-anchor="middle" font-weight="${m.major?'bold':'normal'}">${m.title}</text>
+      <text x="${m.x}" y="${labelY+10}" font-size="4.5" fill="#6b7a93" text-anchor="middle">${m.subtitle}</text>`;
+    svg.appendChild(labelG);
+    svg.appendChild(g);
+
+    /* interaction */
+    g.addEventListener('mouseenter',(e)=>{
+      const r=e.currentTarget.getBoundingClientRect();
+      const cx=r.left+r.width/2,cy=r.top;
+      const achCls=m.isResearch?'research':(m.major?'achievement':'');
+      const achExtra=m.patent?`<div style="color:${m.isResearch?'#94a3f8':'#fbbf24'};font-size:0.55rem;margin-bottom:0.15rem">${m.patent}</div>`:'';
+      tooltip.innerHTML=`
+        <div class="tt-title ${achCls}">${m.title}</div>
+        <div class="tt-sub">${m.subtitle} &middot; ${m.elev}</div>
+        <div class="tt-desc">${m.desc}</div>
+        ${achExtra}
+        <div class="tt-tags">${m.skills.map(s=>`<span>${s}</span>`).join('')}</div>
+        <div style="margin-top:0.3rem;font-size:0.5rem;color:#6b7a93;letter-spacing:0.05em;text-transform:uppercase">${m.achievement}</div>
+      `;
+      const tt=tooltip;
+      tt.classList.add('visible');
+      const tw=tt.offsetWidth,th=tt.offsetHeight;
+      let left=cx-tw/2,top=cy-th-16;
+      if(left<10)left=10;
+      if(left+tw>window.innerWidth-10)left=window.innerWidth-tw-10;
+      if(top<10)top=10;
+      tt.style.left=left+'px';tt.style.top=top+'px';
+    });
+    g.addEventListener('mouseleave',()=>{tooltip.classList.remove('visible')});
+  });
+
+  /* ── elevation markers ── */
+  [500,400,300,200,100].forEach(y=>{
+    [100,300,500,700,900,1100].forEach(x=>{
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',x);t.setAttribute('y',y);
+      t.setAttribute('font-size','2.5');
+      t.setAttribute('fill','rgba(255,255,255,0.015)');
+      t.textContent='\u2022';
+      svg.appendChild(t);
+    });
+  });
+
+  /* ── stats ── */
+  const statsEl=document.getElementById('stats');
+  statsEl.innerHTML=`
+    <div class="stat-item"><div class="stat-num">2024\u20132026</div><div class="stat-label">Years Covered</div></div>
+    <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">Projects Completed</div></div>
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Patents Published</div></div>
+    <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Research Publication</div></div>
+    <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Enterprise AI Systems</div></div>
+    <div class="stat-item"><div class="stat-num">8,848m</div><div class="stat-label">Innovation Elevation</div></div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
