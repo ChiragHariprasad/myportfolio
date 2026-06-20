@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
 
         <div className="hero-socials animate-fade-up" style={{ animationDelay: '0.6s' }}>
           <a
-            href="https://linkedin.com/in/chirag-hariprasad/"
+            href="https://linkedin.com/in/chiraghariprasad/"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon-link"
@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
             <Mail size={22} />
           </a>
           <a
-            href="https://080405.tech"
+            href="https://chiraghariprasad.qzz.io"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon-link"

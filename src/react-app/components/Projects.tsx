@@ -356,104 +356,79 @@ const Projects: React.FC = () => {
       </div>
 
       <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.5s' : '0s' }}>
-        <div className="projects-masonry">
+        <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <div key={project.id} className="ivory-card project-case-study hover-gold-card">
+            <div key={project.id} className="ivory-card project-card hover-gold-card">
               {project.confidential ? (
-                <div className="project-cs-header">
-                  <div className="project-cs-title-group">
-                    <span className="redacted-title">🔒 CLASSIFIED RESOURCE</span>
-                    <h3 className="project-cs-title">
-                      <span className="redacted-text">{project.title.split(' - ')[0]}</span>
-                      {project.title.includes(' - ') && ` - ${project.title.split(' - ')[1]}`}
-                    </h3>
-                  </div>
-                  <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
-                    {getStatusIcon(project.status)}
-                    {project.status}
-                  </span>
-                </div>
-              ) : (
-                <div className="project-cs-header">
-                  <div className="project-cs-title-group">
-                    <h3 className="project-cs-title">{project.title}</h3>
-                  </div>
-                  <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
-                    {getStatusIcon(project.status)}
-                    {project.status}
-                  </span>
-                </div>
-              )}
-
-              {project.confidential ? (
-                <div className="project-confidential-block">
-                  <Lock size={32} style={{ color: 'var(--gold)' }} />
-                  <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-muted)' }}>
-                    This asset is subject to strict proprietary validation checks. Underlying methods are patented or under filing.
-                  </p>
-                  <div style={{ textAlign: 'left', width: '100%' }}>
-                    <strong>Abstract Blueprint:</strong>
-                    <p className="redacted-text" style={{ display: 'block', marginTop: '0.5rem', lineHeight: '1.8' }}>
-                      {project.description}
-                    </p>
-                  </div>
-                  <div style={{ width: '100%', marginTop: '1rem' }}>
-                    <strong style={{ fontSize: '0.85rem' }}>Encrypted Tech Stack:</strong>
-                    <div className="patent-tech-list" style={{ marginTop: '0.5rem' }}>
-                      {project.tech.map((tech) => (
-                        <span key={tech} className="tech-tag" style={{ filter: 'blur(2px)', userSelect: 'none' }}>{tech}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="project-cs-grid">
-                  <div className="project-cs-body">
+                <>
+                  <div className="project-card-header">
                     <div>
-                      <h4 className="patent-section-header">Challenge & Objective</h4>
-                      <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-light)' }}>
+                      <span className="redacted-title">🔒 CLASSIFIED RESOURCE</span>
+                      <h3 className="project-card-title" style={{ marginTop: '0.25rem' }}>
+                        <span className="redacted-text">{project.title.split(' - ')[0]}</span>
+                        {project.title.includes(' - ') && ` - ${project.title.split(' - ')[1]}`}
+                      </h3>
+                    </div>
+                    <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
+                      {getStatusIcon(project.status)}
+                      {project.status}
+                    </span>
+                  </div>
+                  <div className="project-confidential-block">
+                    <Lock size={20} style={{ color: 'var(--gold)' }} />
+                    <p style={{ fontSize: '0.75rem', color: 'var(--charcoal-muted)' }}>
+                      This asset is subject to proprietary validation. Underlying methods are patented or under filing.
+                    </p>
+                    <div style={{ width: '100%' }}>
+                      <p className="redacted-text" style={{ display: 'block', lineHeight: '1.6', fontSize: '0.75rem' }}>
                         {project.description}
                       </p>
                     </div>
-
-                    {project.features && (
-                      <div>
-                        <h4 className="patent-section-header">Key Architectural Attributes</h4>
-                        <ul className="project-cs-features-list">
-                          {project.features.map((feature, idx) => (
-                            <li key={idx}>{feature}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="project-cs-sidebar">
-                    <div>
-                      <h4 className="patent-section-header">Tech Stack</h4>
-                      <div className="patent-tech-list">
+                    <div style={{ width: '100%' }}>
+                      <div className="project-card-tech">
                         {project.tech.map((tech) => (
-                          <span key={tech} className="tech-tag">{tech}</span>
+                          <span key={tech} className="tech-tag" style={{ filter: 'blur(2px)', userSelect: 'none' }}>{tech}</span>
                         ))}
                       </div>
                     </div>
-
-                    {project.link && (
-                      <div style={{ marginTop: '1rem' }}>
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-secondary"
-                          style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}
-                        >
-                          <ExternalLink size={14} />
-                          Watch Demo
-                        </a>
-                      </div>
-                    )}
                   </div>
-                </div>
+                </>
+              ) : (
+                <>
+                  <div className="project-card-header">
+                    <h3 className="project-card-title">{project.title}</h3>
+                    <span className={`project-status-badge ${getStatusBadgeClass(project.status)}`}>
+                      {getStatusIcon(project.status)}
+                      {project.status}
+                    </span>
+                  </div>
+
+                  <p className="project-card-desc">{project.description}</p>
+
+                  {project.features && (
+                    <div className="project-card-features">
+                      {project.features.slice(0, 3).map((f, idx) => (
+                        <span key={idx} className="project-card-feature">{f}</span>
+                      ))}
+                      {project.features.length > 3 && (
+                        <span className="project-card-feature">+{project.features.length - 3} more</span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="project-card-tech">
+                    {project.tech.map((tech) => (
+                      <span key={tech} className="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-card-link">
+                      <ExternalLink size={12} />
+                      Watch Demo
+                    </a>
+                  )}
+                </>
               )}
             </div>
           ))}

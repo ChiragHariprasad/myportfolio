@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Award, BookOpen, Briefcase, Zap } from 'lucide-react';
+import { Award, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
 import '../styles/portfolio.css';
 
 interface TimelineEntry {
@@ -7,128 +7,119 @@ interface TimelineEntry {
   title: string;
   subtitle: string;
   description: string;
-  category: 'patent' | 'research' | 'internship';
+  category: 'patent' | 'internship' | 'leadership' | 'research' | 'education';
+  major: boolean;
 }
 
 const timelineData: TimelineEntry[] = [
   {
-    date: 'Dec 2024',
-    title: 'Hospital Management System (C)',
-    subtitle: 'Systems Programmer',
-    description: 'Terminal-based integrated hospital management system in C with patient lifecycle management, billing workflows, and synthetic data generation for scale testing.',
-    category: 'research'
+    date: '31 Aug 2021 - May 2024',
+    title: 'SJP — Sri Jayachamarajendra Government Polytechnic, Bengaluru',
+    subtitle: 'Diploma in Engineering',
+    description: 'Completed polytechnic education forming the engineering foundation.',
+    category: 'education',
+    major: false
   },
   {
-    date: 'Jan 2025',
-    title: 'Gesture-Controlled Smart Home System',
-    subtitle: 'Computer Vision & IoT Developer',
-    description: 'Real-time gesture recognition via OpenCV controlling Arduino-based home automation hardware through serial communication.',
-    category: 'research'
+    date: '15 Jan 2024 - 4 Feb 2024',
+    title: 'Globle Tech Fortune Industries Pvt. Ltd.',
+    subtitle: 'Quality Assurance Intern',
+    description: 'Quality assurance engineering internship gaining industrial experience in manufacturing quality processes.',
+    category: 'internship',
+    major: false
   },
   {
-    date: 'Apr 2025',
-    title: 'AgeOfEmpire / Pathfinding Suite',
-    subtitle: 'Algorithmic Research Developer',
-    description: 'Benchmarked 35+ pathfinding algorithms across multi-scenario testbeds. Flow Field and ACO achieved 100% success rate in dynamic obstacle environments.',
-    category: 'research'
+    date: '23 Jul 2024',
+    title: 'RVCE — Rashtreeya Vidyalaya College of Engineering',
+    subtitle: 'B.E. in Computer Science & Engineering',
+    description: 'Admission into the undergraduate engineering program at RV College of Engineering, Bengaluru.',
+    category: 'education',
+    major: false
   },
   {
-    date: 'Jul 2025',
-    title: 'W.A.N.T.E.D — Crime Pattern Analysis',
-    subtitle: 'AI/ML Systems Developer',
-    description: 'Cloud-native crime intelligence system introducing Crime Genome vectorized profiling with GPU-accelerated anomaly detection and geospatial visualization.',
-    category: 'research'
+    date: '2024 - Present',
+    title: 'Intellectual Property Filing (V.E.C.T.O.R)',
+    subtitle: 'Primary Inventor — Fraud Analytics',
+    description: 'Designed and filed the patent for V.E.C.T.O.R (Velocity-Enhanced Clustering for Transactional Outlier Recognition), a real-time behavioral fraud clustering system.',
+    category: 'patent',
+    major: true
   },
   {
-    date: 'Aug 2025',
-    title: 'I.Q.R.S. — RAG Document Intelligence',
-    subtitle: 'AI/ML Systems Developer',
-    description: 'End-to-end Retrieval-Augmented Generation platform converting unstructured PDFs into searchable intelligence with FAISS retrieval and grounded QA.',
-    category: 'research'
+    date: '2024',
+    title: 'AI/ML Intern — Strategy Team',
+    subtitle: 'IIFL Samasta (3 Months)',
+    description: 'Delivered 2 end-to-end production AI platforms (MeetingsAI and VerifAI) as a solo developer. Also contributed core logic support to 2 additional corporate analytics workflows.',
+    category: 'internship',
+    major: false
+  },
+  {
+    date: '2024',
+    title: 'MeetingsAI / VerifAI System Delivery',
+    subtitle: 'Principal Architect & Developer — IIFL Samasta',
+    description: 'Built enterprise meeting intelligence pipeline (transcription, diarization, MoM) and high-assurance KYC document verification system with strict fraud guardrails.',
+    category: 'research',
+    major: false
+  },
+  {
+    date: '2021 - 2024',
+    title: 'Class Representative',
+    subtitle: 'Student Leadership (3 Consecutive Years)',
+    description: 'Elected consistently by peers to represent class interests, coordinate academic schedules with department faculties, and establish collaborative peer study systems.',
+    category: 'leadership',
+    major: false
   },
   {
     date: '3 Oct 2025',
     title: 'V.E.C.T.O.R — Patent Published',
     subtitle: 'Primary Inventor — Fraud Analytics',
     description: 'Patent published for Velocity-Enhanced Clustering for Transactional Outlier Recognition. Real-time behavioral fraud detection with persona-specific anomaly models.',
-    category: 'patent'
+    category: 'patent',
+    major: true
   },
   {
-    date: 'Feb 2026',
-    title: 'IHORMS/IHORMS-X + HARBOR Completed',
-    subtitle: 'Full-Stack & ML Developer',
-    description: 'Delivered multi-tenant hospital platform (8-role RBAC) and open-set eDNA taxonomy inference system with contrastive CNN embeddings and FAISS retrieval.',
-    category: 'research'
-  },
-  {
-    date: 'Mar 2026',
-    title: 'VerifAI — Deployed at IIFL Samasta',
-    subtitle: 'AI Systems Developer — IIFL Samasta',
-    description: 'Designed and deployed high-assurance KYC document verification with strict downgrade-first fraud logic, Gemini Vision OCR, and full audit trail exports.',
-    category: 'internship'
+    date: '19 Nov 2025 - 13 May 2026',
+    title: 'IIFL Samasta — AIML Development Intern',
+    subtitle: 'Strategy Department',
+    description: 'Extended AIML development internship focused on deploying production AI systems for financial services.',
+    category: 'internship',
+    major: false
   },
   {
     date: '27 Mar 2026',
     title: 'GENESIS — Patent Published',
     subtitle: 'Primary Inventor — Urban AI',
     description: 'Patent published for Generative Engine for Networked, Embedded, Spatial Infrastructure Synthesis. Automated code-compliant urban layout generation.',
-    category: 'patent'
-  },
-  {
-    date: 'May 2026',
-    title: 'MeetingsAI — On-Prem Meeting Intelligence (IIFL Samasta)',
-    subtitle: 'Principal Architect & Developer — IIFL Samasta',
-    description: 'Enterprise meeting pipeline: transcription, diarization, speaker identification, MoM generation, and auto-email distribution. Merged prior PresntAI and MeetingsAI projects.',
-    category: 'internship'
+    category: 'patent',
+    major: true
   },
   {
     date: '29 May 2026',
     title: 'O.R.I.O.N. + Presentation Automation — Patents Published',
     subtitle: 'Co-Inventor',
     description: 'Two patents published: Omni-Retail Intelligence & Ordering Network, and Context-Aware Adaptive Presentation Automation System with Semantic Navigation.',
-    category: 'patent'
+    category: 'patent',
+    major: true
   },
   {
     date: '10 Jun 2026',
     title: 'S.C.A.L.E. — IEEE Access Published',
     subtitle: 'Lead Researcher',
     description: '"Unbalanced Expansion of Engineering Education in India: A Data-Driven Policy Analysis" published in IEEE Access (Early Access). DOI: 10.1109/ACCESS.2026.3704923.',
-    category: 'patent'
+    category: 'patent',
+    major: true
   },
   {
     date: 'Jun 2026',
     title: 'PROMETHEUS — Customer Digital Twins Completed',
     subtitle: 'AI/ML Systems Architect',
     description: 'AI Customer Futures platform with real-time omnichannel intelligence, churn/LTV prediction, semantic memory, and Monte Carlo campaign simulation.',
-    category: 'research'
-  },
-  {
-    date: 'Jun 2026',
-    title: 'DEEP, Adaptive Pedagogy, AeroWeight — In Progress',
-    subtitle: 'Active Research & Development',
-    description: 'Three active projects: DEEP/HARBOR V2 (cloud-native eDNA), Adaptive Pedagogy (IRT-based EdTech), and AeroWeight (multi-cloud data gravity routing).',
-    category: 'research'
+    category: 'research',
+    major: false
   }
 ];
 
-const categoryIcons: Record<string, React.ReactNode> = {
-  patent: <Award size={14} />,
-  research: <BookOpen size={14} />,
-  internship: <Briefcase size={14} />
-};
-
-const getBorderClass = (cat: string) => {
-  switch (cat) {
-    case 'patent': return 'patent-border';
-    case 'research': return 'research-border';
-    case 'internship': return 'internship-border';
-    default: return '';
-  }
-};
-
 const Timeline: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'patent' | 'research' | 'internship'>('all');
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -148,9 +139,16 @@ const Timeline: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const filteredData = activeFilter === 'all'
-    ? timelineData
-    : timelineData.filter(item => item.category === activeFilter);
+  const getCategoryColor = (cat: string) => {
+    switch (cat) {
+      case 'patent': return 'var(--gold)';
+      case 'internship': return '#34d399';
+      case 'research': return '#60a5fa';
+      case 'leadership': return '#fbbf24';
+      case 'education': return '#a78bfa';
+      default: return 'var(--charcoal-muted)';
+    }
+  };
 
   return (
     <section id="timeline" ref={sectionRef} className="section-container">
@@ -159,48 +157,30 @@ const Timeline: React.FC = () => {
           <span className="section-tag">Milestones & History</span>
           <h2 className="section-title">Timeline of Innovation</h2>
           <p className="section-subtitle">
-            A chronological trace of engineered architectures, published patents, research investigations, and industry deployments.
+            A chronological trace of engineered architectures, published patents, research investigations, academic milestones, and professional experience.
           </p>
         </div>
       </div>
 
-      <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.2s' : '0s' }}>
-        <div className="timeline-filter-bar">
-          {(['all', 'patent', 'research', 'internship'] as const).map((filter) => (
-            <button
-              key={filter}
-              className={`timeline-filter-btn ${activeFilter === filter ? 'active' : ''}`}
-              onClick={() => setActiveFilter(filter)}
-            >
-              {filter === 'all' ? 'All Events' : filter === 'patent' ? 'Patents' : filter === 'research' ? 'Research' : 'Internship'}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className={isVisible ? 'animate-fade-up' : ''} style={{ animationDelay: isVisible ? '0.3s' : '0s' }}>
-        <div className="timeline-single-col">
+        <div className="timeline-wrapper">
           <div className="timeline-line"></div>
 
-          {filteredData.map((item, idx) => (
-            <div
-              key={idx}
-              className="timeline-single-entry timeline-entry-stagger"
-              style={{ animationDelay: `${0.1 + idx * 0.06}s` }}
-            >
-              <div className="timeline-entry-dot" style={{ borderColor: item.category === 'patent' ? 'var(--gold)' : item.category === 'research' ? '#60a5fa' : '#34d399' }}>
-                <div className="timeline-entry-dot-inner" style={{ backgroundColor: item.category === 'patent' ? 'var(--gold)' : item.category === 'research' ? '#60a5fa' : '#34d399' }}></div>
+          {timelineData.map((item, idx) => (
+            <div key={idx} className={`timeline-item ${item.major ? 'timeline-item-major' : ''}`}>
+              <div className="timeline-dot" style={{ borderColor: getCategoryColor(item.category) }}>
+                <div className="timeline-dot-inner" style={{ backgroundColor: getCategoryColor(item.category) }}></div>
               </div>
 
-              <div className={`ivory-card timeline-entry-card hover-gold-card ${getBorderClass(item.category)}`}>
-                <span className="timeline-entry-date">{item.date}</span>
-                <h3 className="timeline-entry-title">{item.title}</h3>
-                <div className="timeline-entry-subtitle">{item.subtitle}</div>
-                <p className="timeline-entry-desc">{item.description}</p>
-                <span className={`timeline-category-badge ${item.category}`}>
-                  {categoryIcons[item.category]}
-                  {item.category}
-                </span>
+              <span className="timeline-date">
+                {item.major && <Award size={12} style={{ display: 'inline', marginRight: '0.3rem', verticalAlign: 'middle' }} />}
+                {item.date}
+              </span>
+
+              <div className={`ivory-card timeline-card hover-gold-card ${item.major ? 'timeline-card-major' : ''}`}>
+                <h3 className="timeline-item-title">{item.title}</h3>
+                <div className="timeline-item-subtitle">{item.subtitle}</div>
+                <p className="timeline-item-desc">{item.description}</p>
               </div>
             </div>
           ))}
