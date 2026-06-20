@@ -39,7 +39,7 @@ const About: React.FC = () => {
               I’m <strong>Chirag</strong>, an <strong>AI/ML Systems Engineer</strong> who builds end-to-end intelligent systems that don’t just predict, but <strong>operate</strong>. My work sits at the intersection of <strong>machine learning, automation, and production-grade software engineering</strong>.
             </p>
             <p style={{ fontSize: '1rem', color: 'var(--charcoal-light)', marginBottom: '2rem', lineHeight: '1.8' }}>
-              I’ve shipped projects across high-impact domains like <strong>fraud detection</strong>, <strong>urban simulation</strong>, <strong>healthcare operations</strong>, <strong>biodiversity inference</strong>, and <strong>meeting intelligence</strong>, always with a focus on scalability, reliability, and real-world constraints.
+              I’ve shipped projects across high-impact domains like <strong>fraud detection</strong>, <strong>urban simulation</strong>, <strong>healthcare operations</strong>, <strong>biodiversity inference</strong>, and <strong>meeting intelligence</strong>, always with a focus on scalability, reliability, and real-world constraints. I hold <strong>4 published patents</strong> and an <strong>IEEE Access publication</strong> in causal policy analysis.
             </p>
           </div>
 
@@ -66,9 +66,9 @@ const About: React.FC = () => {
                 <li>
                   <strong>Full-Stack Ownership:</strong> Implemented backend APIs (FastAPI/Flask), database layers, ML pipelines, and frontend clients.
                 </li>
-                <li>
-                  <strong>Patent-Driven Systems:</strong> Created novel clustering methods and large-scale rule engines under active filing.
-                </li>
+                  <li>
+                    <strong>Patent-Published Systems:</strong> 4 published patents in fraud detection, urban AI, retail intelligence, and presentation automation, plus an IEEE Access publication in causal policy analysis.
+                  </li>
               </ul>
             </div>
           </div>

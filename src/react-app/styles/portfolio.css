@@ -980,6 +980,336 @@
   color: var(--charcoal-muted);
 }
 
+/* ── Research Panel (Floating Modal) ───────────────────────────────────── */
+.research-card.clickable {
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.research-card.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(201, 162, 39, 0.12);
+  border-color: var(--gold) !important;
+}
+.research-card.clickable::after {
+  content: '→ Click to view projects';
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--gold);
+  margin-top: 0.75rem;
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+.research-card.clickable:hover::after {
+  opacity: 1;
+}
+
+.research-projects-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in-overlay 0.3s ease forwards;
+}
+
+@keyframes fade-in-overlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up-panel {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.research-projects-panel {
+  background-color: var(--bg-cream);
+  border: 1px solid var(--gold-alpha-20);
+  border-radius: 20px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  position: relative;
+  animation: slide-up-panel 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+.research-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--gold-alpha-10);
+  padding-bottom: 1.25rem;
+}
+
+.research-panel-header h3 {
+  font-size: 1.5rem;
+  color: var(--charcoal);
+}
+
+.research-panel-close {
+  background: none;
+  border: 1px solid var(--gold-alpha-20);
+  color: var(--charcoal-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: var(--transition-fast);
+  line-height: 1;
+}
+.research-panel-close:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.research-panel-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.research-panel-project {
+  background-color: var(--bg-ivory);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: var(--transition-smooth);
+}
+.research-panel-project:hover {
+  border-color: var(--gold);
+  transform: translateX(4px);
+}
+
+.research-panel-project h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+
+.research-panel-project p {
+  font-size: 0.85rem;
+  color: var(--charcoal-light);
+  line-height: 1.6;
+}
+
+.research-panel-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.research-panel-tech .tech-tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+}
+
+/* ── Timeline Redesign ──────────────────────────────────────────────────── */
+.timeline-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.timeline-filter-btn {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  color: var(--charcoal-muted);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline-filter-btn.active,
+.timeline-filter-btn:hover {
+  border-color: var(--gold);
+  background-color: var(--gold-alpha-05);
+  color: var(--gold-dark);
+}
+
+.timeline-single-col {
+  position: relative;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.timeline-single-col .timeline-line {
+  left: 28px;
+}
+
+.timeline-single-entry {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 70px;
+}
+
+.timeline-entry-dot {
+  position: absolute;
+  left: 20px;
+  top: 28px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--bg-cream);
+  border: 2px solid var(--gold);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.timeline-entry-dot-inner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  transition: var(--transition-fast);
+}
+
+.timeline-single-entry:hover .timeline-entry-dot {
+  border-color: var(--gold-light);
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
+}
+
+.timeline-single-entry:hover .timeline-entry-dot-inner {
+  background-color: var(--gold-light);
+  transform: scale(1.3);
+}
+
+.timeline-entry-card {
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--gold);
+  transition: var(--transition-smooth);
+}
+
+.timeline-entry-card:hover {
+  transform: translateX(4px);
+  border-left-color: var(--gold-light);
+}
+
+.timeline-entry-card.patent-border {
+  border-left-color: var(--gold);
+}
+.timeline-entry-card.research-border {
+  border-left-color: #60a5fa;
+}
+.timeline-entry-card.internship-border {
+  border-left-color: #34d399;
+}
+
+.timeline-entry-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.timeline-entry-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.15rem;
+}
+
+.timeline-entry-subtitle {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--charcoal-light);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-entry-desc {
+  font-size: 0.82rem;
+  color: var(--charcoal-muted);
+  line-height: 1.6;
+}
+
+.timeline-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.timeline-category-badge.patent {
+  background-color: var(--gold-alpha-05);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  color: var(--gold-dark);
+}
+
+.timeline-category-badge.research {
+  background-color: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: rgb(37, 99, 235);
+}
+
+.timeline-category-badge.internship {
+  background-color: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: rgb(5, 150, 105);
+}
+
+/* Staggered entrance for timeline entries */
+.timeline-entry-stagger {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: timeline-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes timeline-fade-up {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Patents Publication Card ───────────────────────────────────────────── */
+.patent-publication-card {
+  border-left: 4px solid #60a5fa;
+  background: linear-gradient(135deg, var(--bg-ivory), rgba(96, 165, 250, 0.03));
+}
+
+.patent-publication-card .patent-status-tag {
+  background-color: rgba(96, 165, 250, 0.1);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: rgb(37, 99, 235);
+}
+
+.patent-doi-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gold-dark);
+  transition: var(--transition-fast);
+}
+.patent-doi-link:hover {
+  color: var(--gold-light);
+}
+
 /* ── Responsive Styling overrides ───────────────────────────────────────── */
 @media (max-width: 768px) {
   .hero-name {

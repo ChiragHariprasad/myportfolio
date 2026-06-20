@@ -15,19 +15,19 @@ const metricsData: MetricItem[] = [
     label: 'Published Patents',
     value: 4,
     suffix: '',
-    desc: 'Systems & behavioral analytics patents',
+    desc: 'Fraud detection, urban AI, retail, presentation automation',
     icon: <Award size={24} />
   },
   {
     label: 'Research Areas',
-    value: 3,
-    suffix: '+',
-    desc: 'Causal inference, bio-ML & fraud models',
+    value: 14,
+    suffix: '',
+    desc: 'Fraud ML, eDNA, causal inference, urban synthesis, audio AI, retail, digital twins, CV, healthcare, game AI, crime intel, edtech, cloud infra, presentation AI',
     icon: <FileSpreadsheet size={24} />
   },
   {
     label: 'Major Projects',
-    value: 14,
+    value: 17,
     suffix: '',
     desc: 'End-to-end deployed systems',
     icon: <Briefcase size={24} />
@@ -41,16 +41,16 @@ const metricsData: MetricItem[] = [
   },
   {
     label: 'Technical Domains',
-    value: 8,
+    value: 9,
     suffix: '',
-    desc: 'Languages, vector search, DevOps, simulation',
+    desc: 'Languages, ML, backend, vector search, DevOps, simulation, cloud, audio AI, CV',
     icon: <Layers size={24} />
   },
   {
     label: 'Major Milestones',
-    value: 5,
-    suffix: '+',
-    desc: 'Internships, leadership & community impact',
+    value: 14,
+    suffix: '',
+    desc: 'Patents, IEEE publication, deployments, leadership',
     icon: <Code size={24} />
   }
 ];
