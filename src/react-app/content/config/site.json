@@ -1,0 +1,91 @@
+{
+  "title": "Chirag Hariprasad — Portfolio",
+  "description": "AI/ML Systems Engineer building end-to-end intelligent systems. 4 Published Patents, IEEE Access Publication, 19 Major Projects.",
+  "author": "Chirag Hariprasad",
+  "navigation": [
+    { "id": "home", "label": "Home", "path": "/", "number": "01" },
+    { "id": "about", "label": "About", "path": "/about", "number": "02" },
+    { "id": "projects", "label": "Projects", "path": "/projects", "number": "03" },
+    { "id": "experience", "label": "Experience", "path": "/experience", "number": "04" },
+    { "id": "patents", "label": "Patents", "path": "/patents", "number": "05" },
+    { "id": "research", "label": "Research", "path": "/research", "number": "06" },
+    { "id": "techstack", "label": "Tech Stack", "path": "/techstack", "number": "07" },
+    { "id": "timeline", "label": "Timeline", "path": "/timeline", "number": "08" },
+    { "id": "contact", "label": "Contact", "path": "/contact", "number": "09" }
+  ],
+  "themes": [
+    {
+      "id": "midnight",
+      "name": "Midnight",
+      "colors": {
+        "--bg-primary": "#0a0a0f",
+        "--bg-secondary": "#12121a",
+        "--bg-card": "#1a1a25",
+        "--bg-card-hover": "#22222f",
+        "--text-primary": "#f0f0f5",
+        "--text-secondary": "#9999aa",
+        "--text-muted": "#666677",
+        "--accent": "#c8a961",
+        "--accent-glow": "rgba(200, 169, 97, 0.15)",
+        "--accent-rgb": "200, 169, 97",
+        "--border": "rgba(255, 255, 255, 0.06)",
+        "--border-hover": "rgba(200, 169, 97, 0.2)"
+      }
+    },
+    {
+      "id": "graphite",
+      "name": "Graphite",
+      "colors": {
+        "--bg-primary": "#111114",
+        "--bg-secondary": "#1a1a1e",
+        "--bg-card": "#222228",
+        "--bg-card-hover": "#2a2a32",
+        "--text-primary": "#e8e8ee",
+        "--text-secondary": "#8888a0",
+        "--text-muted": "#555566",
+        "--accent": "#7c8cf5",
+        "--accent-glow": "rgba(124, 140, 245, 0.12)",
+        "--accent-rgb": "124, 140, 245",
+        "--border": "rgba(255, 255, 255, 0.05)",
+        "--border-hover": "rgba(124, 140, 245, 0.2)"
+      }
+    },
+    {
+      "id": "cyber",
+      "name": "Cyber",
+      "colors": {
+        "--bg-primary": "#050a0e",
+        "--bg-secondary": "#0a1218",
+        "--bg-card": "#0f1a22",
+        "--bg-card-hover": "#142028",
+        "--text-primary": "#e0f0f0",
+        "--text-secondary": "#60a0a0",
+        "--text-muted": "#406060",
+        "--accent": "#00ffa3",
+        "--accent-glow": "rgba(0, 255, 163, 0.08)",
+        "--accent-rgb": "0, 255, 163",
+        "--border": "rgba(0, 255, 163, 0.06)",
+        "--border-hover": "rgba(0, 255, 163, 0.15)"
+      }
+    },
+    {
+      "id": "amber",
+      "name": "Amber",
+      "colors": {
+        "--bg-primary": "#0f0d08",
+        "--bg-secondary": "#181510",
+        "--bg-card": "#201d15",
+        "--bg-card-hover": "#28251a",
+        "--text-primary": "#f5f0e0",
+        "--text-secondary": "#a09878",
+        "--text-muted": "#685f48",
+        "--accent": "#f0a030",
+        "--accent-glow": "rgba(240, 160, 48, 0.1)",
+        "--accent-rgb": "240, 160, 48",
+        "--border": "rgba(240, 160, 48, 0.08)",
+        "--border-hover": "rgba(240, 160, 48, 0.18)"
+      }
+    }
+  ],
+  "defaultTheme": "midnight"
+}

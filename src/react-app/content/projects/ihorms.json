@@ -1,0 +1,58 @@
+{
+  "id": "ihorms",
+  "title": "I.H.O.R.M.S",
+  "fullTitle": "Integrated Hospital Operations & Resource Management System",
+  "domain": "Enterprise Healthcare Platform | Full-Stack Web Application",
+  "status": "completed",
+  "category": "backend",
+  "year": 2026,
+  "month": 2,
+  "completedDate": "2026-02-01",
+  "description": "Multi-tenant, role-based hospital operations platform unifying clinical workflows, resource tracking, billing, insurance, pharmacy, and audit compliance across multiple organizations and branches.",
+  "overview": "IHORMS is a multi-tenant, role-based hospital operations platform built to unify clinical workflows, resource tracking, billing, insurance, pharmacy, and audit compliance across multiple organizations and branches. It solves the hospital silos problem by providing centralized organization-level oversight alongside branch-level operational autonomy, with strict data isolation between tenants. The system covers the full patient journey: registration → appointment → consultation → telemetry → prescription → billing → insurance → audit.",
+  "features": [
+    { "label": "Multi-Tenant Architecture", "description": "Supports multiple hospital organizations, each with multiple branches. Strict tenant boundaries via org_id / branch_id scoping." },
+    { "label": "Role-Based Access Control (8 Roles)", "description": "super_admin, org_admin, branch_admin, doctor, nurse, receptionist, pharmacy_staff, patient. RBAC enforced at routing and API levels." },
+    { "label": "Appointment + Clinical Workflow", "description": "Full workflows for doctor, receptionist, and patient including scheduling, diagnosis, prescription." },
+    { "label": "Telemetry + ICU Monitoring", "description": "Nurse module with telemetry creation, ICU monitor, alert endpoints, room/equipment visibility." },
+    { "label": "Pharmacy Inventory", "description": "Inventory management, restock, stock adjustment, analytics, low-stock monitoring, order fulfillment." },
+    { "label": "Billing + Insurance", "description": "Billing creation, payment capture, insurance claim submission and status updates." },
+    { "label": "Audit and Compliance", "description": "Audit logs by entity type, patient access logs, system events (super admin only)." },
+    { "label": "Production Frontend (IHORMS-X)", "description": "Role-based dynamic navigation, loading/error/empty state handling, strict no-demo-data policy." }
+  ],
+  "tech": ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Alembic", "Pydantic", "React", "Vite", "TypeScript", "TailwindCSS", "React Router", "Axios", "TanStack Query", "React Hook Form", "Zod", "JWT"],
+  "algorithms": [
+    { "name": "JWT Authentication", "description": "Token-based auth persisted in localStorage with Axios interceptor for auto-attachment." },
+    { "name": "RBAC Route Guarding", "description": "Protected route entry validates role against allowlist, unauthorized redirects." },
+    { "name": "Telemetry Alerting", "description": "Backend threshold evaluation on nurse telemetry posts triggering alerts." }
+  ],
+  "modules": [
+    { "name": "Auth Module", "responsibility": "Login, logout, session validation (JWT Bearer)" },
+    { "name": "Super Admin", "responsibility": "Org CRUD + status control, platform analytics, system events" },
+    { "name": "Doctor Module", "responsibility": "Appointments, schedule, patient search (UID), clinical actions" },
+    { "name": "Nurse Module", "responsibility": "Telemetry, ICU monitor, alerts, rooms/equipment" },
+    { "name": "Pharmacy Module", "responsibility": "Inventory, restock, analytics, low-stock, order fulfillment" },
+    { "name": "Billing Module", "responsibility": "Bill creation, view, payment record" },
+    { "name": "Insurance Module", "responsibility": "Claim submission, view, status update" },
+    { "name": "Audit Module", "responsibility": "Audit logs, patient access logs, system events" }
+  ],
+  "results": [
+    "Full-stack multi-tenant hospital platform delivered",
+    "8-role RBAC enforced end-to-end (backend + frontend)",
+    "All 14 workflow modules implemented and integrated",
+    "Production-grade frontend with strict data contract discipline",
+    "Zero-hardcoded-data policy maintained throughout IHORMS-X"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "roles": "8",
+    "workflowModules": "14"
+  },
+  "featured": false,
+  "tags": ["healthcare", "full-stack", "multi-tenant", "rbac", "enterprise"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["hms-c"]
+}

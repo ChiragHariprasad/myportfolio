@@ -1,0 +1,50 @@
+{
+  "id": "lifestyle-index",
+  "title": "Lifestyle Index",
+  "fullTitle": "Lifestyle Index — B2B API-as-Service Risk Scoring Platform",
+  "domain": "FinTech | B2B API Infrastructure | Risk Analytics",
+  "status": "completed",
+  "category": "backend",
+  "year": 2026,
+  "month": 4,
+  "completedDate": "2026-04-01",
+  "description": "FastAPI B2B gateway exposing proprietary risk scores to external partner companies with API key authentication, background scoring jobs, rate limiting, analytics, admin dashboards, and interactive UI/UX.",
+  "overview": "Lifestyle Index is a B2B API-as-Service platform built at IIFL Samasta that exposes proprietary risk scores to external partner companies. The system features a FastAPI gateway with API key authentication, background scoring jobs, rate limiting, and comprehensive analytics. It includes admin dashboards for monitoring partner usage, dynamic score cards for risk visualization, and an interactive UI/UX for internal stakeholders.",
+  "features": [
+    { "label": "B2B API Gateway", "description": "FastAPI-based gateway exposing proprietary risk scores to external partner companies." },
+    { "label": "API Key Authentication", "description": "Secure partner authentication with API key management and access control." },
+    { "label": "Background Scoring Jobs", "description": "Asynchronous risk score computation with job queue management." },
+    { "label": "Rate Limiting", "description": "Per-partner rate limiting to ensure fair usage and system stability." },
+    { "label": "Analytics Dashboard", "description": "Admin dashboards for monitoring API usage, partner metrics, and scoring analytics." },
+    { "label": "Dynamic Score Cards", "description": "Interactive risk score visualization with dynamic card-based UI." },
+    { "label": "Interactive UI/UX", "description": "Internal stakeholder interface for score management and partner oversight." }
+  ],
+  "tech": ["Python", "FastAPI", "API Key Auth", "Background Jobs", "Rate Limiting"],
+  "algorithms": [
+    { "name": "Risk Scoring Engine", "description": "Proprietary risk score computation based on lifestyle and financial indicators." },
+    { "name": "Rate Limiting", "description": "Token bucket or sliding window rate limiting per API key." }
+  ],
+  "modules": [
+    { "name": "API Gateway", "responsibility": "Request routing, authentication, rate limiting" },
+    { "name": "Scoring Engine", "responsibility": "Background risk score computation and caching" },
+    { "name": "Partner Management", "responsibility": "API key provisioning, usage tracking, access control" },
+    { "name": "Analytics Module", "responsibility": "Usage metrics, partner dashboards, score analytics" },
+    { "name": "Admin UI", "responsibility": "Internal dashboards, dynamic score cards, partner oversight" }
+  ],
+  "results": [
+    "Production B2B API gateway serving external partner companies",
+    "Secure API key authentication with rate limiting",
+    "Background scoring jobs for asynchronous risk computation",
+    "Comprehensive admin dashboards with usage analytics",
+    "Interactive UI/UX for internal stakeholders"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["fintech", "b2b", "api", "risk-scoring", "fastapi", "enterprise"],
+  "complexity": "medium",
+  "internship": "iifl-samasta",
+  "relatedProjects": ["verifai", "presntai"]
+}

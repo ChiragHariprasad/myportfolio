@@ -1,0 +1,38 @@
+{
+  "id": "adaptive-pedagogy",
+  "title": "Adaptive Pedagogy",
+  "fullTitle": "A Computational Framework Integrating Psychometric Student Modeling, Educational Ontologies, and Explainable Bayesian Updating",
+  "domain": "EdTech / AI-Driven Pedagogy",
+  "status": "in-progress",
+  "category": "research",
+  "year": 2026,
+  "month": 7,
+  "completedDate": null,
+  "description": "Research-driven adaptive recommendation engine for personalized education using psychometric modeling, educational ontologies, and explainable Bayesian updating.",
+  "overview": "This research-driven project develops an adaptive recommendation engine for personalized education. It constructs psychometric models of individual learners—capturing cognitive abilities, knowledge gaps, and learning styles—using item response theory and latent trait modeling. These student models are mapped onto a formal educational ontology with explainable Bayesian updating for dynamic instructional recommendations.",
+  "features": [
+    { "label": "Psychometric Student Modeling", "description": "Latent trait and cognitive diagnostic models for proficiency inference from assessment data." },
+    { "label": "Educational Ontology Integration", "description": "Machine-readable knowledge graph (OWL/RDF) encoding concepts, prerequisites, and strategies." },
+    { "label": "Explainable Bayesian Updating", "description": "Interpretable probability distributions and decision rationales with each interaction." },
+    { "label": "Multi-Objective Recommendation", "description": "Balances learning gain, remediation urgency, and engagement." },
+    { "label": "Counterfactual Reasoning", "description": "Simulates alternative pedagogical sequences to justify paths." }
+  ],
+  "tech": ["Python", "Pyro", "PyMC", "Stan", "OWL", "RDFlib", "SHAP", "LIME"],
+  "algorithms": [
+    { "name": "Item Response Theory (IRT)", "description": "Psychometric modeling for learner proficiency estimation." },
+    { "name": "Bayesian Inference", "description": "Dynamic belief updating over student mastery states." },
+    { "name": "Knowledge Graph Reasoning", "description": "OWL/RDF ontology traversal for prerequisite and dependency analysis." }
+  ],
+  "modules": [],
+  "results": [],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["edtech", "bayesian", "psychometrics", "ontology", "recommendation", "research"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["scale"],
+  "confidential": true
+}

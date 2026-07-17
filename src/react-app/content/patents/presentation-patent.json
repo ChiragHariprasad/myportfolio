@@ -1,0 +1,18 @@
+{
+  "id": "presentation-patent",
+  "title": "Adaptive Presentation System",
+  "fullTitle": "Context-Aware Adaptive Presentation Automation System and Method with Semantic Navigation and Dynamic Question/Text Annotation",
+  "applicationNo": "202641025829",
+  "filedDate": "2026-03-05",
+  "publishedDate": "2026-05-29",
+  "domain": "AI Presentation Automation",
+  "projectId": "context-presentation",
+  "role": "Primary Inventor",
+  "abstract": "A patented system and method for context-aware adaptive presentation automation incorporating semantic navigation and dynamic question/text annotation, enabling presentations to intelligently adapt based on real-time semantic understanding.",
+  "claims": [
+    "Non-linear semantic navigation based on query meaning, not slide indices",
+    "Real-time question/text annotation with semantic content mapping",
+    "Context-aware adaptation of content order, depth, and emphasis",
+    "Adaptive content delivery based on cumulative session semantic state"
+  ]
+}

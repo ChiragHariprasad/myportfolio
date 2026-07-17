@@ -1,0 +1,55 @@
+{
+  "id": "deep",
+  "title": "D.E.E.P",
+  "fullTitle": "Distributed eDNA Evaluation Platform (HARBOR V2)",
+  "domain": "Cloud-Native Bioinformatics | Multi-Cloud Serverless AI",
+  "status": "in-progress",
+  "category": "systems",
+  "year": 2026,
+  "month": 7,
+  "completedDate": null,
+  "description": "Cloud-native evolution of HARBOR — fully serverless, multi-cloud eDNA taxonomy inference platform with Hugging Face, AWS Lambda, SQS, and Cloudflare.",
+  "overview": "DEEP is the fully cloud-native evolution of the HARBOR eDNA taxonomy inference system. While HARBOR ran as a local pipeline, DEEP re-architects the platform for global availability, auto-scaling, and zero-ops maintenance. Hugging Face hosts ML inference, AWS provides serverless compute and CDN, and Cloudflare ties everything with custom domain and DNS.",
+  "features": [
+    { "label": "Serverless Inference Backend", "description": "Models deployed on Hugging Face Inference Endpoints with auto-scaling." },
+    { "label": "Global UI Delivery via CDN", "description": "React dashboard served globally through AWS CloudFront." },
+    { "label": "API Gateway + Lambda", "description": "Routing, auth, validation handled by AWS Lambda behind API Gateway." },
+    { "label": "Asynchronous Job Queuing", "description": "SQS-based batch classification for large FASTA files." },
+    { "label": "Custom Domain & DNS", "description": "Cloudflare domain mapping with DDoS protection." },
+    { "label": "Open-Set Taxonomy (Core HARBOR)", "description": "Preserves alignment-free feature engineering, CNN embeddings, FAISS, novelty detection." }
+  ],
+  "tech": ["Python", "PyTorch", "FAISS", "React", "AWS Lambda", "AWS API Gateway", "AWS SQS", "AWS CloudFront", "AWS S3", "Hugging Face", "Cloudflare", "CloudWatch"],
+  "algorithms": [
+    { "name": "Deterministic Feature Engineering", "description": "Sliding-window k-mer encoding in Lambda pre-processing." },
+    { "name": "Marker-Specific CNN Embeddings", "description": "Served via Hugging Face, per-marker dedicated models." },
+    { "name": "FAISS ANN Retrieval", "description": "Pre-built indices in S3, loaded for similarity search." },
+    { "name": "Statistical Novelty Detection", "description": "Distance/density gates in Lambda orchestration for known vs novel." }
+  ],
+  "modules": [
+    { "name": "Hugging Face Inference Backend", "responsibility": "Hosts embedding models, returns normalized vectors" },
+    { "name": "API Gateway + Lambda (Ingest)", "responsibility": "Request validation, job enqueueing, acknowledgments" },
+    { "name": "SQS Queue", "responsibility": "Durable, auto-scaling job buffer" },
+    { "name": "Lambda Consumer (Worker)", "responsibility": "Job processing, FASTA splitting, HF calls, result aggregation" },
+    { "name": "CloudFront CDN", "responsibility": "Static React dashboard serving" },
+    { "name": "Cloudflare DNS", "responsibility": "Custom domain mapping, SSL termination" }
+  ],
+  "results": [
+    "Cloud-native, multi-cloud platform operational",
+    "Zero-ops inference: fully serverless",
+    "Auto-scaling handles isolated queries and batch jobs",
+    "Global CDN delivers sub-2-second UI loads worldwide",
+    "Core scientific performance matches HARBOR v1"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "uiLoadTime": "<2 seconds globally"
+  },
+  "featured": false,
+  "tags": ["cloud-native", "serverless", "bioinformatics", "multi-cloud", "aws", "edna"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["harbor"],
+  "confidential": true
+}

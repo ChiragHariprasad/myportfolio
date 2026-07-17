@@ -1,0 +1,59 @@
+{
+  "id": "scale",
+  "title": "S.C.A.L.E",
+  "fullTitle": "Structural Causal Analysis of Labor & Education",
+  "domain": "Causal Modeling | System Dynamics | Policy Evaluation | Computational Economics",
+  "status": "completed",
+  "category": "research",
+  "year": 2026,
+  "month": 6,
+  "completedDate": "2026-06-10",
+  "description": "Integrated computational policy-analysis framework studying long-term consequences of engineering education expansion in India. Combines System Dynamics, Structural Causal Models, and Agent-Based Modeling. Published in IEEE Access.",
+  "overview": "S.C.A.L.E. is an integrated computational policy-analysis framework developed to study the long-term consequences of engineering education expansion in India. Rather than treating higher education, labor markets, and economic growth as independent systems, S.C.A.L.E. models them as a single dynamic ecosystem connected through delayed feedback loops, causal dependencies, and heterogeneous agent behavior. The framework combines System Dynamics (SD), Structural Causal Models (SCM), and Agent-Based Modeling (ABM) to evaluate how policy interventions influence graduate employability, underemployment, wage dynamics, migration, human-capital retention, and economic productivity over long time horizons.",
+  "features": [
+    { "label": "Multi-Layer Causal Modeling", "description": "Integrated three paradigms: System Dynamics (macro), Structural Causal Modeling (causal inference), Agent-Based Modeling (individual decisions)." },
+    { "label": "Long-Term Policy Simulation", "description": "Evaluates education policies over 15-year horizons accounting for delayed pipelines, labor-market adjustment, and nonlinear migration." },
+    { "label": "Counterfactual Policy Evaluation", "description": "Implements Pearl's do-calculus for policy regime simulation: Business-as-Usual, Seat Cap, Quality-First, Migration Friction, Optimal Mix." },
+    { "label": "Historical Calibration", "description": "Calibrated using longitudinal datasets (2010–2023): AICTE, AISHE, PLFS, RBI, CMIE, OECD, Ministry of Statistics." },
+    { "label": "Structural Causal Discovery", "description": "Estimated ATE = 0.4482: 1pp increase in enrollment share → ~44.8pp increase in graduate unemployment." }
+  ],
+  "tech": ["Python", "NumPy", "Pandas", "Matplotlib"],
+  "algorithms": [
+    { "name": "System Dynamics", "description": "Continuous stock-flow differential equations modeling enrollment, employment, GDP, wages." },
+    { "name": "Structural Causal Model (SCM)", "description": "DAG-based causal modeling with Pearl's do-operator for counterfactual interventions." },
+    { "name": "Agent-Based Model (ABM)", "description": "Individual graduate agents with heterogeneous decision rules: reservation wage, migration threshold, visa probability." },
+    { "name": "Monte Carlo Simulation", "description": "Stochastic simulation of policy scenarios with confidence intervals." }
+  ],
+  "modules": [
+    { "name": "System Dynamics Engine", "responsibility": "Macro-level stock-flow equations for enrollment, employment, GDP, wages" },
+    { "name": "SCM Layer", "responsibility": "Causal graph construction, do-calculus interventions, ATE estimation" },
+    { "name": "ABM Layer", "responsibility": "Individual agent simulation with heterogeneous decision rules" },
+    { "name": "Calibration Module", "responsibility": "Historical data fitting against AICTE, AISHE, PLFS, RBI datasets" },
+    { "name": "Policy Simulator", "responsibility": "Five-regime policy evaluation with comparative metrics" }
+  ],
+  "results": [
+    "Published in IEEE Access (June 2026)",
+    "Developed integrated SD–SCM–ABM framework for education policy evaluation",
+    "Demonstrated causal links between seat expansion and graduate employability",
+    "Optimal Integrated Policy Mix: 71.37% unemployment reduction, 1.31 GDP Index",
+    "Quality-First Reform consistently outperformed simple seat-cap regulation"
+  ],
+  "patent": null,
+  "publication": {
+    "journal": "IEEE Access",
+    "doi": "10.1109/ACCESS.2026.3704923",
+    "publishedDate": "2026-06-10",
+    "title": "Unbalanced Expansion of Engineering Education in India: A Data-Driven Policy Analysis"
+  },
+  "github": null,
+  "metrics": {
+    "ATE": "0.4482",
+    "simulationHorizon": "15 years",
+    "policyRegimes": "5"
+  },
+  "featured": true,
+  "tags": ["causal-inference", "policy-analysis", "system-dynamics", "agent-based-modeling", "education", "ieee"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["genesis"]
+}

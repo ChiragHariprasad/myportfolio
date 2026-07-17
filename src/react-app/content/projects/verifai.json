@@ -1,0 +1,50 @@
+{
+  "id": "verifai",
+  "title": "VerifAI",
+  "fullTitle": "AI-Powered KYC Document Verification System",
+  "domain": "AI Document Intelligence | KYC / Fraud Risk Control",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 3,
+  "completedDate": "2026-03-01",
+  "description": "High-assurance KYC document verification platform built to automate authenticity checks on uploaded identity documents. Engineered around one hard principle: false positives are unacceptable.",
+  "overview": "VerifAI is a high-assurance KYC document verification platform built to automate authenticity checks on uploaded identity documents (images and PDFs). The system is engineered around a single hard principle: false positives are unacceptable. The entire pipeline is designed to downgrade aggressively when evidence is incomplete, unclear, or tampered. VerifAI performs document-side detection, fraud classification, confidence scoring, text extraction with translation, and structured verification checks – and produces full audit logs and exportable reports (PDF/CSV/JSON) for compliance workflows.",
+  "features": [
+    { "label": "AI Verification with Strict Safety Guardrails", "description": "Non-negotiable rules: no assumptions of authenticity, no inference of missing details, downgrade if evidence insufficient." },
+    { "label": "Document Side Identification", "description": "Classifies FRONT (primary identifiers, photo) vs BACK (address, barcode) vs UNKNOWN." },
+    { "label": "Multi-Class Outcome System", "description": "Categories: LEGIT, SUSPICIOUS, PHOTOCOPY, FORMAT_INVALID, FRAUD, DAMAGED." },
+    { "label": "Text Extraction + Translation", "description": "Returns extracted_text, detected_language, translated_text (English)." },
+    { "label": "Full Report Generation", "description": "Per-request PDF reports, aggregate summary tables, verification history." },
+    { "label": "RBAC (Admin / User)", "description": "Admin: full access. User: verify and view own results only." }
+  ],
+  "tech": ["Python", "Flask", "Gemini API", "ReportLab", "HTML", "JavaScript", "TailwindCSS"],
+  "algorithms": [
+    { "name": "AI Inference (Gemini JSON Contract)", "description": "base64 image → Gemini model → strict JSON with classification + checks." },
+    { "name": "Retry and Backoff Strategy", "description": "Exponential backoff: RETRY_DELAY × 2^retry_count, max 3 retries." },
+    { "name": "Downgrade-First Decision Policy", "description": "LEGIT only with strong evidence; insufficient evidence → automatic downgrade." }
+  ],
+  "modules": [
+    { "name": "Auth + RBAC", "responsibility": "User validation, role detection, role-based route restrictions" },
+    { "name": "Upload Module", "responsibility": "Multi-file base64 dataURI ingestion, storage" },
+    { "name": "Analysis Module", "responsibility": "Runs Gemini verification per uploaded file" },
+    { "name": "Report Generation", "responsibility": "Detailed per-document PDF with summary" },
+    { "name": "Export Module", "responsibility": "Per-result export as PDF / CSV / JSON" },
+    { "name": "Admin Module", "responsibility": "Admin-only access to all results and uploads" }
+  ],
+  "results": [
+    "Production-ready KYC verification pipeline deployed at IIFL Samasta",
+    "Multi-class fraud classification with downgrade-first safety policy",
+    "Full audit trail (CSV + JSON logs) for compliance review",
+    "Thread-safe concurrent processing with retry reliability"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["kyc", "document-verification", "fraud-detection", "gemini", "compliance"],
+  "complexity": "medium",
+  "internship": "iifl-samasta",
+  "relatedProjects": ["presntai"]
+}

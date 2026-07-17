@@ -1,0 +1,64 @@
+{
+  "id": "vector",
+  "title": "V.E.C.T.O.R",
+  "fullTitle": "Velocity-Enhanced Clustering for Transactional Outlier Recognition",
+  "domain": "Real-Time Fraud Detection | Behavioral AI | Streaming Systems",
+  "status": "completed",
+  "category": "ai",
+  "year": 2025,
+  "month": 10,
+  "completedDate": "2025-10-03",
+  "description": "Real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile. Continuously learns individual behavior, clusters users into behavioral personas, assigns persona-specific anomaly models, and produces fraud risk scores in under 100ms.",
+  "overview": "V.E.C.T.O.R is a real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile. Instead of applying a single global fraud model to all users, it continuously learns individual behavior, clusters users into behavioral personas, assigns persona-specific anomaly models, and produces fraud risk scores in under 100ms. The system handles cold-start users via an XGBoost fallback, manages ambiguous transactions through 2FA verification, and provides a live monitoring dashboard. It is designed as a production-grade multi-layer streaming pipeline.",
+  "features": [
+    { "label": "Real-Time Transaction Monitoring", "description": "Stream-based scoring <100ms per transaction." },
+    { "label": "Dynamic User Profiling", "description": "Continuously updated behavior profiles: velocity, average spend, frequency, session behavior, time gaps, loan activity, channel usage." },
+    { "label": "Behavioral Clustering (Persona Engine)", "description": "Users grouped into clusters (low-spend/high-frequency, high-spend/low-frequency, loan-heavy, abnormal velocity). Fraud baselines differ per cluster." },
+    { "label": "Persona-Specific Fraud Models", "description": "Each cluster has its own Isolation Forest trained on that cluster's transaction distribution." },
+    { "label": "Cold-Start Handling", "description": "XGBoost fallback for users with <10 transactions." },
+    { "label": "Decision and Verification", "description": "Fraud score thresholds: <0.4 Approve, 0.4–0.8 2FA, >0.8 Block/Manual review." },
+    { "label": "Suspicion Buffer Mechanism", "description": "Logs suspicious but verified transactions to build trust-vs-suspicion history." },
+    { "label": "Live Dashboard", "description": "React frontend with real-time charts, Cloudflare Tunnel hosting." }
+  ],
+  "tech": ["Python", "Redis Streams", "MongoDB", "UMAP", "HDBSCAN", "Isolation Forest", "XGBoost", "Node.js", "React", "Vite", "Cloudflare Tunnel"],
+  "algorithms": [
+    { "name": "UMAP", "description": "Dimensionality reduction for high-dimensional behavior vectors before clustering." },
+    { "name": "HDBSCAN", "description": "Density-based clustering, auto-detects number of clusters, supports noise/outliers." },
+    { "name": "Isolation Forest", "description": "Per-cluster anomaly detection; unsupervised, no fraud labels required." },
+    { "name": "XGBoost", "description": "Supervised fallback for early-stage scoring when user history is insufficient." }
+  ],
+  "modules": [
+    { "name": "Producer Module", "responsibility": "CSV producer (batch) + custom UI producer (live) → JSON transaction events" },
+    { "name": "Data Ingestion (Redis Streams)", "responsibility": "High-velocity event ingestion, consumer groups" },
+    { "name": "Stream Consumer / Processing", "responsibility": "Pull events, validate schema, compute features" },
+    { "name": "Dynamic Feature Engineering", "responsibility": "Velocity, avg amount, transactions/day, high-value frequency, time gaps, loan activity, channel usage" },
+    { "name": "Clustering Pipeline (UMAP+HDBSCAN)", "responsibility": "Build user behavior vector → UMAP reduction → HDBSCAN clustering → cluster_id" },
+    { "name": "Model Management", "responsibility": "Select model by user history (XGBoost or Isolation Forest)" },
+    { "name": "Fraud Scoring", "responsibility": "Score 0–1 from selected model" },
+    { "name": "Decision Engine", "responsibility": "Threshold logic → APPROVE / VERIFY / BLOCK" },
+    { "name": "2FA Verification", "responsibility": "OTP/email for suspicious-but-not-blocked transactions" },
+    { "name": "Persistence + Audit (MongoDB)", "responsibility": "legit_transactions and fraud_transactions collections, full audit trail" },
+    { "name": "Monitoring + Dashboard", "responsibility": "React frontend, Node.js backend, ~1-second auto-refresh, Cloudflare Tunnel hosting" }
+  ],
+  "results": [
+    "Real-time fraud scoring pipeline operational at <100ms latency",
+    "Behavioral clustering with persona-specific anomaly detection",
+    "Cold-start handling via XGBoost fallback",
+    "Live monitoring dashboard with Cloudflare-hosted HTTPS endpoint",
+    "Full MongoDB audit trail for compliance"
+  ],
+  "patent": {
+    "publishedDate": "2025-10-03"
+  },
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "latency": "<100ms",
+    "clusteringTrigger": "10/1000/10000 transactions"
+  },
+  "featured": true,
+  "tags": ["fraud-detection", "streaming", "ml", "real-time", "clustering", "anomaly-detection"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["prometheus", "orion"]
+}

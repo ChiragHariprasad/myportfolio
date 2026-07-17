@@ -1,0 +1,38 @@
+{
+  "id": "context-presentation",
+  "title": "Adaptive Presentation System",
+  "fullTitle": "Context-Aware Adaptive Presentation Automation System and Method with Semantic Navigation and Dynamic Question/Text Annotation",
+  "domain": "AI Presentation Automation",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 5,
+  "completedDate": "2026-05-29",
+  "description": "Patented system for context-aware adaptive presentation automation incorporating semantic navigation and dynamic question/text annotation. Enables presentations to intelligently adapt based on real-time semantic understanding.",
+  "overview": "A patented system and method for context-aware adaptive presentation automation that incorporates semantic navigation and dynamic question/text annotation. The invention enables presentations to intelligently adapt their flow and content based on real-time semantic understanding of the audience's queries, annotations, and navigational intent, allowing for a highly interactive and personalized presentation experience.",
+  "features": [
+    { "label": "Semantic Navigation", "description": "Traverse presentation content non-linearly based on meaning of queries, not predefined slide indices." },
+    { "label": "Dynamic Question/Text Annotation", "description": "Real-time annotation and processing of questions, semantically mapped to relevant content segments." },
+    { "label": "Context-Aware Adaptation", "description": "Adjusts order, depth, and emphasis of slides on-the-fly according to cumulative session context." },
+    { "label": "Adaptive Content Delivery", "description": "Integrates with authoring tools to restructure content based on recognized semantic state." }
+  ],
+  "tech": ["AI", "NLP", "Semantic Navigation", "Context Adaptation"],
+  "algorithms": [],
+  "modules": [],
+  "results": [
+    "Patent published: Application No 202641025829, Filed 05 March 2026, Published 29 May 2026"
+  ],
+  "patent": {
+    "applicationNo": "202641025829",
+    "filedDate": "2026-03-05",
+    "publishedDate": "2026-05-29"
+  },
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["presentation", "semantic-navigation", "context-aware", "nlp"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["presntai"]
+}

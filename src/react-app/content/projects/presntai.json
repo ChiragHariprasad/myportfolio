@@ -1,0 +1,58 @@
+{
+  "id": "presntai",
+  "title": "PresntAI",
+  "fullTitle": "Enterprise Meeting Automation Platform (On-Premises)",
+  "domain": "Audio AI | Speech Processing | Enterprise Meeting Automation",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 5,
+  "completedDate": "2026-05-01",
+  "description": "On-premises, end-to-end meeting intelligence platform converting raw recordings into speaker-attributed, context-aware documentation. Handles transcription, diarization, speaker identification, and AI-driven analysis.",
+  "overview": "PresntAI is an on-premises, end-to-end meeting intelligence platform that converts raw meeting recordings into speaker-attributed, context-aware documentation automatically. It handles the full pipeline: audio standardization, transcription, speaker diarization, speaker identification, transcript alignment, and AI-driven meeting analysis. The system generates Minutes of Meeting (MoM), speaker-wise action points, executive summaries, and maintains an understanding of previous meetings for continuity. Entirely hosted on internal infrastructure, ensuring enterprise privacy.",
+  "features": [
+    { "label": "On-Premises & Privacy-Preserving", "description": "All processing, storage, and distribution run inside the corporate network. No external SaaS." },
+    { "label": "Complete Audio-to-Documentation Pipeline", "description": "From raw audio (up to 5 GB) to polished PDF reports: transcript, diarization, MoM, decisions, commitments." },
+    { "label": "Speaker Diarization and Real-Name Identification", "description": "pyannote diarization + SpeechBrain ECAPA embeddings with enrolled speaker database." },
+    { "label": "Speaker-Wise Action Points & Contextual Memory", "description": "AI extracts decisions and action items by speaker, leveraging previous meeting context." },
+    { "label": "Automatic MoM Generation & Email Distribution", "description": "Professional MoM automatically generated and emailed to all participants." },
+    { "label": "In-UI Recording", "description": "Built-in recording eliminates dependency on external tools." },
+    { "label": "Multi-LLM Analysis", "description": "Vicuna:13b (noise cleanup), DeepSeek R1:14b (outcomes), Llama3 (summary)." }
+  ],
+  "tech": ["Python", "Flask", "FFmpeg", "faster-whisper", "pyannote", "SpeechBrain ECAPA", "Ollama", "PyTorch", "wkhtmltopdf"],
+  "algorithms": [
+    { "name": "Audio Standardization", "description": "FFmpeg: input → 16kHz mono WAV." },
+    { "name": "ASR (Speech-to-Text)", "description": "faster-whisper with VAD filter, beam size 10." },
+    { "name": "Speaker Diarization", "description": "pyannote pipeline generating labeled speaker segments and RTTM." },
+    { "name": "Speaker Attribution", "description": "Transcript chunks mapped to diarization segments by timestamp overlap." },
+    { "name": "Speaker Recognition", "description": "ECAPA embedding → cosine similarity against enrolled DB → threshold-based Unknown fallback." },
+    { "name": "Multi-LLM Intelligence", "description": "Noise cleanup (Vicuna), Outcomes (DeepSeek R1), Summary (Llama3), Speaker Analysis (DeepSeek R1)." }
+  ],
+  "modules": [
+    { "name": "API Server", "responsibility": "Upload, analysis, status, results, report serving, health endpoints" },
+    { "name": "Orchestration Engine", "responsibility": "Full pipeline: transcription → diarization → alignment → LLM analysis" },
+    { "name": "Diarization Module", "responsibility": "pyannote diarization, RTTM + readable log output" },
+    { "name": "Speaker Transcript Builder", "responsibility": "Transcript + diarization merge, speaker-attributed output" },
+    { "name": "Speaker Recognizer", "responsibility": "Enrolled speaker DB, ECAPA inference, cosine similarity matching" },
+    { "name": "Meeting Analysis Pipeline", "responsibility": "Ollama prompt execution, markdown sanitization, PDF generation" }
+  ],
+  "results": [
+    "Full on-premises meeting intelligence platform operational at IIFL Samasta",
+    "Speaker-attributed transcripts with real name mapping",
+    "Automatic speaker-wise action points and contextual memory across meetings",
+    "Zero manual documentation and zero manual distribution",
+    "Windows-stable deployment using faster-whisper + pyannote + Ollama"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "maxAudioSize": "5 GB",
+    "llmModels": "3 (Vicuna, DeepSeek R1, Llama3)"
+  },
+  "featured": true,
+  "tags": ["meeting-intelligence", "speech-processing", "nlp", "diarization", "on-prem", "enterprise"],
+  "complexity": "high",
+  "internship": "iifl-samasta",
+  "relatedProjects": ["verifai", "context-presentation"]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "orion",
+  "title": "O.R.I.O.N",
+  "fullTitle": "Omni-Retail-Intelligence & Ordering-Network",
+  "domain": "AI-Driven Retail Intelligence | Demand Forecasting | Inventory Management",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 5,
+  "completedDate": "2026-05-29",
+  "description": "Integrated AI-driven inventory management and demand forecasting platform creating a closed-loop intelligence network between household consumption and retail stock management.",
+  "overview": "O.R.I.O.N. is an integrated AI-driven inventory management and demand forecasting platform that creates a closed-loop intelligence network between household consumption and retail stock management. Unlike traditional systems that react only to sales history, O.R.I.O.N. models the causal driver: recipe-based household consumption → inventory depletion → replenishment behavior → store demand signals.",
+  "features": [
+    { "label": "Bidirectional Consumer–Retailer Intelligence", "description": "Household cooking logs and depletion predictions inform store-side forecasting. Closed-loop optimization." },
+    { "label": "Predictive Auto-Restock", "description": "Forecasts item-level demand, suggests restock quantities and timing. Proactive alerts before stockouts." },
+    { "label": "Cultural-Aware Forecasting (Festival Peaks)", "description": "Uses Diwali, Holi, etc. as structured seasonality markers. Critical for Indian retail." },
+    { "label": "Customer Persona Segmentation", "description": "Segments into budget, premium, regular, festival-driven personas for targeted recommendations." },
+    { "label": "Hyper-Personalized Recommendations", "description": "Collaborative filtering based on similar shoppers for product and recipe suggestions." },
+    { "label": "Anomaly Detection for Demand Spikes", "description": "Isolation Forest detects flash-demand and bulk-buy anomalies, triggers early restock alerts." },
+    { "label": "CI/CD Monthly Retraining", "description": "Automated scheduled retraining on the 1st of every month." }
+  ],
+  "tech": ["Python", "FastAPI", "PostgreSQL", "MongoDB", "scikit-learn", "statsmodels", "Prophet", "Pandas", "NumPy", "Bootstrap", "Jinja2", "Chart.js", "Docker"],
+  "algorithms": [
+    { "name": "Prophet (Time-Series Forecasting)", "description": "Primary forecasting: strong seasonality/festival effects with confidence intervals." },
+    { "name": "ARIMA (Fallback)", "description": "Sparse/low-signal product history when Prophet confidence intervals exceed stability." },
+    { "name": "KNN + Cosine Similarity", "description": "Recommendation system finding similar users for product/recipe recommendations." },
+    { "name": "K-Means + PCA", "description": "Customer segmentation with behavioral feature clustering and 2D visualization." },
+    { "name": "Isolation Forest", "description": "Demand spike and bulk-buying anomaly detection with proactive restock alerts." }
+  ],
+  "modules": [
+    { "name": "Simulation / Data Factory", "responsibility": "Multi-year realistic purchase + consumption history via recipe-based household drain simulation" },
+    { "name": "Store Front Module", "responsibility": "POS logging, real-time inventory deduction, restock dashboard, analytics" },
+    { "name": "User Front Module", "responsibility": "Cooking logs, depletion prediction, personalized shopping lists" },
+    { "name": "ML Pipeline", "responsibility": "Data fetching, feature engineering, StandardScaler, model training, inference" },
+    { "name": "Central Orchestration", "responsibility": "Distributed scheduling, performance monitoring, retraining decisions" }
+  ],
+  "results": [
+    "Full-stack retail intelligence platform with bidirectional household–store data flow",
+    "Multi-model demand forecasting with festival-aware seasonality",
+    "Containerized, fault-tolerant ML architecture with monthly retraining",
+    "Patent published: Application No: 202641030238"
+  ],
+  "patent": {
+    "applicationNo": "202641030238",
+    "filedDate": "2026-03-13",
+    "publishedDate": "2026-05-29"
+  },
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": true,
+  "tags": ["retail-intelligence", "demand-forecasting", "recommendation", "clustering", "anomaly-detection"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["vector", "prometheus"]
+}

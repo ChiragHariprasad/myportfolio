@@ -1,0 +1,60 @@
+{
+  "id": "prometheus",
+  "title": "PROMETHEUS",
+  "fullTitle": "Predictive Reasoning and Omnichannel Modelling Engine for Tactical Horizon Evaluation and User Simulation",
+  "domain": "AI-Powered Customer Digital Twins | Predictive Marketing Intelligence",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 6,
+  "completedDate": "2026-06-01",
+  "description": "Customer Futures Intelligence Platform creating continuously evolving AI Digital Twins for every customer. Transforms CRM from historical records into predictive intelligence with Monte Carlo campaign simulation.",
+  "overview": "PROMETHEUS is a Customer Futures Intelligence Platform that creates continuously evolving AI Digital Twins for every customer. The platform continuously ingests omnichannel customer interactions and transforms them into living Digital Customer Twins capable of predicting churn risk, purchase intent, customer lifetime value, engagement probability, and campaign outcomes before decisions are executed. PROMETHEUS further extends intelligence through an agent-based simulation engine using Monte Carlo simulation.",
+  "features": [
+    { "label": "AI Digital Customer Twins", "description": "Continuously evolving models capturing behavior, interests, sentiment, loyalty, engagement, and predicted future actions." },
+    { "label": "Omnichannel Intelligence", "description": "Unifies interactions across websites, CRM, email, support, mobile, and social into a single layer." },
+    { "label": "Real-Time Event Processing", "description": "Kafka-driven event architecture processing interactions continuously." },
+    { "label": "Predictive Intelligence Engine", "description": "Forecasts churn, purchase intent, engagement, sentiment evolution, and lifetime value." },
+    { "label": "Monte Carlo Campaign Simulation", "description": "Digital Twins converted into autonomous agents for probabilistic campaign simulation." },
+    { "label": "Semantic Customer Memory", "description": "Vectorized memories with semantic retrieval using high-dimensional embeddings in Qdrant." },
+    { "label": "Fatigue-Aware Personalization", "description": "Models communication fatigue and channel affinity for optimal engagement." },
+    { "label": "Executive Intelligence Dashboard", "description": "Real-time customer health, churn risk, campaign performance, and predictive metrics." }
+  ],
+  "tech": ["Python", "FastAPI", "Next.js", "TypeScript", "TailwindCSS", "PostgreSQL", "Redis", "Qdrant", "Kafka", "PyTorch", "LightGBM", "XGBoost", "Prophet", "Sentence Transformers", "Docker Compose", "Prometheus", "Grafana"],
+  "algorithms": [
+    { "name": "Digital Twin Construction", "description": "Customer interactions aggregated into behavior profiles, interest graphs, sentiment trajectories." },
+    { "name": "Churn Prediction (Ensemble)", "description": "LightGBM + XGBoost ensemble identifying at-risk customers." },
+    { "name": "Purchase Intent Prediction", "description": "Transformer-based classification estimating conversion likelihood." },
+    { "name": "Customer Lifetime Value", "description": "Quantile regression with confidence intervals for revenue projection." },
+    { "name": "HDBSCAN/K-Means Segmentation", "description": "Evolving customer cohort identification." },
+    { "name": "Monte Carlo Simulation", "description": "Thousands of probabilistic simulation runs for campaign forecasting." },
+    { "name": "Semantic Memory (Qdrant)", "description": "Vector embeddings for similarity search and contextual memory retrieval." }
+  ],
+  "modules": [
+    { "name": "Event Ingestion Layer", "responsibility": "Customer events from CRM, web, email, support, mobile, social" },
+    { "name": "Customer Intelligence Layer", "responsibility": "Builds and maintains Digital Customer Twins" },
+    { "name": "Prediction Layer", "responsibility": "Churn, intent, LTV, recommendation, segmentation inference" },
+    { "name": "Memory Layer", "responsibility": "Vector embeddings and semantic customer memory retrieval" },
+    { "name": "Simulation Layer", "responsibility": "Agent creation, Monte Carlo execution, scenario forecasting" },
+    { "name": "Analytics Layer", "responsibility": "KPI aggregation, dashboards, reporting, executive intelligence" }
+  ],
+  "results": [
+    "End-to-end AI Customer Digital Twin platform delivered",
+    "Supports 100,000+ customers and 10M+ events per day",
+    "Churn prediction, intent forecasting, and LTV estimation integrated",
+    "Monte Carlo campaign simulation engine operational",
+    "Transforms CRM from historical records into predictive intelligence"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "customerCapacity": "100,000+",
+    "eventsPerDay": "10M+"
+  },
+  "featured": true,
+  "tags": ["digital-twins", "predictive-analytics", "marketing", "kafka", "monte-carlo", "customer-intelligence"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["vector", "orion"]
+}

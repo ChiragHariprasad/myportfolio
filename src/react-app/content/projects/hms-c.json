@@ -1,0 +1,42 @@
+{
+  "id": "hms-c",
+  "title": "Hospital Management System",
+  "fullTitle": "Terminal-Based Integrated Hospital Management System in C",
+  "domain": "Systems Programming | Hospital Operations Simulation",
+  "status": "completed",
+  "category": "systems",
+  "year": 2024,
+  "month": 12,
+  "completedDate": "2024-12-01",
+  "description": "Terminal-based hospital management system in C with synthetic data generator for scale testing. Full simulation ecosystem, not a simple CRUD application.",
+  "overview": "A terminal-based integrated hospital management system implemented in C, designed to simulate and manage core hospital operations: patient registration, doctor handling, appointment and service workflows, billing, and record storage. Features a dual-layer design: synthetic data generator for scale testing + hospital management core.",
+  "features": [
+    { "label": "Hospital Operations Core", "description": "Patient CRUD, admit/discharge, service tracking, billing, file-based persistence." },
+    { "label": "Synthetic Data Generator", "description": "Automated generation of large, realistic patient datasets for scale testing." },
+    { "label": "Admin Console UI", "description": "Lightweight CLI menu system with deterministic execution flow." }
+  ],
+  "tech": ["C", "GCC"],
+  "algorithms": [
+    { "name": "Data Generation", "description": "Randomized patient attribute generation using bounded random distributions." },
+    { "name": "Record Management", "description": "Struct-based storage with linear search, filtered scan, quicksort." },
+    { "name": "Constraint Validation", "description": "Duplicate ID prevention, appointment limits, billing rule compliance." }
+  ],
+  "modules": [
+    { "name": "generate_data.c", "responsibility": "Synthetic data factory: creates valid patient records" },
+    { "name": "hospital_management.c", "responsibility": "Core hospital engine: patient lifecycle, workflows, menu/UI, persistence" }
+  ],
+  "results": [
+    "Functional hospital operations engine with file persistence",
+    "Scale-test framework via synthetic data generator",
+    "Zero external dependencies; fully portable C implementation"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["systems-programming", "c", "healthcare", "terminal"],
+  "complexity": "low",
+  "internship": null,
+  "relatedProjects": ["ihorms"]
+}

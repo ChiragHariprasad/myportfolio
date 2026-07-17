@@ -1,0 +1,47 @@
+{
+  "id": "wanted",
+  "title": "W.A.N.T.E.D",
+  "fullTitle": "Watch and Analyze Nationwide Trends in Evolving Deviance",
+  "domain": "Crime Intelligence | Geospatial Analytics | Cloud-Native AI",
+  "status": "completed",
+  "category": "ai",
+  "year": 2025,
+  "month": 7,
+  "completedDate": "2025-07-01",
+  "description": "Cloud-native crime evolution analysis system using AI, geospatial tools, and real-time data pipelines. Introduces 'Crime Genome' — vectorized crime profile modeling.",
+  "overview": "W.A.N.T.E.D is a cloud-native system built to analyze, visualize, and forecast crime evolution patterns across India using AI models, geospatial tools, and real-time data pipelines. It introduces the concept of a 'Crime Genome' – vectorized crime profile modeling that treats crime patterns as structured, analyzable entities rather than raw event logs.",
+  "features": [
+    { "label": "Crime Genome", "description": "Vectorized crime profile modeling treating crime patterns as structured entities." },
+    { "label": "Demographic Transition Models", "description": "Population-linked crime analysis." },
+    { "label": "Semantic Vector-Based Search", "description": "Using Sentence Transformers for semantic crime search." },
+    { "label": "GPU-Accelerated Anomaly Detection", "description": "cuML/cuDF for high-performance analysis." },
+    { "label": "Interactive Geospatial Visualization", "description": "Heatmaps and network graphs via Folium." }
+  ],
+  "tech": ["Python", "FastAPI", "MongoDB", "Firebase", "Sentence Transformers", "cuML", "cuDF", "Folium"],
+  "algorithms": [
+    { "name": "Crime Genome Vectorization", "description": "Structured vector representation of crime patterns for analysis." },
+    { "name": "Semantic Search", "description": "Sentence Transformer embeddings for crime pattern similarity." },
+    { "name": "GPU Anomaly Detection", "description": "cuML-accelerated outlier detection on crime data." }
+  ],
+  "modules": [
+    { "name": "Data Pipeline", "responsibility": "Crime data ingestion, preprocessing, vectorization" },
+    { "name": "Analysis Engine", "responsibility": "Pattern detection, demographic transition modeling" },
+    { "name": "Geospatial Layer", "responsibility": "Heatmaps, network graphs, interactive visualization" },
+    { "name": "Search Module", "responsibility": "Semantic vector-based crime search" }
+  ],
+  "results": [
+    "Crime Genome vectorization framework implemented",
+    "GPU-accelerated analysis pipeline operational",
+    "Interactive geospatial crime visualization delivered",
+    "Semantic search across crime patterns functional"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["crime-analysis", "geospatial", "gpu", "nlp", "visualization"],
+  "complexity": "medium",
+  "internship": null,
+  "relatedProjects": []
+}

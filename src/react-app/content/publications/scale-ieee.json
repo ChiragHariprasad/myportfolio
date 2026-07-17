@@ -1,0 +1,12 @@
+{
+  "id": "scale-ieee",
+  "title": "Unbalanced Expansion of Engineering Education in India: A Data-Driven Policy Analysis",
+  "journal": "IEEE Access",
+  "doi": "10.1109/ACCESS.2026.3704923",
+  "doiUrl": "https://doi.org/10.1109/ACCESS.2026.3704923",
+  "publishedDate": "2026-06-10",
+  "projectId": "scale",
+  "authors": ["Chirag Hariprasad"],
+  "abstract": "An integrated computational policy-analysis framework combining System Dynamics, Structural Causal Models, and Agent-Based Modeling to evaluate the long-term consequences of engineering education expansion in India. Demonstrates that quality-focused policies consistently outperform seat-capacity regulation for graduate employability.",
+  "status": "published"
+}

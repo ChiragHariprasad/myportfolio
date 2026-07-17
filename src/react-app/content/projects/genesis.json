@@ -1,0 +1,59 @@
+{
+  "id": "genesis",
+  "title": "G.E.N.E.S.I.S",
+  "fullTitle": "Generative Engine for Networked, Embedded, Spatial Infrastructure Synthesis",
+  "domain": "AI-Driven Urban Planning & Layout Synthesis",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 3,
+  "completedDate": "2026-03-27",
+  "description": "Rule-aware generative system that automates urban layout planning from scratch. Converts site boundaries into code-compliant city layouts with road networks, blocks, and subdivided plots. Enforces Indian NBC regulations inside the generation loop.",
+  "overview": "GENESIS is a rule-aware generative system that automates urban layout planning from scratch. Given only a site boundary and basic parameters, it outputs a fully code-compliant city layout – complete with road networks, city blocks, and subdivided plots. It enforces Indian National Building Code (NBC) regulations directly inside the generation loop, runs fast physics-proxy simulations for traffic, drainage, and wind, and scores each generated layout using a multi-domain KPI framework.",
+  "features": [
+    { "label": "Automated Boundary-to-Layout Generation", "description": "Converts raw site boundaries and basic parameters into complete urban layouts: road networks, blocks, and individual plots. Multiple candidate layouts are generated per run." },
+    { "label": "Regulation-by-Design (Fail-Fast Compliance Engine)", "description": "Constraints are enforced inside the generation loop, not after. Infeasible layouts are rejected early and regenerated automatically." },
+    { "label": "Traffic Proxy Simulation", "description": "Graph-based shortest path assignment over the generated road network. Congestion penalty computation at each edge. Level of Service (LOS) metrics extracted." },
+    { "label": "Drainage Proxy Simulation", "description": "D8 flow accumulation algorithm used to simulate surface water runoff. Flood-risk penalty zones are identified and scored." },
+    { "label": "Wind/Ventilation Proxy Simulation", "description": "Gaussian wake propagation model used to approximate ventilation corridors between buildings." },
+    { "label": "KPI-Based Scoring and Ranking Engine", "description": "All simulation outputs normalized into KPIs, aggregated into composite score (0–100), ranked with Top-K selector." }
+  ],
+  "tech": ["Python", "Shapely", "NetworkX", "NumPy", "SciPy", "Matplotlib", "Streamlit", "Folium", "Leaflet", "pyproj", "SQLite"],
+  "algorithms": [
+    { "name": "Generative Layout Synthesis", "description": "Procedural generation pipeline: site boundary → road network generation → block formation → plot subdivision." },
+    { "name": "Rule Engine (Compliance-by-Design)", "description": "Deterministic constraint enforcement: Generate → Validate → Fail? Regenerate → Pass? Simulate + Score." },
+    { "name": "Traffic Proxy Simulation", "description": "Graph-based shortest path assignment with congestion penalties and LOS metrics." },
+    { "name": "Drainage Proxy Simulation", "description": "D8 flow accumulation algorithm for surface water runoff simulation." },
+    { "name": "Wind/Ventilation Proxy Simulation", "description": "Gaussian wake propagation for ventilation corridor scoring." },
+    { "name": "KPI Scoring and Ranking", "description": "Weighted aggregation producing composite score (0–100) with Top-K ranking." }
+  ],
+  "modules": [
+    { "name": "Input Layer", "responsibility": "Boundary input (map-draw / polygon import), parameter config" },
+    { "name": "Generation Layer", "responsibility": "Road generator, block generator, plot generator, multi-candidate controller" },
+    { "name": "Compliance Layer", "responsibility": "Road width validator, FAR/setback validator, plot constraint validator, fail-fast regeneration" },
+    { "name": "Simulation Layer", "responsibility": "Traffic module, drainage module, wind module" },
+    { "name": "KPI + Ranking Layer", "responsibility": "KPI extraction, normalization, weighted scoring, Top-K selector" },
+    { "name": "Export Layer", "responsibility": "JSON exporter, OBJ/MTL exporter, SUMO XML exporter" },
+    { "name": "UI Layer", "responsibility": "Streamlit orchestration, visualization panels, download interface" }
+  ],
+  "results": [
+    "Working end-to-end prototype delivered",
+    "Automated layout synthesis functional (roads, blocks, plots)",
+    "Rule-aware compliance enforced at design time",
+    "Multi-domain proxy simulations integrated and validated",
+    "Objective ranking framework implemented",
+    "Export pipeline completed (JSON, OBJ, SUMO XML)",
+    "Patent published: 27 March 2026"
+  ],
+  "patent": {
+    "publishedDate": "2026-03-27"
+  },
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": true,
+  "tags": ["urban-planning", "generative-ai", "simulation", "compliance", "geospatial"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["scale"]
+}

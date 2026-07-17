@@ -1,0 +1,29 @@
+{
+  "name": "Chirag Hariprasad",
+  "taglines": [
+    "Building Intelligent Systems",
+    "Designing AI Products",
+    "Engineering Intelligent Infrastructure",
+    "Developing Production AI",
+    "Turning Research Into Products",
+    "Solving Complex Problems",
+    "Building AI That Ships",
+    "From Research to Production",
+    "Architecting Data-Driven Solutions"
+  ],
+  "focusAreas": [
+    "Agentic AI",
+    "Distributed Systems",
+    "Backend Engineering",
+    "Digital Twins",
+    "LLM Infrastructure"
+  ],
+  "subtitleTemplate": "Building intelligence that operates. {stats}",
+  "socials": {
+    "linkedin": "https://linkedin.com/in/chiraghariprasad/",
+    "github": "https://github.com/ChiragHariprasad",
+    "email": "chiragh.0804@gmail.com",
+    "website": "https://chiraghariprasad.qzz.io"
+  },
+  "resumePath": "/Resume.pdf"
+}

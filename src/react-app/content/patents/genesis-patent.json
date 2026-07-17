@@ -1,0 +1,20 @@
+{
+  "id": "genesis-patent",
+  "title": "G.E.N.E.S.I.S",
+  "fullTitle": "Generative Engine for Networked, Embedded, Spatial Infrastructure Synthesis",
+  "applicationNo": "",
+  "filedDate": "",
+  "publishedDate": "2026-03-27",
+  "domain": "AI-Driven Urban Planning & Layout Synthesis",
+  "projectId": "genesis",
+  "role": "Primary Inventor",
+  "abstract": "A patented rule-aware generative system that automates urban layout planning from site boundaries into code-compliant city layouts with integrated multi-domain proxy simulations for traffic, drainage, and wind analysis.",
+  "claims": [
+    "Automated boundary-to-layout generation with multi-candidate output",
+    "Regulation-by-design with fail-fast compliance engine enforcing NBC standards",
+    "Integrated traffic proxy simulation with graph-based routing and LOS metrics",
+    "D8 flow accumulation for drainage risk assessment",
+    "Gaussian wake model for wind/ventilation corridor scoring",
+    "KPI-based composite scoring (0-100) with Top-K layout ranking"
+  ]
+}

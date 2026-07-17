@@ -1,0 +1,43 @@
+{
+  "id": "gesture-home",
+  "title": "Gesture-Controlled Smart Home",
+  "fullTitle": "Gesture-Controlled Smart Home System",
+  "domain": "Computer Vision | IoT / Home Automation",
+  "status": "completed",
+  "category": "iot",
+  "year": 2025,
+  "month": 1,
+  "completedDate": "2025-01-01",
+  "description": "Real-time gesture recognition system using computer vision to control Arduino-based home automation hardware via webcam and serial communication.",
+  "overview": "A real-time gesture recognition system that uses computer vision to control Arduino-based home automation hardware. Hand gestures captured via webcam are recognized and translated into control signals transmitted to Arduino over serial communication, triggering physical actions in the home environment.",
+  "features": [
+    { "label": "Real-Time Gesture Recognition", "description": "Webcam-based hand gesture recognition with low-latency processing." },
+    { "label": "Arduino Home Automation", "description": "Hardware control triggered by recognized gestures." },
+    { "label": "Multi-Gesture Support", "description": "Multiple gesture types supported with noise filtering." },
+    { "label": "Low-Latency Response", "description": "Optimized pipeline for real-time control response." }
+  ],
+  "tech": ["Python", "OpenCV", "Arduino", "Serial Communication"],
+  "algorithms": [
+    { "name": "Gesture Recognition", "description": "Computer vision pipeline for hand gesture detection and classification." },
+    { "name": "Noise Filtering", "description": "Signal processing to eliminate false positives in gesture detection." }
+  ],
+  "modules": [
+    { "name": "Vision Module", "responsibility": "Webcam capture, gesture detection, classification" },
+    { "name": "Communication Module", "responsibility": "Serial command transmission to Arduino" },
+    { "name": "Hardware Controller", "responsibility": "Arduino-side signal processing and device control" }
+  ],
+  "results": [
+    "Real-time gesture-to-action pipeline operational",
+    "Multi-gesture vocabulary with reliable noise filtering",
+    "Low-latency control response achieved"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["computer-vision", "iot", "arduino", "gesture-recognition", "embedded"],
+  "complexity": "medium",
+  "internship": null,
+  "relatedProjects": []
+}

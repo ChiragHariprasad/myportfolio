@@ -1,0 +1,41 @@
+{
+  "id": "aeroweight",
+  "title": "AeroWeight",
+  "fullTitle": "An Intelligent Data Gravity Engine for Multi-Cloud Compute Routing",
+  "domain": "Cloud Computing / Data Gravity Optimization",
+  "status": "in-progress",
+  "category": "systems",
+  "year": 2026,
+  "month": 7,
+  "completedDate": null,
+  "description": "Intelligent orchestration engine routing computational workloads across multiple cloud providers by modeling data gravity with predictive analytics and reinforcement learning.",
+  "overview": "AeroWeight is an intelligent orchestration engine that routes computational workloads across multiple cloud providers by modeling data gravity—the tendency of data to attract processing. The system analyzes data location, volume, movement costs, network latency, and compute pricing to make optimal placement decisions using reinforcement learning.",
+  "features": [
+    { "label": "Data Gravity Modeling", "description": "Quantifies the 'pull' of each dataset based on size, access frequency, and inter-dataset dependencies." },
+    { "label": "Multi-Cloud Cost-Aware Routing", "description": "Evaluates compute, storage, and egress costs across AWS, Azure, GCP in real time." },
+    { "label": "Predictive Workload Characterization", "description": "Forecasts resource requirements and data movement needs before jobs start." },
+    { "label": "Adaptive RL Controller", "description": "Dynamically refines routing policies based on observed cost and performance." },
+    { "label": "Policy Compliance Engine", "description": "Enforces geo-fencing, data residency, and regulatory constraints." },
+    { "label": "Simulation Sandbox", "description": "What-if experiments with historical workload traces." }
+  ],
+  "tech": ["Python", "Go", "PyTorch", "Ray RLlib", "gymnasium", "Kafka", "Spark", "Kubernetes", "Helm", "Terraform", "Prometheus", "Grafana"],
+  "algorithms": [
+    { "name": "Data Gravity Model", "description": "Quantitative model for dataset attraction based on size and access patterns." },
+    { "name": "Reinforcement Learning", "description": "Policy gradient methods for adaptive routing optimization." },
+    { "name": "Cost Optimization", "description": "Multi-cloud cost function evaluation with egress and compute pricing." }
+  ],
+  "modules": [],
+  "results": [],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "expectedCostReduction": "30-40%"
+  },
+  "featured": false,
+  "tags": ["cloud", "multi-cloud", "data-gravity", "reinforcement-learning", "optimization", "infrastructure"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["deep"],
+  "confidential": true
+}

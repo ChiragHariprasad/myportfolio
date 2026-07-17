@@ -1,0 +1,19 @@
+{
+  "id": "iifl-samasta",
+  "organization": "IIFL Samasta Finance Ltd.",
+  "role": "Software Intern — Strategy Team",
+  "type": "internship",
+  "startDate": "2025-11",
+  "endDate": "2026-05",
+  "duration": "6 Months",
+  "location": "Bengaluru, Karnataka",
+  "description": "Delivered 3 production-grade systems as sole contributor across full-stack, ML, and API infrastructure domains.",
+  "projects": ["verifai", "presntai", "lifestyle-index"],
+  "technologies": ["Python", "Flask", "FastAPI", "Gemini API", "faster-whisper", "pyannote", "SpeechBrain", "Ollama", "PyTorch", "ReportLab"],
+  "achievements": [
+    "Delivered 3 production-grade systems as sole contributor across full-stack, ML, and API infrastructure domains",
+    "VerifAI: Reduced tampered-document ingestion risk from 5% to 0% in active KYC workflow processing live loan applications",
+    "MeetingsAI: End-to-end offline meeting intelligence pipeline with zero cloud dependency — auto-emails MoM to all stakeholders",
+    "Lifestyle Index: Built FastAPI B2B gateway exposing proprietary risk scores to external partner companies with API key auth, rate limiting, and analytics"
+  ]
+}

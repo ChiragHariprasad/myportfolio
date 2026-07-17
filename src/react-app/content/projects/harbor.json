@@ -1,0 +1,55 @@
+{
+  "id": "harbor",
+  "title": "H.A.R.B.O.R",
+  "fullTitle": "Hierarchical Analysis for Reference-Guided Biodiversity Organism Recognition",
+  "domain": "AI-Driven eDNA Taxonomy Inference | Bioinformatics",
+  "status": "completed",
+  "category": "ai",
+  "year": 2026,
+  "month": 2,
+  "completedDate": "2026-02-01",
+  "description": "Open-set eDNA taxonomy inference system built for large-scale biodiversity recognition from environmental DNA sequences. Combines fast deterministic similarity checks, deep CNN-based sequence embeddings, and statistical novelty detection.",
+  "overview": "HARBOR is an open-set eDNA taxonomy inference system built for large-scale biodiversity recognition from environmental DNA sequences. Traditional taxonomy systems force every sequence into an existing classification – even when the sequence belongs to an unknown organism. HARBOR solves this by combining fast deterministic similarity checks, deep CNN-based sequence embeddings, and statistical novelty detection to produce three honest output types: high-confidence known assignments, explicit NOVEL flags, and explainability metrics. It is designed to scale to multi-marker reference databases (~2.8GB) in alignment-free mode without sacrificing scientific defensibility.",
+  "features": [
+    { "label": "Open-Set / Novelty-Aware Classification", "description": "Distinguishes known sequences from out-of-distribution ones. Novel sequences receive explicit NOVEL flags." },
+    { "label": "Multi-Stage Hybrid Inference", "description": "Three-stage pipeline: Deterministic similarity → Embedding-based ANN search → Statistical novelty detection." },
+    { "label": "Marker-Aware Representation Learning", "description": "Learns biologically meaningful representations per genetic marker, preventing cross-marker interference." },
+    { "label": "High-Throughput Similarity Retrieval", "description": "FAISS-based similarity indices enabling low-latency nearest-neighbor search over millions of sequences." },
+    { "label": "Scientific Traceability + MLOps", "description": "Full dataset versioning, experiment tracking via DVC and Weights & Biases." },
+    { "label": "Risk-Controlled System Engineering", "description": "Designed to mitigate: reproducibility loss, dependency drift, data corruption, model–index mismatch." }
+  ],
+  "tech": ["Python", "FastAPI", "PyTorch", "FAISS", "XGBoost", "scikit-learn", "BioPython", "Weights & Biases", "DVC", "Docker"],
+  "algorithms": [
+    { "name": "Deterministic Feature Engineering", "description": "Sliding-window k-mer encoding with hash-based conversion, alignment-free." },
+    { "name": "Deep Representation Learning (CNN)", "description": "Marker-specific CNN: Embedding → 1D Conv → Global pooling → Projection + normalization." },
+    { "name": "Contrastive Learning", "description": "Unsupervised instance-level contrastive learning, no taxonomy label dependency." },
+    { "name": "FAISS ANN Retrieval", "description": "Per-marker FAISS indices for low-latency Top-K nearest neighbor search." },
+    { "name": "Statistical Novelty Detection", "description": "Distance-based and density-based novelty checks with explicit NOVEL flags." }
+  ],
+  "modules": [
+    { "name": "Data Ingestion + Marker Separation", "responsibility": "Curated reference FASTA ingestion, marker-wise separation, taxonomy annotation" },
+    { "name": "Deterministic Preprocessing", "responsibility": "Sliding-window feature extraction, hash encoding, invalid nucleotide filtering" },
+    { "name": "Deterministic Similarity Resolver", "responsibility": "High-confidence known match detection (fast path)" },
+    { "name": "Marker-Specific Embedding Model", "responsibility": "CNN embedding generation per marker, normalized vector output" },
+    { "name": "FAISS Index Layer", "responsibility": "Per-marker ANN indices, low-latency Top-K retrieval" },
+    { "name": "Statistical Novelty Detection Layer", "responsibility": "Distance/density novelty logic, unsafe assignment rejection" },
+    { "name": "MLOps Layer", "responsibility": "DVC versioning, W&B tracking, cron automation, Docker runtime" }
+  ],
+  "results": [
+    "Alignment-free inference pipeline operational at multi-marker scale (~2.8GB reference databases)",
+    "Open-set taxonomy classification with honest NOVEL detection",
+    "Explainable, auditable outputs with confidence and similarity evidence",
+    "MLOps infrastructure for reproducibility and drift monitoring"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "referenceScale": "~2.8GB multi-marker databases"
+  },
+  "featured": true,
+  "tags": ["bioinformatics", "edna", "open-set", "novelty-detection", "deep-learning", "taxonomy"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": ["deep"]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "pathfinding",
+  "title": "AgeOfEmpire",
+  "fullTitle": "Pathfinding Simulation, Benchmarking, and RTS Game Implementation",
+  "domain": "Algorithm Research | Game AI | Simulation Engineering",
+  "status": "completed",
+  "category": "research",
+  "year": 2025,
+  "month": 4,
+  "completedDate": "2025-04-01",
+  "description": "Research-grade benchmarking framework evaluating 35+ pathfinding algorithms across game-realistic environments, paired with an RTS game validating top algorithms in live gameplay.",
+  "overview": "This suite comprises two interconnected projects: a research-grade benchmarking framework that evaluates 35+ pathfinding algorithms across controlled game-realistic environments, and an RTS game (Project Rescue Run) that deploys the top two algorithms in a live interactive game loop to validate results under real gameplay constraints.",
+  "features": [
+    { "label": "35+ Algorithm Benchmarking", "description": "Classical, metaheuristics, and field-based algorithms benchmarked across four scenario types." },
+    { "label": "Four Scenario Types", "description": "Static, fog-of-war, dynamic obstacles, and hybrid (dynamic + fog-of-war)." },
+    { "label": "Standardized Testbed", "description": "100×100 grid, 40% blocked, 30% weighted, 30% free tiles." },
+    { "label": "RTS Game Validation", "description": "Interactive game validating Flow Field vs A* with dynamic terrain and multiple unit types." },
+    { "label": "Multi-Unit System", "description": "Scout (speed), Tank (armor), Phantom (wall traversal) with difficulty-scaled enemy AI." }
+  ],
+  "tech": ["Python", "Pygame", "heapq"],
+  "algorithms": [
+    { "name": "A*", "description": "f(n) = g(n) + h(n), admissible heuristic." },
+    { "name": "Flow Field", "description": "Global cost-to-go map via BFS/Dijkstra, vector directions per cell." },
+    { "name": "D* Lite", "description": "Incremental replanning: rhs(s) = min_{s' ∈ Succ(s)}(c(s,s') + g(s'))." },
+    { "name": "ACO (Ant Colony)", "description": "Pheromone-based transition probability with evaporation." },
+    { "name": "Genetic Algorithm", "description": "Fitness = 1/path_length, evolves via selection + crossover + mutation." },
+    { "name": "Theta* (Any-Angle)", "description": "Line of Sight shortcuts for smoother paths." }
+  ],
+  "modules": [
+    { "name": "Benchmarking Framework", "responsibility": "35+ algorithm implementations, scenario generation, metric collection" },
+    { "name": "Game Engine (main.py)", "responsibility": "Game state, terrain, enemy AI, pathfinding toggle" },
+    { "name": "Flow Field Compute", "responsibility": "Global vector direction precomputation" },
+    { "name": "A* Pathfinder", "responsibility": "Per-unit A* with Euclidean heuristic" }
+  ],
+  "results": [
+    "Flow Field ranked #1 overall in standard scenarios",
+    "ACO ranked #2 with highest reliability",
+    "100% success rate for Flow Field, ACO, MMAS in dynamic obstacles",
+    "Most classical algorithms 0% success in fog-of-war + dynamic scenarios",
+    "Live RTS game validates research findings under real gameplay constraints"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {
+    "algorithmsEvaluated": "35+",
+    "gridSize": "100×100"
+  },
+  "featured": false,
+  "tags": ["pathfinding", "game-ai", "algorithms", "benchmarking", "rts", "research"],
+  "complexity": "high",
+  "internship": null,
+  "relatedProjects": []
+}

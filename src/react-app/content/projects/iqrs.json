@@ -1,0 +1,49 @@
+{
+  "id": "iqrs",
+  "title": "I.Q.R.S",
+  "fullTitle": "Intelligent Query Retrieval System",
+  "domain": "RAG (Retrieval-Augmented Generation) | Document Intelligence",
+  "status": "completed",
+  "category": "ai",
+  "year": 2025,
+  "month": 8,
+  "completedDate": "2025-08-01",
+  "description": "End-to-end RAG platform converting unstructured PDF documents into a searchable intelligence layer with fact-grounded, evidence-traceable answers.",
+  "overview": "I.Q.R.S. is an end-to-end Retrieval-Augmented Generation platform that converts unstructured PDF documents into a searchable intelligence layer. Users ask natural-language questions and receive fact-grounded answers with traceable evidence – not generic chatbot responses.",
+  "features": [
+    { "label": "PDF Ingestion Pipeline", "description": "Page-wise text extraction with multi-PDF support." },
+    { "label": "Smart Chunking", "description": "Sentence-level chunking with configurable overlap for semantic continuity." },
+    { "label": "Index Persistence", "description": "FAISS index and chunk store cached to disk. Avoids reprocessing." },
+    { "label": "Vector Similarity Search", "description": "Top-K relevant chunks retrieved via dense embedding similarity." },
+    { "label": "Grounded Answer Generation", "description": "LLM restricted to retrieved evidence. Hallucination suppressed." },
+    { "label": "Evidence Traceability", "description": "Page + line markers, chunk IDs, similarity scores with every answer." }
+  ],
+  "tech": ["Python", "FastAPI", "Uvicorn", "FAISS", "SentenceTransformers", "Groq API"],
+  "algorithms": [
+    { "name": "Document Chunking", "description": "Sentence-based segmentation with word-count bounds and configurable overlap." },
+    { "name": "E5-small-v2 Embeddings", "description": "intfloat/e5-small-v2 → dense vector embedding for chunks and queries." },
+    { "name": "FAISS Cosine Similarity", "description": "Query vs chunk embedding similarity → Top-K retrieval." },
+    { "name": "Grounded Generation (Groq)", "description": "LLM with strict instruction to answer only from context." }
+  ],
+  "modules": [
+    { "name": "PDF Processor", "responsibility": "PDF parsing, chunk generation, embedding, FAISS index creation" },
+    { "name": "QA Engine", "responsibility": "Load index, embed query, retrieve Top-K, generate grounded response" },
+    { "name": "API Layer", "responsibility": "Query endpoint routing and orchestration" },
+    { "name": "Web Interface", "responsibility": "User-facing query UI" }
+  ],
+  "results": [
+    "Full-stack RAG pipeline from PDF ingestion to grounded QA",
+    "FAISS-backed retrieval with sub-second latency",
+    "Auditable answers with page/line evidence markers",
+    "Production-deployable FastAPI architecture"
+  ],
+  "patent": null,
+  "publication": null,
+  "github": null,
+  "metrics": {},
+  "featured": false,
+  "tags": ["rag", "document-intelligence", "nlp", "faiss", "llm", "retrieval"],
+  "complexity": "medium",
+  "internship": null,
+  "relatedProjects": ["harbor"]
+}

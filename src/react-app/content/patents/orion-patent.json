@@ -1,0 +1,20 @@
+{
+  "id": "orion-patent",
+  "title": "O.R.I.O.N",
+  "fullTitle": "Omni-Retail-Intelligence & Ordering-Network",
+  "applicationNo": "202641030238",
+  "filedDate": "2026-03-13",
+  "publishedDate": "2026-05-29",
+  "domain": "AI-Driven Retail Intelligence | Demand Forecasting",
+  "projectId": "orion",
+  "role": "Primary Inventor",
+  "abstract": "A patented integrated AI-driven inventory management and demand forecasting platform creating a closed-loop intelligence network between household consumption and retail stock management with cultural-aware forecasting.",
+  "claims": [
+    "Bidirectional consumer-retailer intelligence loop architecture",
+    "Recipe-based household consumption modeling driving retail demand signals",
+    "Cultural-aware forecasting with festival peak seasonality markers",
+    "Customer persona segmentation for targeted merchandising",
+    "Anomaly detection for flash-demand and bulk-buy events",
+    "Containerized model execution with CI/CD monthly retraining"
+  ]
+}
