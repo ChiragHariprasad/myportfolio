@@ -117,9 +117,9 @@ export function generateTimeline(): TimelineEvent[] {
       month: startMonth,
       day: startDay,
       title: `${exp.organization} — ${exp.role}`,
-      description: exp.description,
+      description: `Started as a ${exp.role} at ${exp.organization}.`,
       type: 'experience',
-      image: exp.type === 'internship' ? `/assets/internship-${exp.id}.png` : undefined,
+      image: exp.id === 'iifl-samasta' ? `/assets/Samasta_start.png` : undefined,
     });
 
     if (exp.endDate) {
@@ -132,8 +132,9 @@ export function generateTimeline(): TimelineEvent[] {
           month: endMonth,
           day: endDay,
           title: `${exp.organization} — Internship Completed`,
-          description: `Completed ${exp.duration || ''} at ${exp.organization}`,
+          description: exp.description,
           type: 'experience',
+          image: exp.type === 'internship' ? `/assets/internship-${exp.id}.png` : undefined,
         });
       }
     }

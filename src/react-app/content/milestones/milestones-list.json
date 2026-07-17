@@ -41,15 +41,9 @@
   },
   {
     "id": "rejected-investment",
-    "title": "Rejected Farm Investment",
+    "title": "Declined Funding Round",
     "date": "2023-12-15",
-    "description": "Offered an opportunity to secure investment for starting a 3D printing farm, which I turned down to focus on other goals."
-  },
-  {
-    "id": "organised-fest-2024",
-    "title": "Organised Student Fest",
-    "date": "2024-05-01",
-    "description": "Led and completely handled the organisation of a student-funded college fest."
+    "description": "Was offered a funding round to launch a 3D printing farm but chose not to move forward with the venture."
   },
   {
     "id": "sjp-graduation",
