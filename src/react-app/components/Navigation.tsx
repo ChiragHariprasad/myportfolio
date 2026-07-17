@@ -1,111 +1,119 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import '../styles/portfolio.css';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Palette, Command } from 'lucide-react';
+import { getSiteConfig } from '../data/contentLoader';
+import { useTheme } from './ThemeProvider';
 
-interface NavigationProps {
-  activeSection: string;
-}
+const Navigation: React.FC = () => {
+  const location = useLocation();
+  const siteConfig = getSiteConfig();
+  const { currentTheme, themes, setTheme, themeId } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [themeMenuOpen, setThemeMenuOpen] = useState(false);
 
-const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  // Close mobile nav on route change
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    setMobileOpen(false);
+  }, [location.pathname]);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { label: 'Hero', path: '/', id: 'hero' },
-    { label: 'About', path: '/about', id: 'about' },
-    { label: 'Patents', path: '/patents', id: 'patents' },
-    { label: 'Projects', path: '/projects', id: 'projects' },
-    { label: 'Research', path: '/research', id: 'research' },
-    { label: 'Expertise', path: '/expertise', id: 'expertise' },
-    { label: 'Timeline', path: '/timeline', id: 'timeline' },
-    { label: 'Contact', path: '/contact', id: 'contact' },
-  ];
+  const isActive = (path: string) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   return (
-    <nav className={`nav-header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="nav-container">
-        <Link to="/" className="nav-logo" style={{ cursor: 'pointer', textDecoration: 'none' }}>
-          CHIRAG
-          <span className="logo-dot"></span>
-        </Link>
+    <>
+      {/* Mobile Toggle */}
+      <button
+        className="nav-mobile-toggle"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle navigation"
+      >
+        {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
 
-        {/* Desktop Menu */}
-        <ul className="nav-menu">
-          {navItems.map((item) => (
-            <li key={item.id}>
+      <nav className={`nav-sidebar ${mobileOpen ? 'open' : ''}`}>
+        {/* Logo */}
+        <div className="nav-logo">
+          <Link to="/" className="nav-logo-text">CH</Link>
+        </div>
+
+        {/* Nav Items */}
+        <ul className="nav-items">
+          {siteConfig.navigation.map(item => (
+            <li key={item.id} className="nav-item">
               <Link
                 to={item.path}
-                className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                style={{ textDecoration: 'none' }}
+                className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
               >
-                {item.label}
+                <span className="nav-number">{item.number}</span>
+                <span>{item.label}</span>
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="mobile-menu-btn"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'var(--charcoal)',
-            cursor: 'pointer'
-          }}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Drawer (Basic Overlay) */}
-      {mobileMenuOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '70px',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'var(--bg-ivory)',
-            zIndex: 99,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            paddingTop: '3rem',
-            gap: '2rem'
-          }}
-        >
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              to={item.path}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-              style={{ fontSize: '1.25rem', textDecoration: 'none' }}
+        {/* Footer */}
+        <div className="nav-footer">
+          {/* Theme Selector */}
+          <div style={{ position: 'relative' }}>
+            <button
+              className="nav-theme-btn"
+              onClick={() => setThemeMenuOpen(!themeMenuOpen)}
             >
-              {item.label}
-            </Link>
-          ))}
+              <Palette size={12} style={{ marginRight: '0.4rem' }} />
+              {currentTheme.name}
+            </button>
+
+            {themeMenuOpen && (
+              <div style={{
+                position: 'absolute',
+                bottom: '100%',
+                left: 0,
+                right: 0,
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border)',
+                borderRadius: '6px',
+                marginBottom: '0.5rem',
+                overflow: 'hidden',
+                zIndex: 10,
+              }}>
+                {themes.map(t => (
+                  <button
+                    key={t.id}
+                    onClick={() => { setTheme(t.id); setThemeMenuOpen(false); }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      width: '100%',
+                      padding: '0.5rem 0.75rem',
+                      border: 'none',
+                      background: t.id === themeId ? 'rgba(var(--accent-rgb), 0.1)' : 'transparent',
+                      color: t.id === themeId ? 'var(--accent)' : 'var(--text-secondary)',
+                      fontSize: '0.75rem',
+                      cursor: 'pointer',
+                      fontFamily: 'var(--font-mono)',
+                      textAlign: 'left',
+                    }}
+                  >
+                    <span style={{
+                      width: '8px', height: '8px', borderRadius: '50%',
+                      background: t.colors['--accent'],
+                    }} />
+                    {t.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <p className="nav-shortcut-hint">
+            <Command size={10} /> Press <kbd>/</kbd> to search
+          </p>
         </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 };
 

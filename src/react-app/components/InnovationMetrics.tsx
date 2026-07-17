@@ -1,136 +1,101 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Award, Briefcase, Code, FileSpreadsheet, GitBranch, Layers } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { computeStats } from '../data/statsEngine';
 import '../styles/portfolio.css';
 
-interface MetricItem {
-  label: string;
-  value: number;
-  suffix: string;
-  desc: string;
-  icon: React.ReactNode;
-}
+/** Animated counter hook */
+function useCounter(target: number, duration: number = 1500) {
+  const [count, setCount] = React.useState(0);
+  const [started, setStarted] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
 
-const metricsData: MetricItem[] = [
-  {
-    label: 'Published Patents',
-    value: 4,
-    suffix: '',
-    desc: 'Fraud detection, urban AI, retail, presentation automation',
-    icon: <Award size={24} />
-  },
-  {
-    label: 'Research Areas',
-    value: 14,
-    suffix: '',
-    desc: 'Fraud ML, eDNA, causal inference, urban synthesis, audio AI, retail, digital twins, CV, healthcare, game AI, crime intel, edtech, cloud infra, presentation AI',
-    icon: <FileSpreadsheet size={24} />
-  },
-  {
-    label: 'Major Projects',
-    value: 17,
-    suffix: '',
-    desc: 'End-to-end deployed systems',
-    icon: <Briefcase size={24} />
-  },
-  {
-    label: 'Open Source Repos',
-    value: 10,
-    suffix: '+',
-    desc: 'GitHub codebases & utilities',
-    icon: <GitBranch size={24} />
-  },
-  {
-    label: 'Technical Domains',
-    value: 9,
-    suffix: '',
-    desc: 'Languages, ML, backend, vector search, DevOps, simulation, cloud, audio AI, CV',
-    icon: <Layers size={24} />
-  },
-  {
-    label: 'Major Milestones',
-    value: 14,
-    suffix: '',
-    desc: 'Patents, IEEE publication, deployments, leadership',
-    icon: <Code size={24} />
-  }
-];
-
-const MetricCard: React.FC<{ metric: MetricItem; isVisible: boolean }> = ({ metric, isVisible }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isVisible) return;
-    
-    let start = 0;
-    const end = metric.value;
-    const duration = 1500; // ms
-    const stepTime = Math.abs(Math.floor(duration / end));
-    
-    const timer = setInterval(() => {
-      start += 1;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(start);
-      }
-    }, Math.max(stepTime, 20));
-
-    return () => clearInterval(timer);
-  }, [isVisible, metric.value]);
-
-  return (
-    <div className="metric-card">
-      <div style={{ color: 'var(--gold)', marginBottom: '0.75rem', display: 'flex', justifyContent: 'center' }}>
-        {metric.icon}
-      </div>
-      <div className="metric-num">
-        {count}
-        {metric.suffix}
-      </div>
-      <div className="metric-label">{metric.label}</div>
-      <div className="metric-desc">{metric.desc}</div>
-    </div>
-  );
-};
-
-const InnovationMetrics: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
+  React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [started]);
+
+  React.useEffect(() => {
+    if (!started) return;
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [started, target, duration]);
+
+  return { count, ref };
+}
+
+const InnovationMetrics: React.FC = () => {
+  const stats = computeStats();
+
+  const metrics = [
+    { label: 'Projects', value: stats.totalProjects, desc: 'Shipped across AI, Backend, Research' },
+    { label: 'Patents', value: stats.totalPatents, desc: 'Published patent applications' },
+    { label: 'Publications', value: stats.totalPublications, desc: 'IEEE Access journal paper' },
+    { label: 'Technologies', value: stats.totalTechnologies, desc: 'Unique tools & frameworks used' },
+    { label: 'Domains', value: stats.totalDomains, desc: 'Cross-domain expertise areas' },
+    { label: 'Internships', value: stats.internships, desc: 'Production deployments' },
+  ];
 
   return (
-    <section id="metrics" ref={sectionRef} className="section-container">
-      <div className="section-header">
-        <span className="section-tag">Key Statistics</span>
-        <h2 className="section-title">Impact Metrics</h2>
+    <section className="section-container" id="metrics">
+      <motion.div className="section-header"
+        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.5 }}
+      >
+        <span className="section-tag">By The Numbers</span>
+        <h2 className="section-title">Innovation Metrics</h2>
         <p className="section-subtitle">
-          Quantifiable indicators of research throughput, codebase complexity, and shipped software assets.
+          Every number computed live from project data. Nothing hardcoded.
         </p>
-      </div>
+      </motion.div>
 
       <div className="metrics-grid">
-        {metricsData.map((metric, idx) => (
-          <MetricCard key={idx} metric={metric} isVisible={isVisible} />
+        {metrics.map((m, i) => (
+          <MetricCounter key={m.label} metric={m} delay={i * 0.1} />
         ))}
       </div>
     </section>
+  );
+};
+
+interface MetricProps {
+  metric: { label: string; value: number; desc: string };
+  delay: number;
+}
+
+const MetricCounter: React.FC<MetricProps> = ({ metric, delay }) => {
+  const { count, ref } = useCounter(metric.value);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="metric-card"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.4 }}
+    >
+      <div className="metric-num">{count}</div>
+      <div className="metric-label">{metric.label}</div>
+      <div className="metric-desc">{metric.desc}</div>
+    </motion.div>
   );
 };
 

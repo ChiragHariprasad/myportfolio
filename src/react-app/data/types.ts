@@ -112,6 +112,7 @@ export interface Experience {
   type: ExperienceType;
   startDate: string;
   endDate?: string;
+  duration?: string;
   location?: string;
   description: string;
   projects: string[];
