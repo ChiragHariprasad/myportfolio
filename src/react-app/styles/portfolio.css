@@ -1375,86 +1375,220 @@ main {
   border-top: 1px solid var(--border);
 }
 
-/* ---- Timeline ---- */
-.timeline-container {
-  max-width: 700px;
+/* ---- Crime Scene Timeline ---- */
+.crime-scene-board {
+  max-width: 900px;
   margin: 0 auto;
   position: relative;
-}
-.timeline-container::before {
-  content: '';
-  position: absolute;
-  left: 1rem;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, var(--accent), var(--border), transparent);
+  background-color: var(--bg-secondary);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  padding: 3rem 1rem;
+  border-radius: 8px;
+  border: 10px solid var(--border); /* Wood frame */
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 15px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
-.timeline-year-group { margin-bottom: 2rem; }
+/* Center String */
+.crime-scene-board::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent); /* Red string color */
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.timeline-year-group { 
+  margin-bottom: 4rem; 
+  position: relative; 
+  z-index: 2; 
+}
 
 .timeline-year-label {
   font-family: var(--font-mono);
   font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  padding-left: 3rem;
+  font-weight: 900;
+  color: var(--bg-primary);
+  background: var(--accent); /* Yellow sticky note */
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 3rem;
+  transform: rotate(-3deg);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
   position: relative;
-}
-.timeline-year-label::before {
-  content: '';
-  position: absolute;
-  left: 0.65rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  border: 1px solid var(--border);
 }
 
 .timeline-event {
-  padding-left: 3rem;
-  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50%;
   position: relative;
+  margin-bottom: 3rem;
+  width: 100%;
 }
+.timeline-event:nth-child(even) {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: 50%;
+}
+
+.evidence-card {
+  width: 85%;
+  max-width: 380px;
+  background: var(--bg-card); /* Off white paper */
+  color: var(--text-primary);
+  padding: 1.5rem;
+  box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Random rotations for cards */
+.timeline-event:nth-child(odd) .evidence-card { 
+  transform: rotate(-2deg); 
+  margin-right: 2rem; 
+}
+.timeline-event:nth-child(even) .evidence-card { 
+  transform: rotate(2deg); 
+  margin-left: 2rem; 
+}
+.timeline-event:nth-child(3n) .evidence-card { transform: rotate(1.5deg); }
+.timeline-event:nth-child(4n) .evidence-card { transform: rotate(-1.5deg); }
+
+.evidence-card:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 20;
+  box-shadow: 10px 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Red Pin */
+.evidence-pin {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.5), inset -2px -2px 4px rgba(0,0,0,0.4);
+  z-index: 5;
+}
+.evidence-pin::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Connect string to pin */
 .timeline-event::before {
   content: '';
   position: absolute;
-  left: 0.85rem;
-  top: 0.5rem;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--text-muted);
+  top: 15px; /* Center of the card horizontally */
+  left: 50%;
+  width: calc(50% - 2rem);
+  height: 2px;
+  background: var(--accent); /* Red string */
+  z-index: 1;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+  transform-origin: left center;
 }
+.timeline-event:nth-child(odd)::before { 
+  left: auto; 
+  right: 50%; 
+  transform-origin: right center;
+}
+/* Adjust string angle slightly to attach to pin */
+.timeline-event:nth-child(odd)::before { transform: rotate(3deg); }
+.timeline-event:nth-child(even)::before { transform: rotate(-3deg); }
 
-.timeline-event-title {
+
+.evidence-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.2rem;
-}
-.timeline-event-date {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-bottom: 0.3rem;
-}
-.timeline-event-desc {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  color: var(--accent); /* Red marker */
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.timeline-event a {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.75rem;
+.evidence-title {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  color: var(--text-primary);
 }
-.timeline-event a:hover { text-decoration: underline; }
+
+.evidence-desc {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.evidence-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-top: 1rem;
+  border: 6px solid #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  filter: sepia(0.2) contrast(1.1) brightness(0.9);
+  transition: filter 0.3s;
+}
+.evidence-card:hover .evidence-image {
+  filter: sepia(0) contrast(1) brightness(1);
+}
+
+/* Masking Tape */
+.masking-tape {
+  position: absolute;
+  top: -12px;
+  right: -20px;
+  width: 90px;
+  height: 25px;
+  background-color: rgba(230, 225, 200, 0.9);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transform: rotate(25deg);
+  z-index: 4;
+}
+
+.evidence-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+  border: 1px solid var(--accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+.evidence-link:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
 
 /* ---- Patents Page ---- */
 .patents-container {
@@ -1645,4 +1779,58 @@ main {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-2px);
+}
+
+/* ============================================================
+   Chirag Signature — Light Theme Overrides
+   Gold hints, royal blue accents, white background, black text.
+   ============================================================ */
+
+/* Detect bright theme via background color - override grain & shadows */
+[style*="--bg-primary: #fafafa"] ~ *,
+:root:has([style*="--bg-primary: #fafafa"]) body::after {
+  opacity: 0 !important;
+}
+
+/* Global overrides when Chirag Signature theme is active */
+.app-wrapper {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Card shadows for light mode - use soft grey instead of black */
+@supports (color: var(--bg-primary)) {
+  .card:hover,
+  .project-card:hover,
+  .patent-card:hover,
+  .experience-card:hover,
+  .metric-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, var(--shadow-opacity, 0.3));
+  }
+}
+
+/* Royal blue highlights for badges in light mode using --highlight */
+.badge-publication {
+  background: rgba(30, 58, 138, 0.08);
+  color: var(--highlight, #60a5fa);
+  border: 1px solid rgba(30, 58, 138, 0.15);
+}
+
+/* Section tag blue accent for light mode */
+.section-tag {
+  border-color: rgba(var(--accent-rgb), 0.25);
+}
+
+/* Nav sidebar light mode refinement */
+.nav-sidebar {
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Loading screen adapts to theme */
+.loading-screen {
+  transition: background 0.3s ease;
+}
+
+/* Command palette adapts */
+.command-palette {
+  transition: background 0.3s ease;
 }

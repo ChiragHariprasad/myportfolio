@@ -1,0 +1,17 @@
+{
+  "id": "glob-tech",
+  "organization": "Glob Tech Fortune Industries",
+  "role": "Quality Control Intern",
+  "type": "internship",
+  "startDate": "2024-01",
+  "endDate": "2024-04",
+  "duration": "4 Months",
+  "location": "On-site",
+  "description": "Worked as a Quality Control Intern, ensuring products met industry standards and optimizing quality assurance workflows.",
+  "projects": [],
+  "technologies": ["Quality Assurance", "Testing", "Reporting"],
+  "achievements": [
+    "Monitored and maintained product quality.",
+    "Streamlined inspection processes."
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "id": "adaptive-pedagogy",
-  "title": "Adaptive Pedagogy",
+  "title": "APE",
   "fullTitle": "A Computational Framework Integrating Psychometric Student Modeling, Educational Ontologies, and Explainable Bayesian Updating",
   "domain": "EdTech / AI-Driven Pedagogy",
-  "status": "in-progress",
+  "status": "completed",
   "category": "research",
   "year": 2026,
   "month": 7,
-  "completedDate": null,
+  "completedDate": "2026-07-14",
   "description": "Research-driven adaptive recommendation engine for personalized education using psychometric modeling, educational ontologies, and explainable Bayesian updating.",
   "overview": "This research-driven project develops an adaptive recommendation engine for personalized education. It constructs psychometric models of individual learners—capturing cognitive abilities, knowledge gaps, and learning styles—using item response theory and latent trait modeling. These student models are mapped onto a formal educational ontology with explainable Bayesian updating for dynamic instructional recommendations.",
   "features": [
@@ -33,6 +33,5 @@
   "tags": ["edtech", "bayesian", "psychometrics", "ontology", "recommendation", "research"],
   "complexity": "high",
   "internship": null,
-  "relatedProjects": ["scale"],
-  "confidential": true
+  "relatedProjects": ["scale"]
 }

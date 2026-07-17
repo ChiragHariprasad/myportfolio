@@ -14,19 +14,21 @@ const Timeline: React.FC = () => {
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <span className="section-tag">Journey</span>
-        <h2 className="section-title">Timeline</h2>
+        <span className="section-tag">Investigation</span>
+        <h2 className="section-title">Case Files</h2>
         <p className="section-subtitle">
-          Auto-generated from all projects, patents, publications, and experience.
-          Add a JSON file → it appears here.
+          Tracing the timeline of events, projects, and milestones. Follow the thread.
         </p>
       </motion.div>
 
-      <div className="timeline-container">
+      <div className="crime-scene-board">
         {years.map((year, yi) => {
           const events = timelineByYear.get(year) || [];
-          // Sort events within year: newest month first
-          const sorted = [...events].sort((a, b) => b.month - a.month);
+          // Sort events within year: newest month first, then newest day first
+          const sorted = [...events].sort((a, b) => {
+            if (b.month !== a.month) return b.month - a.month;
+            return (b.day || 1) - (a.day || 1);
+          });
 
           return (
             <motion.div key={year} className="timeline-year-group"
@@ -39,17 +41,35 @@ const Timeline: React.FC = () => {
 
               {sorted.map((event) => (
                 <div key={event.id} className="timeline-event">
-                  <div className="timeline-event-date">{event.date}</div>
-                  <div className="timeline-event-title">{event.title}</div>
-                  <div className="timeline-event-desc">
-                    {event.description.length > 150
-                      ? event.description.slice(0, 150) + '...'
-                      : event.description
-                    }
+                  <div className="evidence-card">
+                    <div className="masking-tape"></div>
+                    <div className="evidence-pin"></div>
+                    
+                    <div className="evidence-date">
+                      {event.date} // CASE: {event.type.toUpperCase()}
+                    </div>
+                    
+                    <div className="evidence-title">{event.title}</div>
+                    
+                    <div className="evidence-desc">
+                      {event.description.length > 250
+                        ? event.description.slice(0, 250) + '...'
+                        : event.description
+                      }
+                    </div>
+
+                    {event.image && (
+                      <img src={event.image} alt={event.title} className="evidence-image" />
+                    )}
+
+                    {event.projectId && (
+                      <div style={{ marginTop: '0.5rem' }}>
+                        <Link to={`/projects/${event.projectId}`} className="evidence-link">
+                          View Project File →
+                        </Link>
+                      </div>
+                    )}
                   </div>
-                  {event.projectId && (
-                    <Link to={`/projects/${event.projectId}`}>View Project →</Link>
-                  )}
                 </div>
               ))}
             </motion.div>

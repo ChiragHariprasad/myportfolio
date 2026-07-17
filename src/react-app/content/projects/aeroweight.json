@@ -3,11 +3,11 @@
   "title": "AeroWeight",
   "fullTitle": "An Intelligent Data Gravity Engine for Multi-Cloud Compute Routing",
   "domain": "Cloud Computing / Data Gravity Optimization",
-  "status": "in-progress",
+  "status": "completed",
   "category": "systems",
   "year": 2026,
   "month": 7,
-  "completedDate": null,
+  "completedDate": "2026-07-13",
   "description": "Intelligent orchestration engine routing computational workloads across multiple cloud providers by modeling data gravity with predictive analytics and reinforcement learning.",
   "overview": "AeroWeight is an intelligent orchestration engine that routes computational workloads across multiple cloud providers by modeling data gravity—the tendency of data to attract processing. The system analyzes data location, volume, movement costs, network latency, and compute pricing to make optimal placement decisions using reinforcement learning.",
   "features": [
@@ -36,6 +36,5 @@
   "tags": ["cloud", "multi-cloud", "data-gravity", "reinforcement-learning", "optimization", "infrastructure"],
   "complexity": "high",
   "internship": null,
-  "relatedProjects": ["deep"],
-  "confidential": true
+  "relatedProjects": ["deep"]
 }

@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          Portfolio OS v1.0
+          Portfolio OS v3.0
         </motion.p>
 
         {/* Name */}

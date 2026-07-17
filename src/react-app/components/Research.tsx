@@ -2,17 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, ExternalLink, ArrowRight } from 'lucide-react';
-import { getAllPublications, getProjectsByTag } from '../data/contentLoader';
+import { getAllPublications, getProjectsByTag, getProjectsByCategory, getProject } from '../data/contentLoader';
 import '../styles/portfolio.css';
 
 const Research: React.FC = () => {
   const publications = getAllPublications();
-  const researchProjects = getProjectsByTag('research').concat(
-    getProjectsByTag('causal-inference')
-  );
+
+  // Gather research-grade projects from multiple sources
+  const researchSources = [
+    ...getProjectsByCategory('research'),
+    ...getProjectsByTag('causal-inference'),
+    ...getProjectsByTag('research'),
+  ];
+
+  // Explicitly include APE and AeroWeight per user request
+  const ape = getProject('adaptive-pedagogy');
+  const aero = getProject('aeroweight');
+  if (ape) researchSources.push(ape);
+  if (aero) researchSources.push(aero);
+
   // Deduplicate
   const seen = new Set<string>();
-  const uniqueResearchProjects = researchProjects.filter(p => {
+  const uniqueResearchProjects = researchSources.filter(p => {
     if (seen.has(p.id)) return false;
     seen.add(p.id);
     return true;

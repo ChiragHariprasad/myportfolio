@@ -1,0 +1,75 @@
+[
+  {
+    "id": "sjp-join",
+    "title": "Passed 10th & Joined SJP",
+    "date": "2021-06-01",
+    "description": "Passed 10th grade and joined Sri Jayachamarajendra (Govt) Polytechnic (SJP).",
+    "image": "/assets/sjp-admission.png"
+  },
+  {
+    "id": "cr-oct-2021",
+    "title": "Became Class Representative",
+    "date": "2021-10-01",
+    "description": "Selected as the Class Representative (CR) for my department."
+  },
+  {
+    "id": "best-cr-2022",
+    "title": "Best CR & 3rd Highest Scorer",
+    "date": "2022-07-01",
+    "description": "Awarded Best Class Representative and achieved the 3rd highest score in the department.",
+    "image": "/assets/best-cr.png"
+  },
+  {
+    "id": "first-fest-2023",
+    "title": "First Independent Fest",
+    "date": "2023-07-01",
+    "description": "Hosted my first independent fest (June - July 2023) featuring cricket, chess, carrom, and badminton tournaments. Concluded with a grand finale and award ceremony to facilitate winners and recognize academic excellence.",
+    "image": "/assets/first-fest-2023.png"
+  },
+  {
+    "id": "public-speech-2023",
+    "title": "First Public Speech",
+    "date": "2023-11-01",
+    "description": "Gave my first public speech to teachers, investors, and students about our student-funded 3D printing lab."
+  },
+  {
+    "id": "3d-printers-funded",
+    "title": "Secured 3D Printers",
+    "date": "2023-12-01",
+    "description": "Successfully secured full funding for 2 FDM 3D printers for the lab.",
+    "image": "/assets/3d-printers.png"
+  },
+  {
+    "id": "rejected-investment",
+    "title": "Rejected Farm Investment",
+    "date": "2023-12-15",
+    "description": "Offered an opportunity to secure investment for starting a 3D printing farm, which I turned down to focus on other goals."
+  },
+  {
+    "id": "organised-fest-2024",
+    "title": "Organised Student Fest",
+    "date": "2024-05-01",
+    "description": "Led and completely handled the organisation of a student-funded college fest."
+  },
+  {
+    "id": "sjp-graduation",
+    "title": "Graduated from SJP",
+    "date": "2024-05-07",
+    "description": "Graduated from Sri Jayachamarajendra Polytechnic (farewell on May 7th).",
+    "image": "/assets/graduation.png"
+  },
+  {
+    "id": "first-hackathon",
+    "title": "First Hackathon",
+    "date": "2024-10-11",
+    "description": "Participated in and won my very first hackathon.",
+    "image": "/assets/first-hackathon.png"
+  },
+  {
+    "id": "rvce-admission",
+    "title": "Admitted to RVCE",
+    "date": "2024-08-01",
+    "description": "Secured admission to RV College of Engineering (RVCE), a major achievement in my academic journey.",
+    "image": "/assets/rvce-admission.png"
+  }
+]

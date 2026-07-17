@@ -127,11 +127,23 @@ export interface TimelineEvent {
   date: string;
   year: number;
   month: number;
+  day?: number;
   title: string;
   description: string;
   type: 'project' | 'patent' | 'publication' | 'experience' | 'education' | 'milestone';
   projectId?: string;
   icon?: string;
+  image?: string; // For major events like graduation, hackathons, etc.
+}
+
+// ---- Milestone ----
+
+export interface Milestone {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+  image?: string;
 }
 
 // ---- Tech Stack ----

@@ -4,7 +4,7 @@
 // Adding a new JSON file here automatically propagates everywhere.
 // ============================================================
 
-import type { Project, Patent, Publication, Experience, HeroConfig, SiteConfig } from './types';
+import type { Project, Patent, Publication, Experience, HeroConfig, SiteConfig, Milestone } from './types';
 
 // ---- Import All Projects ----
 import vectorData from '../content/projects/vector.json';
@@ -38,6 +38,10 @@ import scaleIeeeData from '../content/publications/scale-ieee.json';
 
 // ---- Import Experience ----
 import iiflData from '../content/experience/iifl-samasta.json';
+import globTechData from '../content/experience/glob-tech.json';
+
+// ---- Import Milestones ----
+import milestonesData from '../content/milestones/milestones-list.json';
 
 // ---- Import Config ----
 import heroConfigData from '../content/config/hero.json';
@@ -82,7 +86,10 @@ const allPublications: Publication[] = [
 
 const allExperience: Experience[] = [
   iiflData,
+  globTechData,
 ] as Experience[];
+
+const allMilestones: Milestone[] = milestonesData as Milestone[];
 
 // ============================================================
 // Project Queries
@@ -226,6 +233,14 @@ export function getAllExperience(): Experience[] {
 
 export function getExperience(id: string): Experience | undefined {
   return allExperience.find(e => e.id === id);
+}
+
+// ============================================================
+// Milestone Queries
+// ============================================================
+
+export function getAllMilestones(): Milestone[] {
+  return allMilestones;
 }
 
 // ============================================================

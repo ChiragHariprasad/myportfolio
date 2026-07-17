@@ -6,8 +6,8 @@
   "status": "completed",
   "category": "research",
   "year": 2026,
-  "month": 6,
-  "completedDate": "2026-06-10",
+  "month": 7,
+  "completedDate": "2026-07-10",
   "description": "Integrated computational policy-analysis framework studying long-term consequences of engineering education expansion in India. Combines System Dynamics, Structural Causal Models, and Agent-Based Modeling. Published in IEEE Access.",
   "overview": "S.C.A.L.E. is an integrated computational policy-analysis framework developed to study the long-term consequences of engineering education expansion in India. Rather than treating higher education, labor markets, and economic growth as independent systems, S.C.A.L.E. models them as a single dynamic ecosystem connected through delayed feedback loops, causal dependencies, and heterogeneous agent behavior. The framework combines System Dynamics (SD), Structural Causal Models (SCM), and Agent-Based Modeling (ABM) to evaluate how policy interventions influence graduate employability, underemployment, wage dynamics, migration, human-capital retention, and economic productivity over long time horizons.",
   "features": [
@@ -42,7 +42,7 @@
   "publication": {
     "journal": "IEEE Access",
     "doi": "10.1109/ACCESS.2026.3704923",
-    "publishedDate": "2026-06-10",
+    "publishedDate": "2026-07-10",
     "title": "Unbalanced Expansion of Engineering Education in India: A Data-Driven Policy Analysis"
   },
   "github": null,
