@@ -8,10 +8,10 @@
   "year": 2025,
   "month": 10,
   "completedDate": "2025-10-03",
-  "description": "Real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile. Continuously learns individual behavior, clusters users into behavioral personas, assigns persona-specific anomaly models, and produces fraud risk scores in under 100ms.",
-  "overview": "V.E.C.T.O.R is a real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile. Instead of applying a single global fraud model to all users, it continuously learns individual behavior, clusters users into behavioral personas, assigns persona-specific anomaly models, and produces fraud risk scores in under 100ms. The system handles cold-start users via an XGBoost fallback, manages ambiguous transactions through 2FA verification, and provides a live monitoring dashboard. It is designed as a production-grade multi-layer streaming pipeline.",
+  "description": "Real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile. Continuously learns individual behavior, clusters users into behavioral personas, assigns persona-specific anomaly models, and produces fraud risk scores in under 50 ms.",
+  "overview": "V.E.C.T.O.R is a real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile. Instead of applying a single global fraud model to all users, it continuously learns individual behavior, clusters users into behavioral personas, assigns persona-specific anomaly models, and produces fraud risk scores in under 50 ms. The system handles cold-start users via an XGBoost fallback, manages ambiguous transactions through 2FA verification, and provides a live monitoring dashboard. It is designed as a production-grade multi-layer streaming pipeline.",
   "features": [
-    { "label": "Real-Time Transaction Monitoring", "description": "Stream-based scoring <100ms per transaction." },
+    { "label": "Real-Time Transaction Monitoring", "description": "Stream-based scoring <50 ms per transaction." },
     { "label": "Dynamic User Profiling", "description": "Continuously updated behavior profiles: velocity, average spend, frequency, session behavior, time gaps, loan activity, channel usage." },
     { "label": "Behavioral Clustering (Persona Engine)", "description": "Users grouped into clusters (low-spend/high-frequency, high-spend/low-frequency, loan-heavy, abnormal velocity). Fraud baselines differ per cluster." },
     { "label": "Persona-Specific Fraud Models", "description": "Each cluster has its own Isolation Forest trained on that cluster's transaction distribution." },
@@ -41,7 +41,7 @@
     { "name": "Monitoring + Dashboard", "responsibility": "React frontend, Node.js backend, ~1-second auto-refresh, Cloudflare Tunnel hosting" }
   ],
   "results": [
-    "Real-time fraud scoring pipeline operational at <100ms latency",
+    "Real-time fraud scoring pipeline operational at <50 ms latency",
     "Behavioral clustering with persona-specific anomaly detection",
     "Cold-start handling via XGBoost fallback",
     "Live monitoring dashboard with Cloudflare-hosted HTTPS endpoint",
@@ -53,7 +53,7 @@
   "publication": null,
   "github": null,
   "metrics": {
-    "latency": "<100ms",
+    "latency": "<50 ms",
     "clusteringTrigger": "10/1000/10000 transactions"
   },
   "featured": true,

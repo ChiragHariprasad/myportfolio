@@ -8,9 +8,9 @@
   "domain": "Real-Time Fraud Detection | Behavioral AI",
   "projectId": "vector",
   "role": "Primary Inventor",
-  "abstract": "A patented real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile using dynamic behavioral clustering, persona-specific anomaly models, and multi-layer streaming architecture with sub-100ms scoring latency.",
+  "abstract": "A patented real-time fraud detection engine that personalizes anomaly detection to each user's behavior profile using dynamic behavioral clustering, persona-specific anomaly models, and multi-layer streaming architecture with sub-50 ms scoring latency.",
   "claims": [
-    "Real-time transaction scoring with <100ms latency using streaming pipeline",
+    "Real-time transaction scoring with <50 ms latency using streaming pipeline",
     "Dynamic behavioral clustering using UMAP + HDBSCAN for user persona assignment",
     "Per-cluster Isolation Forest models with persona-specific fraud baselines",
     "Hybrid model architecture: XGBoost fallback for cold-start users",

@@ -24,7 +24,7 @@ const About: React.FC = () => {
       >
         <p className="about-statement">
           I'm <span className="accent">Chirag</span>, an AI/ML Systems Engineer
-          who builds end-to-end intelligent systems that don't just predict —
+          who builds end-to-end intelligent systems that don't just predict ...
           they <span className="accent">operate</span>.
         </p>
 
@@ -32,7 +32,7 @@ const About: React.FC = () => {
           My work sits at the intersection of machine learning, automation, and
           production-grade software engineering. I've shipped {stats.totalProjects} projects
           across fraud detection, urban simulation, healthcare operations,
-          biodiversity inference, and meeting intelligence — always with a focus on
+          biodiversity inference, and meeting intelligence. And always with a focus on
           scalability, reliability, and real-world constraints.
         </p>
 
@@ -43,7 +43,7 @@ const About: React.FC = () => {
         </p>
 
         <p className="about-bio" style={{ fontStyle: 'italic', opacity: 0.8 }}>
-          My edge is execution: I don't just build "models". I build systems — complete
+          My edge is execution: I don't just build "models". I build systems, complete
           with data flow orchestration, monitoring metrics, fail-safes, explainability,
           and deployment-ready artifacts.
         </p>
