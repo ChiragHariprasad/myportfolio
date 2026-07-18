@@ -1413,7 +1413,7 @@ main {
   transition: z-index 0.3s step-end;
 }
 .evidence-card-wrapper:hover {
-  z-index: 50 !important;
+  z-index: 1000 !important;
   transition: z-index 0.3s step-start;
 }
 
@@ -1429,14 +1429,46 @@ main {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
-.evidence-card:hover {
-  transform: scale(1.5) translateY(-10px) !important;
+.evidence-card-wrapper:hover .evidence-card {
   box-shadow: 10px 20px 40px rgba(0,0,0,0.6);
   filter: drop-shadow(0 0 15px rgba(255,255,255,0.05));
-  z-index: 1000;
 }
 
-/* Progressive Disclosure for Text Cards */
+/* Hovered Card Modal Overlay */
+.hovered-card-modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%; /* 80% of border height */
+  aspect-ratio: 1 / 1.3;
+  z-index: 9999;
+  pointer-events: auto;
+  border-radius: 8px;
+}
+.hovered-card-modal-container .evidence-card {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  transform: none !important;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 100vw rgba(0,0,0,0.3); /* dark backdrop */
+}
+.hovered-card-modal-container .evidence-card-details {
+  max-height: none !important;
+  opacity: 1 !important;
+  margin-top: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+.hovered-card-modal-container .evidence-image {
+  height: 45%;
+  min-height: 200px;
+  flex-shrink: 0;
+  filter: sepia(0) contrast(1) brightness(1);
+}
 .text-only .evidence-card-details {
   max-height: 0;
   opacity: 0;

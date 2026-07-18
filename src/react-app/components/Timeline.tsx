@@ -9,13 +9,28 @@ const Timeline: React.FC = () => {
   const timelineByYear = useMemo(() => getTimelineByYear(), []);
   const years = useMemo(() => Array.from(timelineByYear.keys()).sort((a, b) => b - a), [timelineByYear]);
 
-  const BOARD_WIDTH = 3400;
-  const BOARD_HEIGHT = Math.max(2000, years.length * 800 + 400);
+  // Horizontal layout sizing
+  const BOARD_HEIGHT = 1600;
+  const BOARD_WIDTH = Math.max(2000, years.length * 1100 + 800);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [minScale, setMinScale] = useState(0.2);
 
-  // Dynamically calculate the exact minScale to fit the board within the viewport exactly
+  // Hover state
+  const [hoveredEvent, setHoveredEvent] = useState<any>(null);
+  const hoverTimeout = useRef<any>(null);
+
+  const handleMouseEnter = (event: any, year: number) => {
+    clearTimeout(hoverTimeout.current);
+    setHoveredEvent({ event, year });
+  };
+
+  const handleMouseLeave = () => {
+    hoverTimeout.current = setTimeout(() => {
+      setHoveredEvent(null);
+    }, 400); // Wait 400ms to allow mouse to travel to modal
+  };
+
   useEffect(() => {
     const updateScale = () => {
       if (wrapperRef.current) {
@@ -26,7 +41,6 @@ const Timeline: React.FC = () => {
       }
     };
     updateScale();
-    // Small timeout to ensure DOM is settled
     setTimeout(updateScale, 100);
     window.addEventListener('resize', updateScale);
     return () => window.removeEventListener('resize', updateScale);
@@ -56,9 +70,10 @@ const Timeline: React.FC = () => {
         return (a.day || 1) - (b.day || 1);
       });
 
-      const isLeft = yi % 2 === 0;
-      const centerX = isLeft ? BOARD_WIDTH * 0.35 : BOARD_WIDTH * 0.65;
-      const centerY = 500 + yi * 750;
+      // Horizontal layout: move right per year, zig-zag up/down
+      const isTop = yi % 2 === 0;
+      const centerY = isTop ? BOARD_HEIGHT * 0.35 : BOARD_HEIGHT * 0.65;
+      const centerX = 600 + yi * 1100;
       
       yearPosMap.set(year, { x: centerX, y: centerY });
 
@@ -89,7 +104,7 @@ const Timeline: React.FC = () => {
       });
     });
     return { posMap, yearPosMap };
-  }, [years, timelineByYear, BOARD_WIDTH]);
+  }, [years, timelineByYear, BOARD_WIDTH, BOARD_HEIGHT]);
 
   const allPositionedEvents = Array.from(positions.posMap.values()).sort((a, b) => a.globalIndex - b.globalIndex);
 
@@ -121,25 +136,26 @@ const Timeline: React.FC = () => {
               className="crime-scene-board"
               style={{ width: BOARD_WIDTH, height: BOARD_HEIGHT }}
             >
-              {/* SVG Strings connecting events */}
+              {/* SVG Strings connecting events within the same year */}
               <svg className="evidence-strings" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
                 {allPositionedEvents.map((pos, i) => {
                   if (i === allPositionedEvents.length - 1) return null;
                   const p1 = pos;
                   const p2 = allPositionedEvents[i + 1];
                   
-                  const cx = (p1.x + p2.x) / 2;
-                  const cy = (p1.y + p2.y) / 2 + (p1.year === p2.year ? 50 : 200);
+                  if (p1.year !== p2.year) return null;
                   
-                  const color = getYearColor(p2.year);
+                  const cx = (p1.x + p2.x) / 2;
+                  const cy = (p1.y + p2.y) / 2 + 50; 
+                  
+                  const color = getYearColor(p1.year);
                   
                   return (
                     <path
                       key={`line-${i}`}
                       d={`M ${p1.x} ${p1.y} Q ${cx} ${cy} ${p2.x} ${p2.y}`}
                       stroke={color}
-                      strokeWidth={p1.year === p2.year ? "3" : "5"} 
-                      strokeDasharray={p1.year === p2.year ? "none" : "10 5"} 
+                      strokeWidth="3"
                       fill="none"
                       strokeLinecap="round"
                       style={{ filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.5))' }}
@@ -157,7 +173,7 @@ const Timeline: React.FC = () => {
                   <div key={`year-${year}`} style={{
                     position: 'absolute',
                     left: yp.x,
-                    top: yp.y - 150, 
+                    top: yp.y - 250, 
                     transform: 'translate(-50%, -50%) rotate(-3deg)',
                     zIndex: 1,
                   }}>
@@ -183,6 +199,8 @@ const Timeline: React.FC = () => {
                       position: 'absolute',
                       zIndex: 2,
                     }}
+                    onMouseEnter={() => handleMouseEnter(event, year)}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className="evidence-card">
                       <div className="masking-tape"></div>
@@ -197,13 +215,6 @@ const Timeline: React.FC = () => {
                             </div>
                             <div className="evidence-title">{event.title}</div>
                             <div className="evidence-desc">{event.description}</div>
-                            {event.projectId && (
-                              <div style={{ marginTop: '0.5rem' }}>
-                                <Link to={`/projects/${event.projectId}`} className="evidence-link">
-                                  View Project File →
-                                </Link>
-                              </div>
-                            )}
                           </div>
                         </>
                       ) : (
@@ -214,13 +225,6 @@ const Timeline: React.FC = () => {
                               {event.date} // CASE: {event.type.toUpperCase()}
                             </div>
                             <div className="evidence-desc">{event.description}</div>
-                            {event.projectId && (
-                              <div style={{ marginTop: '0.5rem' }}>
-                                <Link to={`/projects/${event.projectId}`} className="evidence-link">
-                                  View Project File →
-                                </Link>
-                              </div>
-                            )}
                           </div>
                         </>
                       )}
@@ -231,6 +235,57 @@ const Timeline: React.FC = () => {
             </div>
           </TransformComponent>
         </TransformWrapper>
+
+        {/* Modal Overlay rendered completely outside the TransformWrapper to guarantee fixed size! */}
+        {hoveredEvent && (
+          <div 
+            className="hovered-card-modal-container"
+            onMouseEnter={() => clearTimeout(hoverTimeout.current)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className={`evidence-card ${hoveredEvent.event.image ? 'has-image' : 'text-only'}`}>
+              <div className="masking-tape"></div>
+              <div className="evidence-pin" style={{ backgroundColor: getYearColor(hoveredEvent.year) }}></div>
+              
+              {hoveredEvent.event.image ? (
+                <>
+                  <img src={hoveredEvent.event.image} alt={hoveredEvent.event.title} className="evidence-image" />
+                  <div className="evidence-card-details">
+                    <div className="evidence-date" style={{ color: getYearColor(hoveredEvent.year) }}>
+                      {hoveredEvent.event.date} // CASE: {hoveredEvent.event.type.toUpperCase()}
+                    </div>
+                    <div className="evidence-title">{hoveredEvent.event.title}</div>
+                    <div className="evidence-desc">{hoveredEvent.event.description}</div>
+                    {hoveredEvent.event.projectId && (
+                      <div style={{ marginTop: '0.5rem' }}>
+                        <Link to={`/projects/${hoveredEvent.event.projectId}`} className="evidence-link">
+                          View Project File →
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="evidence-title text-header">{hoveredEvent.event.title}</div>
+                  <div className="evidence-card-details">
+                    <div className="evidence-date" style={{ color: getYearColor(hoveredEvent.year) }}>
+                      {hoveredEvent.event.date} // CASE: {hoveredEvent.event.type.toUpperCase()}
+                    </div>
+                    <div className="evidence-desc">{hoveredEvent.event.description}</div>
+                    {hoveredEvent.event.projectId && (
+                      <div style={{ marginTop: '0.5rem' }}>
+                        <Link to={`/projects/${hoveredEvent.event.projectId}`} className="evidence-link">
+                          View Project File →
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
