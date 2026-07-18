@@ -1376,107 +1376,118 @@ main {
 }
 
 /* ---- Crime Scene Timeline ---- */
-.crime-scene-board {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-  background-color: var(--bg-secondary);
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-  padding: 3rem 1rem;
-  border-radius: 8px;
-  border: 10px solid var(--border); /* Wood frame */
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 15px 30px rgba(0,0,0,0.5);
-  overflow: hidden;
-}
-
-/* Center String */
-.crime-scene-board::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--accent); /* Red string color */
-  transform: translateX(-50%);
-  z-index: 1;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-}
-
-.timeline-year-group { 
-  margin-bottom: 4rem; 
-  position: relative; 
-  z-index: 2; 
-}
-
-.timeline-year-label {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--bg-primary);
-  background: var(--accent); /* Yellow sticky note */
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  margin-bottom: 3rem;
-  transform: rotate(-3deg);
-  box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%) rotate(-3deg);
-  border: 1px solid var(--border);
-}
-
-.timeline-event {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 50%;
-  position: relative;
-  margin-bottom: 3rem;
+.evidence-board-wrapper {
   width: 100%;
+  height: calc(100vh - 120px);
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 10px solid #2d2a23; /* Dark frame */
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 15px 30px rgba(0,0,0,0.5);
+  margin-bottom: 4rem;
 }
-.timeline-event:nth-child(even) {
-  justify-content: flex-start;
-  padding-right: 0;
-  padding-left: 50%;
+
+.zoom-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-secondary);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  cursor: grab;
+}
+.zoom-wrapper:active {
+  cursor: grabbing;
+}
+.zoom-content {
+  width: 100%;
+  height: 100%;
+}
+
+.crime-scene-board {
+  position: relative;
+}
+
+.evidence-card-wrapper {
+  transition: z-index 0.3s step-end;
+}
+.evidence-card-wrapper:hover {
+  z-index: 50 !important;
+  transition: z-index 0.3s step-start;
 }
 
 .evidence-card {
-  width: 85%;
-  max-width: 380px;
+  width: 320px;
   background: var(--bg-card); /* Off white paper */
   color: var(--text-primary);
   padding: 1.5rem;
   box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
   position: relative;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.05);
 }
-
-/* Random rotations for cards */
-.timeline-event:nth-child(odd) .evidence-card { 
-  transform: rotate(-2deg); 
-  margin-right: 2rem; 
-}
-.timeline-event:nth-child(even) .evidence-card { 
-  transform: rotate(2deg); 
-  margin-left: 2rem; 
-}
-.timeline-event:nth-child(3n) .evidence-card { transform: rotate(1.5deg); }
-.timeline-event:nth-child(4n) .evidence-card { transform: rotate(-1.5deg); }
 
 .evidence-card:hover {
-  transform: scale(1.08) rotate(0deg) !important;
-  z-index: 20;
-  box-shadow: 10px 20px 40px rgba(0,0,0,0.5);
+  transform: scale(1.1) translateY(-10px) !important;
+  box-shadow: 10px 20px 40px rgba(0,0,0,0.6);
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.05));
 }
 
-/* Red Pin */
+/* Progressive Disclosure for Text Cards */
+.text-only .evidence-card-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  margin-top: 0;
+}
+.text-only:hover .evidence-card-details {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+.text-only .evidence-title {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin-bottom: 0;
+}
+
+/* Progressive Disclosure for Image Cards */
+.has-image .evidence-card-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  margin-top: 0;
+}
+.has-image:hover .evidence-card-details {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+.has-image .evidence-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  filter: sepia(0.2) contrast(1.1) brightness(0.9);
+  transition: filter 0.3s;
+}
+.has-image:hover .evidence-image {
+  filter: sepia(0) contrast(1) brightness(1);
+}
+
+/* Generic elements */
 .evidence-pin {
   position: absolute;
   top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background: var(--accent);
   border-radius: 50%;
   box-shadow: 2px 4px 6px rgba(0,0,0,0.5), inset -2px -2px 4px rgba(0,0,0,0.4);
@@ -1494,95 +1505,51 @@ main {
   transform: translate(-50%, -50%);
 }
 
-/* Connect string to pin */
-.timeline-event::before {
-  content: '';
+.masking-tape {
   position: absolute;
-  top: 15px; /* Center of the card horizontally */
-  left: 50%;
-  width: calc(50% - 2rem);
-  height: 2px;
-  background: var(--accent); /* Red string */
-  z-index: 1;
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
-  transform-origin: left center;
+  top: -12px;
+  right: -10px;
+  width: 80px;
+  height: 22px;
+  background-color: rgba(230, 225, 200, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transform: rotate(20deg);
+  z-index: 4;
 }
-.timeline-event:nth-child(odd)::before { 
-  left: auto; 
-  right: 50%; 
-  transform-origin: right center;
-}
-/* Adjust string angle slightly to attach to pin */
-.timeline-event:nth-child(odd)::before { transform: rotate(3deg); }
-.timeline-event:nth-child(even)::before { transform: rotate(-3deg); }
-
 
 .evidence-date {
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-  font-size: 0.9rem;
-  color: var(--accent); /* Red marker */
+  font-size: 0.85rem;
   border-bottom: 2px solid var(--border);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   padding-bottom: 0.25rem;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
-.evidence-title {
+.has-image .evidence-title {
   font-family: var(--font-sans);
   font-weight: 900;
-  font-size: 1.2rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
-
 .evidence-desc {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.4;
   color: var(--text-secondary);
 }
-
-.evidence-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  margin-top: 1rem;
-  border: 6px solid #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  filter: sepia(0.2) contrast(1.1) brightness(0.9);
-  transition: filter 0.3s;
-}
-.evidence-card:hover .evidence-image {
-  filter: sepia(0) contrast(1) brightness(1);
-}
-
-/* Masking Tape */
-.masking-tape {
-  position: absolute;
-  top: -12px;
-  right: -20px;
-  width: 90px;
-  height: 25px;
-  background-color: rgba(230, 225, 200, 0.9);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  transform: rotate(25deg);
-  z-index: 4;
-}
-
 .evidence-link {
   display: inline-block;
-  margin-top: 1rem;
   color: var(--accent);
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   border: 1px solid var(--accent);
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.4rem;
   border-radius: 4px;
 }
 .evidence-link:hover {
