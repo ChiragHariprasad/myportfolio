@@ -1,5 +1,5 @@
 // ============================================================
-// Search Index — Builds searchable index for Command Palette
+// Search Index - Builds searchable index for Command Palette
 // Powered by all content JSON files.
 // ============================================================
 

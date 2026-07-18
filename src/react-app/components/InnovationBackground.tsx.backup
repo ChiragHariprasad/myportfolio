@@ -98,7 +98,7 @@ const HOLD_DUR = 4000;
 const DISPERSE_DUR = 5500;
 const FIRST_FOUR_DELAY = 25000;
 
-// Knowledge graph labels — drawn from actual portfolio content
+// Knowledge graph labels - drawn from actual portfolio content
 const LABELS = [
   'V.E.C.T.O.R', 'Fraud Detection', 'eDNA Analysis', 'Urban Planning',
   'Meeting AI', 'KYC Systems', 'Causal Inference', 'Pathfinding',
@@ -685,7 +685,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
       ctx.fillRect(0, 0, w, h);
 
       // ═══════════════════════════════════════════
-      // LAYER 1 — Innovation Constellation
+      // LAYER 1 - Innovation Constellation
       // ═══════════════════════════════════════════
 
       // Connections
@@ -728,7 +728,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
       }
 
       // ═══════════════════════════════════════════
-      // LAYER 4 — Idea Evolution Engine
+      // LAYER 4 - Idea Evolution Engine
       // ═══════════════════════════════════════════
 
       for (const pt of d.particles) {
@@ -758,7 +758,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
       }
 
       // ═══════════════════════════════════════════
-      // LAYER 3 — Floating Innovation Artifacts
+      // LAYER 3 - Floating Innovation Artifacts
       // ═══════════════════════════════════════════
 
       for (const art of d.artifacts) {
@@ -781,7 +781,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
       }
 
       // ═══════════════════════════════════════════
-      // LAYER 2 — Living Knowledge Graph
+      // LAYER 2 - Living Knowledge Graph
       // ═══════════════════════════════════════════
 
       // Animated dashed connections
@@ -834,7 +834,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
         ctx.fill();
       }
 
-      // Knowledge labels — appear when layer is prominent
+      // Knowledge labels - appear when layer is prominent
       if (int.k > 0.4) {
         ctx.save();
         ctx.font = '9px Inter, system-ui, -apple-system, sans-serif';
@@ -853,7 +853,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
       }
 
       // ═══════════════════════════════════════════
-      // LAYER 5 — Formation Effects (Blueprint + "4")
+      // LAYER 5 - Formation Effects (Blueprint + "4")
       // ═══════════════════════════════════════════
 
       if (d.formation.active) {

@@ -1,5 +1,5 @@
 // ============================================================
-// Timeline Generator — Auto-generates timeline from all content
+// Timeline Generator - Auto-generates timeline from all content
 // Never manually edited. Scans projects, patents, publications.
 // ============================================================
 
@@ -34,7 +34,7 @@ export function generateTimeline(): TimelineEvent[] {
         year,
         month,
         day,
-        title: `${project.title} — ${project.status === 'completed' ? 'Completed' : 'Published'}`,
+        title: `${project.title} - ${project.status === 'completed' ? 'Completed' : 'Published'}`,
         description: project.description,
         type: 'project',
         projectId: project.id,
@@ -42,11 +42,11 @@ export function generateTimeline(): TimelineEvent[] {
     } else if (project.status === 'in-progress') {
       events.push({
         id: `project-${project.id}`,
-        date: `${project.year} — In Progress`,
+        date: `${project.year} - In Progress`,
         year: project.year,
         month: project.month || 12,
         day: 31,
-        title: `${project.title} — In Progress`,
+        title: `${project.title} - In Progress`,
         description: project.description,
         type: 'project',
         projectId: project.id,
@@ -71,7 +71,7 @@ export function generateTimeline(): TimelineEvent[] {
         year,
         month,
         day,
-        title: `${patent.title} — Patent Published`,
+        title: `${patent.title} - Patent Published`,
         description: patent.abstract,
         type: 'patent',
         projectId: patent.projectId,
@@ -79,7 +79,7 @@ export function generateTimeline(): TimelineEvent[] {
       });
     } else {
       // Enhance existing event
-      existingProjectEvent.title = `${existingProjectEvent.title.replace(' — Completed', '')} — Patent Published`;
+      existingProjectEvent.title = `${existingProjectEvent.title.replace(' - Completed', '')} - Patent Published`;
       existingProjectEvent.type = 'patent';
       if (isFirstPatent) existingProjectEvent.image = '/assets/1st-patent.png';
     }
@@ -116,7 +116,7 @@ export function generateTimeline(): TimelineEvent[] {
       year: startYear,
       month: startMonth,
       day: startDay,
-      title: `${exp.organization} — ${exp.role}`,
+      title: `${exp.organization} - ${exp.role}`,
       description: `Started as a ${exp.role} at ${exp.organization}.`,
       type: 'experience',
       image: exp.id === 'iifl-samasta' ? `/assets/Samasta_start.png` : undefined,
@@ -131,7 +131,7 @@ export function generateTimeline(): TimelineEvent[] {
           year: endYear,
           month: endMonth,
           day: endDay,
-          title: `${exp.organization} — Internship Completed`,
+          title: `${exp.organization} - Internship Completed`,
           description: exp.description,
           type: 'experience',
           image: exp.type === 'internship' ? `/assets/internship-${exp.id}.png` : undefined,

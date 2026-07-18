@@ -13,19 +13,19 @@ interface Milestone {
 }
 
 const DATA: Milestone[] = [
-  { date:'31 Aug 2021 – May 2024', title:'SJP — Sri Jayachamarajendra Government Polytechnic', subtitle:'Diploma in Engineering', description:'Completed polytechnic education forming the engineering foundation.', category:'education', major:false, x:50, y:600 },
+  { date:'31 Aug 2021 – May 2024', title:'SJP - Sri Jayachamarajendra Government Polytechnic', subtitle:'Diploma in Engineering', description:'Completed polytechnic education forming the engineering foundation.', category:'education', major:false, x:50, y:600 },
   { date:'15 Jan – 4 Feb 2024', title:'Globle Tech Fortune Industries', subtitle:'Quality Assurance Intern', description:'Quality assurance engineering internship gaining industrial experience in manufacturing quality processes.', category:'internship', major:false, x:120, y:565 },
-  { date:'23 Jul 2024', title:'RVCE — Rashtreeya Vidyalaya College of Engineering', subtitle:'B.E. in Computer Science & Engineering', description:'Admission into the undergraduate engineering program at RV College of Engineering, Bengaluru.', category:'education', major:false, x:185, y:535 },
-  { date:'2024 – Present', title:'Intellectual Property Filing (V.E.C.T.O.R)', subtitle:'Primary Inventor — Fraud Analytics', description:'Designed and filed the patent for V.E.C.T.O.R (Velocity-Enhanced Clustering for Transactional Outlier Recognition).', category:'patent', major:true, x:250, y:500 },
-  { date:'2024', title:'AI/ML Intern — IIFL Samasta', subtitle:'Strategy Team (3 Months)', description:'Delivered 2 end-to-end production AI platforms (MeetingsAI and VerifAI) as a solo developer.', category:'internship', major:false, x:315, y:462 },
-  { date:'2024', title:'MeetingsAI / VerifAI System Delivery', subtitle:'Principal Architect — IIFL Samasta', description:'Enterprise meeting intelligence pipeline and high-assurance KYC document verification system.', category:'research', major:false, x:375, y:430 },
+  { date:'23 Jul 2024', title:'RVCE - Rashtreeya Vidyalaya College of Engineering', subtitle:'B.E. in Computer Science & Engineering', description:'Admission into the undergraduate engineering program at RV College of Engineering, Bengaluru.', category:'education', major:false, x:185, y:535 },
+  { date:'2024 – Present', title:'Intellectual Property Filing (V.E.C.T.O.R)', subtitle:'Primary Inventor - Fraud Analytics', description:'Designed and filed the patent for V.E.C.T.O.R (Velocity-Enhanced Clustering for Transactional Outlier Recognition).', category:'patent', major:true, x:250, y:500 },
+  { date:'2024', title:'AI/ML Intern - IIFL Samasta', subtitle:'Strategy Team (3 Months)', description:'Delivered 2 end-to-end production AI platforms (MeetingsAI and VerifAI) as a solo developer.', category:'internship', major:false, x:315, y:462 },
+  { date:'2024', title:'MeetingsAI / VerifAI System Delivery', subtitle:'Principal Architect - IIFL Samasta', description:'Enterprise meeting intelligence pipeline and high-assurance KYC document verification system.', category:'research', major:false, x:375, y:430 },
   { date:'2021 – 2024', title:'Class Representative', subtitle:'Student Leadership (3 Consecutive Years)', description:'Elected by peers to represent class interests and coordinate academic schedules.', category:'leadership', major:false, x:430, y:405 },
-  { date:'3 Oct 2025', title:'V.E.C.T.O.R — Patent Published', subtitle:'Primary Inventor — Fraud Analytics', description:'Patent published for Velocity-Enhanced Clustering for Transactional Outlier Recognition. Real-time behavioral fraud detection.', category:'patent', major:true, x:500, y:355 },
-  { date:'19 Nov 2025 – 13 May 2026', title:'IIFL Samasta — AIML Development Intern', subtitle:'Strategy Department', description:'Extended AIML development internship focused on deploying production AI systems for financial services.', category:'internship', major:false, x:570, y:315 },
-  { date:'27 Mar 2026', title:'GENESIS — Patent Published', subtitle:'Primary Inventor — Urban AI', description:'Patent published for Generative Engine for Networked, Embedded, Spatial Infrastructure Synthesis.', category:'patent', major:true, x:660, y:250 },
-  { date:'29 May 2026', title:'O.R.I.O.N. + Presentation Automation — Patents Published', subtitle:'Co-Inventor', description:'Two patents: Omni-Retail Intelligence & Ordering Network, and Context-Aware Adaptive Presentation Automation System.', category:'patent', major:true, x:770, y:180 },
-  { date:'10 Jun 2026', title:'S.C.A.L.E. — IEEE Access Published', subtitle:'Lead Researcher', description:'"Unbalanced Expansion of Engineering Education in India" published in IEEE Access (Early Access). DOI: 10.1109/ACCESS.2026.3704923.', category:'patent', major:true, x:900, y:85 },
-  { date:'Jun 2026', title:'PROMETHEUS — Customer Digital Twins', subtitle:'AI/ML Systems Architect', description:'AI Customer Futures platform with real-time omnichannel intelligence, churn/LTV prediction, semantic memory, and Monte Carlo simulation.', category:'research', major:false, x:1060, y:110 },
+  { date:'3 Oct 2025', title:'V.E.C.T.O.R - Patent Published', subtitle:'Primary Inventor - Fraud Analytics', description:'Patent published for Velocity-Enhanced Clustering for Transactional Outlier Recognition. Real-time behavioral fraud detection.', category:'patent', major:true, x:500, y:355 },
+  { date:'19 Nov 2025 – 13 May 2026', title:'IIFL Samasta - AIML Development Intern', subtitle:'Strategy Department', description:'Extended AIML development internship focused on deploying production AI systems for financial services.', category:'internship', major:false, x:570, y:315 },
+  { date:'27 Mar 2026', title:'GENESIS - Patent Published', subtitle:'Primary Inventor - Urban AI', description:'Patent published for Generative Engine for Networked, Embedded, Spatial Infrastructure Synthesis.', category:'patent', major:true, x:660, y:250 },
+  { date:'29 May 2026', title:'O.R.I.O.N. + Presentation Automation - Patents Published', subtitle:'Co-Inventor', description:'Two patents: Omni-Retail Intelligence & Ordering Network, and Context-Aware Adaptive Presentation Automation System.', category:'patent', major:true, x:770, y:180 },
+  { date:'10 Jun 2026', title:'S.C.A.L.E. - IEEE Access Published', subtitle:'Lead Researcher', description:'"Unbalanced Expansion of Engineering Education in India" published in IEEE Access (Early Access). DOI: 10.1109/ACCESS.2026.3704923.', category:'patent', major:true, x:900, y:85 },
+  { date:'Jun 2026', title:'PROMETHEUS - Customer Digital Twins', subtitle:'AI/ML Systems Architect', description:'AI Customer Futures platform with real-time omnichannel intelligence, churn/LTV prediction, semantic memory, and Monte Carlo simulation.', category:'research', major:false, x:1060, y:110 },
 ];
 
 const CAT_COLORS: Record<string,string> = {
@@ -167,7 +167,7 @@ const TimelineMountain: React.FC = () => {
       );
     }
 
-    /* default — camp/tent marker */
+    /* default - camp/tent marker */
     return (
       <g>
         <polygon points={`${m.x},${m.y-sz} ${m.x+sz*0.8},${m.y+sz*0.3} ${m.x+sz*0.3},${m.y+sz} ${m.x-sz*0.3},${m.y+sz} ${m.x-sz*0.8},${m.y+sz*0.3}`} fill={col} opacity={0.7} />

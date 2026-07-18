@@ -8,7 +8,7 @@
   "year": 2025,
   "month": 7,
   "completedDate": "2025-07-01",
-  "description": "Cloud-native crime evolution analysis system using AI, geospatial tools, and real-time data pipelines. Introduces 'Crime Genome' — vectorized crime profile modeling.",
+  "description": "Cloud-native crime evolution analysis system using AI, geospatial tools, and real-time data pipelines. Introduces 'Crime Genome' - vectorized crime profile modeling.",
   "overview": "W.A.N.T.E.D is a cloud-native system built to analyze, visualize, and forecast crime evolution patterns across India using AI models, geospatial tools, and real-time data pipelines. It introduces the concept of a 'Crime Genome' – vectorized crime profile modeling that treats crime patterns as structured, analyzable entities rather than raw event logs.",
   "features": [
     { "label": "Crime Genome", "description": "Vectorized crime profile modeling treating crime patterns as structured entities." },

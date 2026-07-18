@@ -1,5 +1,5 @@
 // ============================================================
-// Hero Engine — Adaptive hero logic
+// Hero Engine - Adaptive hero logic
 // Rotating taglines, adaptive title, auto-detected focus areas.
 // ============================================================
 
@@ -45,7 +45,7 @@ export function getAdaptiveTitle(): string {
 }
 
 /**
- * Get title pills (roles) — adaptive based on work distribution.
+ * Get title pills (roles) - adaptive based on work distribution.
  */
 export function getAdaptivePills(): string[] {
   const stats = computeStats();

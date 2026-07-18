@@ -8,7 +8,7 @@
   "year": 2026,
   "month": 7,
   "completedDate": "2026-07-15",
-  "description": "Cloud-native evolution of HARBOR — fully serverless, multi-cloud eDNA taxonomy inference platform with Hugging Face, AWS Lambda, SQS, and Cloudflare.",
+  "description": "Cloud-native evolution of HARBOR - fully serverless, multi-cloud eDNA taxonomy inference platform with Hugging Face, AWS Lambda, SQS, and Cloudflare.",
   "overview": "DEEP is the fully cloud-native evolution of the HARBOR eDNA taxonomy inference system. While HARBOR ran as a local pipeline, DEEP re-architects the platform for global availability, auto-scaling, and zero-ops maintenance. Hugging Face hosts ML inference, AWS provides serverless compute and CDN, and Cloudflare ties everything with custom domain and DNS.",
   "features": [
     { "label": "Serverless Inference Backend", "description": "Models deployed on Hugging Face Inference Endpoints with auto-scaling." },

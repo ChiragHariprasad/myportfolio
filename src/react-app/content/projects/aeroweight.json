@@ -9,7 +9,7 @@
   "month": 7,
   "completedDate": "2026-07-13",
   "description": "Intelligent orchestration engine routing computational workloads across multiple cloud providers by modeling data gravity with predictive analytics and reinforcement learning.",
-  "overview": "AeroWeight is an intelligent orchestration engine that routes computational workloads across multiple cloud providers by modeling data gravity—the tendency of data to attract processing. The system analyzes data location, volume, movement costs, network latency, and compute pricing to make optimal placement decisions using reinforcement learning.",
+  "overview": "AeroWeight is an intelligent orchestration engine that routes computational workloads across multiple cloud providers by modeling data gravity-the tendency of data to attract processing. The system analyzes data location, volume, movement costs, network latency, and compute pricing to make optimal placement decisions using reinforcement learning.",
   "features": [
     { "label": "Data Gravity Modeling", "description": "Quantifies the 'pull' of each dataset based on size, access frequency, and inter-dataset dependencies." },
     { "label": "Multi-Cloud Cost-Aware Routing", "description": "Evaluates compute, storage, and egress costs across AWS, Azure, GCP in real time." },

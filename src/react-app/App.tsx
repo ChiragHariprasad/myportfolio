@@ -111,7 +111,7 @@ function AppContent() {
       <footer className="footer-bar">
         <div className="footer-content">
           <span className="footer-text">Designed & Engineered by Chirag Hariprasad</span>
-          <span className="footer-copyright">© {new Date().getFullYear()} — All Rights Reserved.</span>
+          <span className="footer-copyright">© {new Date().getFullYear()} - All Rights Reserved.</span>
         </div>
       </footer>
     </div>

@@ -49,7 +49,7 @@ const About: React.FC = () => {
         </p>
       </motion.div>
 
-      {/* Competency Pills — auto-generated from top tech */}
+      {/* Competency Pills - auto-generated from top tech */}
       <motion.div
         className="about-competencies"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}

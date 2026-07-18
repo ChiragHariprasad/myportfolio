@@ -1,5 +1,5 @@
 // ============================================================
-// Stats Engine — Global Statistics Computation
+// Stats Engine - Global Statistics Computation
 // NOTHING is hardcoded. Everything is computed from data.
 // ============================================================
 
@@ -58,7 +58,7 @@ export function computeStats(): PortfolioStats {
   };
 }
 
-/** Get the dominant category — for adaptive hero */
+/** Get the dominant category - for adaptive hero */
 export function getDominantCategory(): { category: string; percentage: number } {
   const projects = getAllProjects();
   const categories: Record<string, number> = {};

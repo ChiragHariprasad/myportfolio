@@ -38,7 +38,7 @@ const ExperiencePage: React.FC = () => {
                   <h3 className="experience-company">{exp.organization}</h3>
                   <p className="experience-role">{exp.role}</p>
                   <div className="experience-details">
-                    <span><Calendar size={14} /> {exp.startDate} — {exp.endDate || 'Present'}</span>
+                    <span><Calendar size={14} /> {exp.startDate} - {exp.endDate || 'Present'}</span>
                     {exp.location && <span><MapPin size={14} /> {exp.location}</span>}
                   </div>
                 </div>

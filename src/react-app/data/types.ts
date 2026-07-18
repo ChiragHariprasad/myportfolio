@@ -1,5 +1,5 @@
 // ============================================================
-// Portfolio OS — Core Type Definitions
+// Portfolio OS - Core Type Definitions
 // All content is typed and driven by JSON data files.
 // ============================================================
 

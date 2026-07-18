@@ -1,5 +1,5 @@
 // ============================================================
-// Content Loader — Central Data Access Layer
+// Content Loader - Central Data Access Layer
 // Imports all JSON content and provides typed, queryable access.
 // Adding a new JSON file here automatically propagates everywhere.
 // ============================================================
