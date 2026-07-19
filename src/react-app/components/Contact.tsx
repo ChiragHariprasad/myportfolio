@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
 
           {/* Resume */}
           <div style={{ marginTop: '1.5rem' }}>
-            <a href={config.resumePath} target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'inline-flex' }}>
+            <a href={config.resumePath} download="Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'inline-flex' }}>
               <Download size={16} /> Download Resume
             </a>
           </div>

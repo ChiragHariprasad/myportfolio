@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
           <Link to="/projects" className="btn-primary">
             View Projects <ArrowRight size={16} />
           </Link>
-          <a href={config.resumePath} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+          <a href={config.resumePath} download="Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
             <Download size={16} /> Resume
           </a>
         </motion.div>
