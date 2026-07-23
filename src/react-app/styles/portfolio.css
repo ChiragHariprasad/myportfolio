@@ -662,6 +662,8 @@ main {
   backdrop-filter: blur(10px);
   padding: 2rem;
   border-left: 2px solid var(--accent);
+  width: max-content;
+  max-width: 90vw;
 }
 
 /* Responsive Editorial Hero */
@@ -703,7 +705,7 @@ main {
 
 @media (max-width: 768px) {
   .hero-wrapper.editorial-hero {
-    padding: 6rem 1.5rem 4rem;
+    padding: 2rem 1.5rem 4rem;
   }
   .hero-editorial-content {
     display: flex;
@@ -731,7 +733,7 @@ main {
     text-align: center;
   }
   .hero-layer { 
-    font-size: 11vw; 
+    font-size: 15vw; 
     align-items: center;
   }
   .hero-layer-2, .hero-layer-3 {
