@@ -1,152 +1,168 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { getHeroConfig } from '../data/contentLoader';
 import { computeStats } from '../data/statsEngine';
-import { getRandomTagline, getAdaptivePills, getHeroSubtitle } from '../data/heroEngine';
 import '../styles/portfolio.css';
 
 const Hero: React.FC = () => {
   const config = getHeroConfig();
   const stats = computeStats();
-  const pills = getAdaptivePills();
-  const subtitle = getHeroSubtitle();
-
-  const [tagline, setTagline] = useState(getRandomTagline);
-  const [taglineVisible, setTaglineVisible] = useState(true);
-
-  // Rotate taglines every 4 seconds with fade
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTaglineVisible(false);
-      setTimeout(() => {
-        setTagline(getRandomTagline());
-        setTaglineVisible(true);
-      }, 400);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <section className="hero-wrapper" id="hero">
-      <motion.div
-        className="hero-content"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        {/* Eyebrow */}
-        <motion.p
-          className="hero-eyebrow"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+    <section className="hero-wrapper editorial-hero" id="hero">
+      {/* Background Elements */}
+      <div className="hero-editorial-bg">
+        <div className="bg-grid"></div>
+        <div className="bg-noise"></div>
+        <div className="bg-gradient"></div>
+        <motion.div 
+          className="bg-ghost-letters"
+          animate={{ y: [0, -30, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         >
-          Portfolio OS v3.0
-        </motion.p>
-
-        {/* Name */}
-        <motion.h1
-          className="hero-name"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          {config.name}
-        </motion.h1>
-
-        {/* Rotating Tagline */}
-        <motion.p
-          className="hero-tagline"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
-          <span style={{
-            opacity: taglineVisible ? 1 : 0,
-            transition: 'opacity 0.4s ease',
-          }}>
-            {tagline}
-          </span>
-        </motion.p>
-
-        {/* Adaptive Title Pills */}
-        <motion.div
-          className="hero-title-container"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-        >
-          {pills.map((pill, i) => (
-            <span key={i} className="hero-title-pill">{pill}</span>
-          ))}
+          CH
         </motion.div>
+        <div className="bg-geometric-overlays"></div>
+      </div>
 
-        {/* Dynamic Stats */}
-        <motion.div
-          className="hero-stats-row"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.5 }}
-        >
-          <div className="hero-stat">
-            <strong>{stats.totalProjects}</strong> Projects
-          </div>
-          <div className="hero-stat">
-            <strong>{stats.totalPatents}</strong> Patents
-          </div>
-          <div className="hero-stat">
-            <strong>{stats.totalPublications}</strong> IEEE Publication{stats.totalPublications > 1 ? 's' : ''}
-          </div>
-          <div className="hero-stat">
-            <strong>{stats.totalTechnologies}</strong> Technologies
-          </div>
-        </motion.div>
+      <div className="hero-editorial-content">
+        {/* Left Side: Typography & Details */}
+        <div className="hero-left-column">
+          <motion.div 
+            className="hero-typography-container"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }}
+          >
+            {/* Layer 3 - Outline (Back) */}
+            <div className="hero-layer hero-layer-3">
+              <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>CHIRAG</motion.span>
+              <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>HARIPRASAD</motion.span>
+            </div>
+            
+            {/* Layer 2 - Blurred (Middle) */}
+            <div className="hero-layer hero-layer-2">
+              <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>CHIRAG</motion.span>
+              <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>HARIPRASAD</motion.span>
+            </div>
 
-        {/* Subtitle */}
-        <motion.p
-          className="hero-subtitle"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
-        >
-          {subtitle}
-        </motion.p>
+            {/* Layer 1 - Solid (Front) */}
+            <div className="hero-layer hero-layer-1">
+              <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>CHIRAG</motion.span>
+              <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>HARIPRASAD</motion.span>
+            </div>
+          </motion.div>
 
-        {/* CTAs */}
-        <motion.div
-          className="hero-cta-group"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3, duration: 0.5 }}
-        >
-          <Link to="/projects" className="btn-primary">
-            View Projects <ArrowRight size={16} />
-          </Link>
-          <a href={config.resumePath} download="Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
-            <Download size={16} /> Resume
-          </a>
-        </motion.div>
+          <motion.div 
+            className="hero-subtitle-container"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            <span className="hero-accent-line"></span>
+            <p className="hero-editorial-subtitle">ENGINEERING INTELLIGENT INFRASTRUCTURE</p>
+          </motion.div>
 
-        {/* Social Links */}
-        <motion.div
-          className="hero-socials"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-        >
-          <a href={config.socials.github} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="GitHub">
-            <Github size={18} />
-          </a>
-          <a href={config.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon-link" aria-label="LinkedIn">
-            <Linkedin size={18} />
-          </a>
-          <a href={`mailto:${config.socials.email}`} className="social-icon-link" aria-label="Email">
-            <Mail size={18} />
-          </a>
-        </motion.div>
-      </motion.div>
+          <motion.div 
+            className="hero-editorial-badges"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
+            <span className="editorial-badge">Inventor</span>
+            <span className="editorial-badge">AI/ML Systems Engineer</span>
+            <span className="editorial-badge">Full Stack Engineer</span>
+          </motion.div>
+
+          <motion.div 
+            className="hero-editorial-stats"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+          >
+            <div className="editorial-stat">
+              <motion.strong
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.3, duration: 0.5, type: "spring" }}
+              >{stats.totalProjects}</motion.strong> <span>Projects</span>
+            </div>
+            <div className="editorial-stat">
+              <motion.strong
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.4, duration: 0.5, type: "spring" }}
+              >{stats.totalPatents}</motion.strong> <span>Patents</span>
+            </div>
+            <div className="editorial-stat">
+              <motion.strong
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.5, duration: 0.5, type: "spring" }}
+              >{stats.totalPublications}</motion.strong> <span>IEEE Publication{stats.totalPublications > 1 ? 's' : ''}</span>
+            </div>
+            <div className="editorial-stat">
+              <motion.strong
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.6, duration: 0.5, type: "spring" }}
+              >{stats.totalTechnologies}</motion.strong> <span>Technologies</span>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="hero-editorial-cta"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.6 }}
+          >
+            <Link to="/projects" className="btn-editorial-primary">
+              View Projects <ArrowRight size={16} />
+            </Link>
+            <a href={config.resumePath} download="Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-editorial-secondary">
+              Resume
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Right Side: Portrait & Floating Elements */}
+        <div className="hero-right-column">
+          <motion.div 
+            className="hero-portrait-container"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="portrait-backdrop-gradient"></div>
+            <img src="/assets/portrait.png" alt="Chirag Hariprasad" className="hero-portrait" />
+          </motion.div>
+
+          <motion.div 
+            className="hero-editorial-labels"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+          >
+            <div className="bracket-label">ENGINEERING</div>
+            <div className="bracket-label">INTELLIGENCE</div>
+            <div className="bracket-label">INFRASTRUCTURE</div>
+          </motion.div>
+
+          <motion.div 
+            className="hero-quote-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            "I BUILD SYSTEMS THAT<br/>THINK.<br/>PREDICT.<br/>TRANSFORM."
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };
