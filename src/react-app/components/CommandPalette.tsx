@@ -14,7 +14,7 @@ const CommandPalette: React.FC = () => {
   const navigate = useNavigate();
   const { themes, setTheme } = useTheme();
 
-  // Open with "/" key
+  // Open with "/" key or custom event
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === '/' && !isOpen && !(e.target instanceof HTMLInputElement)) {
@@ -25,8 +25,17 @@ const CommandPalette: React.FC = () => {
         setIsOpen(false);
       }
     };
+    
+    const handleCustomOpen = () => {
+      setIsOpen(true);
+    };
+
     window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    window.addEventListener('open-search', handleCustomOpen);
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+      window.removeEventListener('open-search', handleCustomOpen);
+    };
   }, [isOpen]);
 
   // Focus input when opened

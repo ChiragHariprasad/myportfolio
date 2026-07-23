@@ -242,6 +242,46 @@ body::after {
   opacity: 0.6;
 }
 
+.nav-theme-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.nav-theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  text-align: left;
+}
+
+.nav-theme-option.active {
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+}
+
+.nav-search-btn {
+  margin-top: 0.5rem;
+  display: none; /* Hide on desktop by default as hint is shown */
+  justify-content: center;
+  align-items: center;
+}
+
 /* Mobile nav */
 .nav-mobile-toggle {
   display: none;
@@ -260,12 +300,24 @@ body::after {
 @media (max-width: 768px) {
   .nav-sidebar {
     transform: translateX(-100%);
+    width: 260px;
   }
   .nav-sidebar.open {
     transform: translateX(0);
   }
   .nav-mobile-toggle {
     display: block;
+  }
+  .nav-search-btn {
+    display: flex;
+  }
+  .nav-shortcut-hint {
+    display: none; /* Hide shortcut hint on mobile since they can't use it easily */
+  }
+  .nav-theme-menu {
+    position: static;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
   }
   .section-container {
     padding: 3rem 1.25rem;
@@ -1516,6 +1568,33 @@ main {
 /* Adjust string angle slightly to attach to pin */
 .timeline-event:nth-child(odd)::before { transform: rotate(3deg); }
 .timeline-event:nth-child(even)::before { transform: rotate(-3deg); }
+
+@media (max-width: 768px) {
+  .timeline-event,
+  .timeline-event:nth-child(even) {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .evidence-card {
+    width: 95%;
+    max-width: none;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .timeline-event::before,
+  .timeline-event:nth-child(odd)::before,
+  .timeline-event:nth-child(even)::before {
+    display: none; /* Hide red string on mobile for cleaner look */
+  }
+  
+  .timeline-year-label {
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+  }
+}
 
 
 .evidence-date {

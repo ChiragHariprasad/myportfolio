@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Palette, Command } from 'lucide-react';
+import { Menu, X, Palette, Command, Search } from 'lucide-react';
 import { getSiteConfig } from '../data/contentLoader';
 import { useTheme } from './ThemeProvider';
 
@@ -66,36 +66,12 @@ const Navigation: React.FC = () => {
             </button>
 
             {themeMenuOpen && (
-              <div style={{
-                position: 'absolute',
-                bottom: '100%',
-                left: 0,
-                right: 0,
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border)',
-                borderRadius: '6px',
-                marginBottom: '0.5rem',
-                overflow: 'hidden',
-                zIndex: 10,
-              }}>
+              <div className="nav-theme-menu">
                 {themes.map(t => (
                   <button
                     key={t.id}
                     onClick={() => { setTheme(t.id); setThemeMenuOpen(false); }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      width: '100%',
-                      padding: '0.5rem 0.75rem',
-                      border: 'none',
-                      background: t.id === themeId ? 'rgba(var(--accent-rgb), 0.1)' : 'transparent',
-                      color: t.id === themeId ? 'var(--accent)' : 'var(--text-secondary)',
-                      fontSize: '0.75rem',
-                      cursor: 'pointer',
-                      fontFamily: 'var(--font-mono)',
-                      textAlign: 'left',
-                    }}
+                    className={`nav-theme-option ${t.id === themeId ? 'active' : ''}`}
                   >
                     <span style={{
                       width: '8px', height: '8px', borderRadius: '50%',
@@ -108,11 +84,35 @@ const Navigation: React.FC = () => {
             )}
           </div>
 
+          <button 
+            className="nav-theme-btn nav-search-btn"
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('open-search'));
+              setMobileOpen(false);
+            }}
+          >
+            <Search size={12} style={{ marginRight: '0.4rem' }} /> Search
+          </button>
+
           <p className="nav-shortcut-hint">
             <Command size={10} /> Press <kbd>/</kbd> to search
           </p>
         </div>
       </nav>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 90,
+            backdropFilter: 'blur(2px)',
+          }}
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
     </>
   );
 };
