@@ -128,6 +128,15 @@ const Hero: React.FC = () => {
               Resume
             </a>
           </motion.div>
+
+          <motion.div 
+            className="hero-quote-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 0.6 }}
+          >
+            <span className="quote-text">"I BUILD SYSTEMS THAT THINK. PREDICT. TRANSFORM."</span>
+          </motion.div>
         </div>
 
         {/* Right Side: Portrait & Floating Elements */}
@@ -151,15 +160,6 @@ const Hero: React.FC = () => {
             <div className="bracket-label">ENGINEERING</div>
             <div className="bracket-label">INTELLIGENCE</div>
             <div className="bracket-label">INFRASTRUCTURE</div>
-          </motion.div>
-
-          <motion.div 
-            className="hero-quote-block"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-          >
-            "I BUILD SYSTEMS THAT<br/>THINK.<br/>PREDICT.<br/>TRANSFORM."
           </motion.div>
         </div>
       </div>
