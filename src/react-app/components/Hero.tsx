@@ -4,11 +4,13 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { getHeroConfig } from '../data/contentLoader';
 import { computeStats } from '../data/statsEngine';
+import { useAppAnimation } from './AnimationContext';
 import '../styles/portfolio.css';
 
 const Hero: React.FC = () => {
   const config = getHeroConfig();
   const stats = computeStats();
+  const ready = useAppAnimation();
 
   return (
     <section className="hero-wrapper editorial-hero" id="hero">
@@ -33,7 +35,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-typography-container"
             initial="hidden"
-            animate="visible"
+            animate={ready ? "visible" : "hidden"}
             variants={{
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
@@ -61,7 +63,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-subtitle-container"
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
             <span className="hero-accent-line"></span>
@@ -71,7 +73,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-editorial-badges"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
             <span className="editorial-badge">Inventor</span>
@@ -82,34 +84,34 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-editorial-stats"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={ready ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
             <div className="editorial-stat">
               <motion.strong
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ delay: 1.3, duration: 0.5, type: "spring" }}
               >{stats.totalProjects}</motion.strong> <span>Projects</span>
             </div>
             <div className="editorial-stat">
               <motion.strong
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ delay: 1.4, duration: 0.5, type: "spring" }}
               >{stats.totalPatents}</motion.strong> <span>Patents</span>
             </div>
             <div className="editorial-stat">
               <motion.strong
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ delay: 1.5, duration: 0.5, type: "spring" }}
               >{stats.totalPublications}</motion.strong> <span>IEEE Publication{stats.totalPublications > 1 ? 's' : ''}</span>
             </div>
             <div className="editorial-stat">
               <motion.strong
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
+                animate={ready ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ delay: 1.6, duration: 0.5, type: "spring" }}
               >{stats.totalTechnologies}</motion.strong> <span>Technologies</span>
             </div>
@@ -118,7 +120,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-editorial-cta"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ delay: 1.8, duration: 0.6 }}
           >
             <Link to="/projects" className="btn-editorial-primary">
@@ -132,7 +134,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-quote-block"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 2, duration: 0.6 }}
           >
             <span className="quote-text">"I BUILD SYSTEMS THAT THINK. PREDICT. TRANSFORM."</span>
@@ -144,7 +146,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-portrait-container"
             initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
           >
             <div className="portrait-backdrop-gradient"></div>
@@ -154,7 +156,7 @@ const Hero: React.FC = () => {
           <motion.div 
             className="hero-editorial-labels"
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
             <div className="bracket-label">ENGINEERING</div>

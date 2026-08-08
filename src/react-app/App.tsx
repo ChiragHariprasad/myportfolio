@@ -5,6 +5,7 @@ import { ThemeProvider } from './components/ThemeProvider';
 import Navigation from './components/Navigation';
 import CommandPalette from './components/CommandPalette';
 import LoadingScreen from './components/LoadingScreen';
+import { AppAnimationContext } from './components/AnimationContext';
 import Hero from './components/Hero';
 import InnovationMetrics from './components/InnovationMetrics';
 import { getSeoForPath } from './data/seo';
@@ -175,8 +176,10 @@ export function AppShell({ routes }: { routes?: React.ReactNode }) {
 
   return (
     <ThemeProvider>
-      {!loaded && <LoadingScreen onComplete={handleLoadComplete} />}
-      <AppContent routes={routes} />
+      <AppAnimationContext.Provider value={loaded}>
+        {!loaded && <LoadingScreen onComplete={handleLoadComplete} />}
+        <AppContent routes={routes} />
+      </AppAnimationContext.Provider>
     </ThemeProvider>
   );
 }
