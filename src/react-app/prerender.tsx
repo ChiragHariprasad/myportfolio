@@ -15,6 +15,7 @@ import { getSeoForPath, getAllPrerenderRoutes, SITE_URL, type SeoMeta } from './
 interface PrerenderHeadElement {
   type: string;
   props: Record<string, string>;
+  children?: string;
 }
 
 interface PrerenderResult {
@@ -56,7 +57,8 @@ function buildHeadElements(seo: SeoMeta, path: string): Set<PrerenderHeadElement
   if (seo.jsonLd) {
     elements.add({
       type: 'script',
-      props: { type: 'application/ld+json', innerHTML: JSON.stringify(seo.jsonLd) },
+      props: { type: 'application/ld+json' },
+      children: JSON.stringify(seo.jsonLd),
     });
   }
 

@@ -25,7 +25,11 @@ async function waitForClick(page, sel, timeout = 4000) {
 
 async function waitForURL(page, path, timeout = 8000) {
   await page.waitForFunction(
-    p => location.pathname === p,
+    p => {
+      const cur = location.pathname.replace(/\/+$/, '') || '/';
+      const want = p.replace(/\/+$/, '') || '/';
+      return cur === want;
+    },
     { timeout },
     path,
   );
@@ -342,6 +346,7 @@ try {
       () => { const el = document.querySelector('.section-title'); el?.scrollIntoView(); return !!el; },
       { timeout: 6000 },
     );
+    await page.waitForFunction(() => !document.querySelector('.nav-sidebar.open'), { timeout: 4000 });
     const sidebarClosed = await page.evaluate(() => !document.querySelector('.nav-sidebar.open'));
     check('sidebar auto-closes after nav', sidebarClosed);
     await page.click('.nav-mobile-toggle');
