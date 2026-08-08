@@ -75,13 +75,13 @@ export function generateTimeline(): TimelineEvent[] {
         description: patent.abstract,
         type: 'patent',
         projectId: patent.projectId,
-        image: isFirstPatent ? '/assets/1st-patent.png' : undefined,
+        image: isFirstPatent ? '/assets/1st-patent.webp' : undefined,
       });
     } else {
       // Enhance existing event
       existingProjectEvent.title = `${existingProjectEvent.title.replace(' - Completed', '')} - Patent Published`;
       existingProjectEvent.type = 'patent';
-      if (isFirstPatent) existingProjectEvent.image = '/assets/1st-patent.png';
+      if (isFirstPatent) existingProjectEvent.image = '/assets/1st-patent.webp';
     }
   }
 
@@ -102,7 +102,7 @@ export function generateTimeline(): TimelineEvent[] {
       description: pub.title,
       type: 'publication',
       projectId: pub.projectId,
-      image: isFirstPub ? '/assets/1st-paper.png' : undefined,
+      image: isFirstPub ? '/assets/1st-paper.webp' : undefined,
     });
   }
 
@@ -119,7 +119,7 @@ export function generateTimeline(): TimelineEvent[] {
       title: `${exp.organization} - ${exp.role}`,
       description: `Started as a ${exp.role} at ${exp.organization}.`,
       type: 'experience',
-      image: exp.id === 'iifl-samasta' ? `/assets/Samasta_start.png` : undefined,
+      image: exp.id === 'iifl-samasta' ? `/assets/Samasta_start.webp` : undefined,
     });
 
     if (exp.endDate) {
@@ -134,7 +134,7 @@ export function generateTimeline(): TimelineEvent[] {
           title: `${exp.organization} - Internship Completed`,
           description: exp.description,
           type: 'experience',
-          image: exp.type === 'internship' ? `/assets/internship-${exp.id}.png` : undefined,
+          image: exp.type === 'internship' ? `/assets/internship-${exp.id}.webp` : undefined,
         });
       }
     }

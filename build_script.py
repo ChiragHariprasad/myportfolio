@@ -17,6 +17,8 @@ def main():
     vite_path = os.path.join(cwd, "node_modules", ".bin", "vite")
 
     try:
+        # Generate sitemap + social image + optimized images
+        run_command([sys.executable, "-c", "import subprocess, sys; content=[(['node', 'scripts/generate-sitemap.mjs']), (['node', 'scripts/generate-og-image.mjs']), (['node', 'scripts/optimize-images.mjs'])]; [subprocess.run(c, check=True) for c in content]"])
         # Run tsc -b
         run_command([tsc_path, "-b"])
         # Run vite build

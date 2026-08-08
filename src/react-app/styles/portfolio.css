@@ -2121,6 +2121,9 @@ main {
 }
 
 /* ---- Loading Screen ---- */
+.route-loading {
+  min-height: 60vh;
+}
 .loading-screen {
   position: fixed;
   inset: 0;

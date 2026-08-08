@@ -59,7 +59,7 @@ const Timeline: React.FC = () => {
                     </div>
 
                     {event.image && (
-                      <img src={event.image} alt={event.title} className="evidence-image" />
+                      <img src={event.image} alt={event.title} className="evidence-image" loading="lazy" decoding="async" />
                     )}
 
                     {event.projectId && (

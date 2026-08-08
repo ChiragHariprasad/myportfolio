@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Layers, Cpu, Database, Code, Globe, Terminal, Shield, Zap, ChevronRight } from 'lucide-react';
 import { getTechWithCounts, getProjectsByTech } from '../data/contentLoader';
+import type { Project } from '../data/types';
 import '../styles/portfolio.css';
 import '../styles/gamified-techstack.css';
 
@@ -60,7 +61,7 @@ function categorizeTech(name: string): string {
 const SkillNode = ({ 
   tech, maxCount, isActive, onClick, categoryColor, index 
 }: { 
-  tech: any; maxCount: number; isActive: boolean; onClick: () => void; categoryColor: string; index: number 
+  tech: { name: string; count: number }; maxCount: number; isActive: boolean; onClick: () => void; categoryColor: string; index: number 
 }) => {
   const level = Math.ceil((tech.count / maxCount) * 5);
   const percentage = Math.round((tech.count / maxCount) * 100);
@@ -103,7 +104,7 @@ const SkillNode = ({
   );
 };
 
-const InspectionPanel = ({ techName, count, projects, onClose, categoryColor }: { techName: string; count: number; projects: any[]; onClose: () => void; categoryColor: string }) => {
+const InspectionPanel = ({ techName, count, projects, onClose, categoryColor }: { techName: string; count: number; projects: Project[]; onClose: () => void; categoryColor: string }) => {
   const categoryId = categorizeTech(techName);
   const { icon, label } = TECH_GROUPS[categoryId];
 
@@ -171,8 +172,16 @@ const InspectionPanel = ({ techName, count, projects, onClose, categoryColor }: 
 
 const TechStackPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const selectedTech = searchParams.get('tech');
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
+
+  // Read the ?tech= query only on the client after hydration so the initial
+  // render always matches the prerendered HTML (which has no query) — avoids
+  // React hydration mismatch errors (#418/#422) on deep links like
+  // /techstack?tech=React and keeps SSR output stable.
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  useEffect(() => {
+    setSelectedTech(searchParams.get('tech'));
+  }, [searchParams]);
 
   const techList = useMemo(() => {
     return getTechWithCounts().filter(t => t.count >= MIN_PROJECT_COUNT);

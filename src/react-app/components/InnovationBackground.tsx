@@ -963,7 +963,7 @@ const InnovationBackground: React.FC<InnovationBackgroundProps> = ({
       window.removeEventListener('resize', onResize);
       window.removeEventListener('mousemove', onMouse);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <canvas

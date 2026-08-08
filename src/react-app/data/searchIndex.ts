@@ -26,6 +26,8 @@ export function buildSearchIndex(): SearchItem[] {
       path: `/projects/${project.id}`,
       keywords: [
         project.title.toLowerCase(),
+        project.title.replace(/\./g, '').toLowerCase(),
+        project.id.toLowerCase(),
         project.fullTitle.toLowerCase(),
         project.domain.toLowerCase(),
         ...project.tags,

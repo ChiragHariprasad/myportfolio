@@ -14,12 +14,21 @@ const LOADING_LINES: { text: string; delay: number; type?: string }[] = [
   { text: '> System ready.', delay: 1500, type: 'success' },
 ];
 
+const SKIP_FLAG = 'portfolio-os-loaded';
+
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [visibleLines, setVisibleLines] = useState(0);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
+
+    // Only show the theatrical loader on a visitor's first visit per session.
+    if (sessionStorage.getItem(SKIP_FLAG) === '1') {
+      setFading(true);
+      timers.push(setTimeout(onComplete, 0));
+      return () => timers.forEach(clearTimeout);
+    }
 
     LOADING_LINES.forEach((line, i) => {
       timers.push(
@@ -34,7 +43,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
     // Complete
     timers.push(
-      setTimeout(() => onComplete(), 2200)
+      setTimeout(() => {
+        sessionStorage.setItem(SKIP_FLAG, '1');
+        onComplete();
+      }, 2200)
     );
 
     return () => timers.forEach(clearTimeout);
@@ -47,6 +59,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         opacity: fading ? 0 : 1,
         transition: 'opacity 0.3s ease',
       }}
+      aria-hidden="true"
     >
       <div className="loading-terminal">
         {LOADING_LINES.slice(0, visibleLines).map((line, i) => (

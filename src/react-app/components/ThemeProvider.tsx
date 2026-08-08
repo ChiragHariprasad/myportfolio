@@ -21,10 +21,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const siteConfig = getSiteConfig();
   const themes = siteConfig.themes;
 
-  const [themeId, setThemeId] = useState<string>(() => {
+  const [themeId, setThemeId] = useState<string>(siteConfig.defaultTheme);
+
+  // Read the saved theme lazily after mount so server-rendered HTML and the
+  // first client render stay consistent (hydration-safe + SSR-safe).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
     const saved = localStorage.getItem('portfolio-theme');
-    return saved && themes.find(t => t.id === saved) ? saved : siteConfig.defaultTheme;
-  });
+    if (saved && themes.find(t => t.id === saved)) {
+      setThemeId(saved);
+    }
+  }, [themes]);
 
   const currentTheme = themes.find(t => t.id === themeId) || themes[0];
 

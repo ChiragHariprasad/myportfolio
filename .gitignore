@@ -26,3 +26,9 @@ CLAUDE.md
 PROJECT_PROGRESS.md
 **/CLAUDE.md
 **/PROJECT_PROGRESS.md
+# Build artifacts
+*.tsbuildinfo
+vite.config.ts.timestamp-*
+
+# UI test artifacts
+artifacts/

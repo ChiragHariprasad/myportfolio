@@ -148,7 +148,7 @@ const Hero: React.FC = () => {
             transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
           >
             <div className="portrait-backdrop-gradient"></div>
-            <img src="/assets/chirag-hariprasad.png" alt="Chirag Hariprasad" title="Chirag Hariprasad Portrait" className="hero-portrait" />
+            <img src="/assets/chirag-hariprasad.webp" alt="Chirag Hariprasad" title="Chirag Hariprasad Portrait" className="hero-portrait" width="512" height="512" fetchPriority="high" decoding="async" />
           </motion.div>
 
           <motion.div 
