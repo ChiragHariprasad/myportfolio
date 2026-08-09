@@ -55,11 +55,14 @@ function buildHeadElements(seo: SeoMeta, path: string): Set<PrerenderHeadElement
   }
 
   if (seo.jsonLd) {
-    elements.add({
-      type: 'script',
-      props: { type: 'application/ld+json' },
-      children: JSON.stringify(seo.jsonLd),
-    });
+    const ldItems = Array.isArray(seo.jsonLd) ? seo.jsonLd : [seo.jsonLd];
+    for (const ld of ldItems) {
+      elements.add({
+        type: 'script',
+        props: { type: 'application/ld+json' },
+        children: JSON.stringify(ld),
+      });
+    }
   }
 
   void path;

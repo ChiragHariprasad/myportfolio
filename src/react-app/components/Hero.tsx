@@ -53,11 +53,11 @@ const Hero: React.FC = () => {
               <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>HARIPRASAD</motion.span>
             </div>
 
-            {/* Layer 1 - Solid (Front) */}
-            <div className="hero-layer hero-layer-1">
+            {/* Layer 1 - Solid (Front) — rendered as h1 for SEO */}
+            <h1 className="hero-layer hero-layer-1">
               <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>CHIRAG</motion.span>
               <motion.span variants={{ hidden: { y: 100 }, visible: { y: 0 } }}>HARIPRASAD</motion.span>
-            </div>
+            </h1>
           </motion.div>
 
           <motion.div 

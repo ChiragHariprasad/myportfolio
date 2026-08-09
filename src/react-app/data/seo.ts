@@ -18,7 +18,7 @@ export interface SeoMeta {
   canonical: string;
   ogType: 'website' | 'article';
   keywords?: string[];
-  jsonLd?: object;
+  jsonLd?: object | object[];
 }
 
 function projectJsonLd(project: Project): object {
@@ -95,17 +95,26 @@ export function getSeoForPath(path: string): SeoMeta {
       canonical: SITE_URL,
       ogType: 'website',
       keywords: ['Chirag Hariprasad', 'AI Engineer', 'Portfolio', 'Inventor', 'Researcher', 'Software Engineer'],
-      jsonLd: {
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        name: 'Chirag Hariprasad',
-        url: SITE_URL,
-image: `${SITE_URL}/assets/chirag-hariprasad.webp`,
-        email: hero.socials.email,
-        jobTitle: 'AI/ML Systems Engineer, Inventor & Researcher',
-        description: site.description,
-        sameAs: [hero.socials.linkedin, hero.socials.github],
-      },
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Chirag Hariprasad',
+          alternateName: ['Chirag Hariprasad Portfolio', 'chiraghariprasad.qzz.io'],
+          url: `${SITE_URL}/`,
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Chirag Hariprasad',
+          url: SITE_URL,
+          image: `${SITE_URL}/assets/chirag-hariprasad.webp`,
+          email: hero.socials.email,
+          jobTitle: 'AI/ML Systems Engineer, Inventor & Researcher',
+          description: site.description,
+          sameAs: [hero.socials.linkedin, hero.socials.github],
+        },
+      ],
     };
   }
 

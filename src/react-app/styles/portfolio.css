@@ -437,6 +437,7 @@ main {
   position: relative;
   z-index: 3;
   color: var(--text-primary);
+  margin: 0; /* reset h1 default */
 }
 
 .hero-layer-2 {
